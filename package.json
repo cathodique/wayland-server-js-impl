@@ -1,0 +1,36 @@
+{
+  "name": "@cathodique/wayland-server-js-impl",
+  "version": "1.0.0",
+  "description": "Wayland server JS implementation",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsc && LOGGERS=wl_serv_i8a56qb0lm3ox1ng1cqai0e1 node .",
+    "build": "npx tsc",
+    "publish": "npx tsc && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cathodique/wayland-server-js-impl.git"
+  },
+  "keywords": [
+    "wayland"
+  ],
+  "author": "Juliet WANG <immjs>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cathodique/wayland-server-js-impl/issues"
+  },
+  "homepage": "https://github.com/cathodique/wayland-server-js-impl#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/xml-parser": "^1.2.33",
+    "node-addon-api": "^8.3.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "fifo": "^2.4.1",
+    "node-gyp": "^11.0.0",
+    "xml-parser": "^1.2.1"
+  }
+}
