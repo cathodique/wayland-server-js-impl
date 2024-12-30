@@ -1,12 +1,17 @@
 export class WlObject {
     connection;
     oid;
-    constructor(conx, oid, args) {
+    parent;
+    constructor(conx, oid, parent, args) {
         this.oid = oid;
         this.connection = conx;
+        this.parent = parent;
     }
     get iface() { throw new Error('wl_object alone does not have a name'); }
-    destroy() {
+    wlDestroy() {
         this.connection.objects.delete(this.oid);
+    }
+    toString() {
+        return `[wlObject ${this.iface}]`;
     }
 }

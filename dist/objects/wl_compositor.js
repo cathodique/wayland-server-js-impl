@@ -1,7 +1,11 @@
-import { WlObject } from "./wl_object.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlCompositor = void 0;
+const base_object_js_1 = require("./base_object.js");
 const name = 'wl_compositor';
-export class WlCompositor extends WlObject {
+class WlCompositor extends base_object_js_1.WlObject {
     get iface() { return name; }
-    createSurface() { }
-    createRegion() { }
+    wlCreateSurface() { }
+    wlCreateRegion() { }
 }
+exports.WlCompositor = WlCompositor;

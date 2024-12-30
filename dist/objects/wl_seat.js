@@ -1,5 +1,9 @@
-import { WlObject } from "./wl_object.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlSeat = void 0;
+const base_object_js_1 = require("./base_object.js");
 const name = 'wl_seat';
-export class WlSeat extends WlObject {
+class WlSeat extends base_object_js_1.WlObject {
     get iface() { return name; }
 }
+exports.WlSeat = WlSeat;

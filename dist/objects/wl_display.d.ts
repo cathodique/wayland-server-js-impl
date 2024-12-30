@@ -1,9 +1,12 @@
 import { WlCallback } from "./wl_callback.js";
-import { WlObject } from "./wl_object.js";
-export declare class WlDisplay extends WlObject {
-    get iface(): string;
-    sync(args: {
+import { WlObject } from "./base_object.js";
+import { WlRegistry } from "./wl_registry.js";
+export declare class WlDisplay extends WlObject<null> {
+    get iface(): "wl_display";
+    wlSync(args: {
         callback: WlCallback;
     }): void;
-    getRegistry(): void;
+    wlGetRegistry(args: {
+        registry: WlRegistry;
+    }): void;
 }

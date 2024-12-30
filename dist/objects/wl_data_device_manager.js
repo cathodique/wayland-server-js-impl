@@ -1,6 +1,10 @@
-import { WlObject } from "./wl_object.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlDataDeviceManager = void 0;
+const base_object_js_1 = require("./base_object.js");
 const name = 'wl_data_device_manager';
-export class WlDataDeviceManager extends WlObject {
+class WlDataDeviceManager extends base_object_js_1.WlObject {
     get iface() { return name; }
-    getDataDevice() { }
+    wlGetDataDevice() { }
 }
+exports.WlDataDeviceManager = WlDataDeviceManager;

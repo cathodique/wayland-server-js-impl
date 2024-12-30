@@ -1,38 +1,67 @@
-import { WlObject } from "./wl_object.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlSurface = void 0;
+const base_object_js_1 = require("./base_object.js");
+const wl_buffer_js_1 = require("./wl_buffer.js");
 function createDoubleBuffer(v) {
-    return { current: v(), pending: v() };
-}
-function update(v, newPending) {
-    v.current = v.pending;
-    if (newPending != null)
-        v.pending = newPending;
+    return { current: v(), cached: v(), pending: v() };
 }
 const name = 'wl_surface';
-export class WlSurface extends WlObject {
+class WlSurface extends base_object_js_1.WlObject {
+    daughterSurfaces = [];
+    subsurface = null;
     get iface() { return name; }
     opaqueRegions = createDoubleBuffer(() => []);
     inputRegions = createDoubleBuffer(() => []);
-    buffers = createDoubleBuffer(() => null);
-    setOpaqueRegion(args) {
+    buffer = createDoubleBuffer(() => null);
+    scale = createDoubleBuffer(() => 1);
+    static doubleBufferedState = ['opaqueRegions', 'inputRegions', 'buffer', 'scale'];
+    wlSetOpaqueRegion(args) {
         this.opaqueRegions.pending = args.region.instructions;
     }
-    setInputRegion(args) {
+    wlSetInputRegion(args) {
         this.inputRegions.pending = args.region.instructions;
     }
-    scale = createDoubleBuffer(() => 1);
-    setBufferScale(args) {
+    wlFrame({ callback }) {
+        this.connection.compositor.once('tick', (function () {
+            callback.done(Date.now());
+        }).bind(this));
+    }
+    wlSetBufferScale(args) {
         this.scale.pending = args.scale;
     }
-    commit(args) {
-        // The attached wl_buffer, or the pixels making up the content of the surface
-        update(this.buffers);
-        // The region which was "damaged" since the last frame, and needs to be redrawn
-        // The region which accepts input events
-        update(this.inputRegions);
-        // The region considered opaque
-        update(this.opaqueRegions);
-        // Transformations on the attached wl_buffer, to rotate or present a subset of the buffer
-        // The scale factor of the buffer, used for HiDPI displays
-        update(this.scale);
+    wlAttach(args) {
+        this.buffer.pending = args.buffer;
+    }
+    get synced() {
+        if (!this.subsurface)
+            return false;
+        return this.subsurface.isSynced || this.subsurface.assocParent.synced;
+    }
+    update() {
+        for (const doubleBuffed of WlSurface.doubleBufferedState) {
+            this[doubleBuffed].cached = this[doubleBuffed].pending;
+        }
+        if (this.subsurface && !this.subsurface.isSynced)
+            this.applyCache();
+    }
+    applyCache() {
+        this.daughterSurfaces.forEach((surf) => surf.applyCache());
+        for (const doubleBuffed of WlSurface.doubleBufferedState) {
+            if (this[doubleBuffed].current instanceof wl_buffer_js_1.WlBuffer)
+                this[doubleBuffed].current.wlRelease();
+            if (this[doubleBuffed].cached != null) {
+                this[doubleBuffed].current = this[doubleBuffed].cached;
+            }
+            this[doubleBuffed].cached = null;
+        }
+    }
+    wlCommit() {
+        this.update();
+        const frame = this.buffer.current?.read();
+        // console.log(frame);
+        if (frame)
+            this.connection.emit('frame', frame, this);
     }
 }
+exports.WlSurface = WlSurface;

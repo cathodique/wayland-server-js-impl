@@ -1,50 +1,83 @@
-import { WlObject } from "./wl_object.js";
+import { ExistentParent, WlObject } from "./base_object.js";
 import { WlBuffer } from "./wl_buffer.js";
 import { RegRectangle, WlRegion } from "./wl_region.js";
+import { WlCallback } from "./wl_callback.js";
+import { WlSubsurface } from "./wl_subsurface.js";
+import mmap from "@cathodique/mmap-io";
 
 interface DoubleBuffer<T> {
   current: T;
+  cached: T | null;
   pending: T;
 }
 
 function createDoubleBuffer<T>(v: () => T) {
-  return { current: v(), pending: v() };
-}
-function update<T>(v: DoubleBuffer<T>, newPending?: T) {
-  v.current = v.pending;
-  if (newPending != null) v.pending = newPending;
+  return { current: v(), cached: v(), pending: v() };
 }
 
-const name = 'wl_surface';
-export class WlSurface extends WlObject {
+const name = 'wl_surface' as const;
+export class WlSurface extends WlObject<ExistentParent> {
+  daughterSurfaces: WlSurface[] = [];
+  subsurface: WlSubsurface | null = null;
+
   get iface() { return name }
 
   opaqueRegions: DoubleBuffer<RegRectangle[]> = createDoubleBuffer(() => []);
   inputRegions: DoubleBuffer<RegRectangle[]> = createDoubleBuffer(() => []);
-  buffers: DoubleBuffer<WlBuffer | null> = createDoubleBuffer(() => null);
+  buffer: DoubleBuffer<WlBuffer | null> = createDoubleBuffer(() => null);
+  scale: DoubleBuffer<number> = createDoubleBuffer(() => 1);
 
-  setOpaqueRegion(args: { region: WlRegion }) {
+  static doubleBufferedState = ['opaqueRegions', 'inputRegions', 'buffer', 'scale'] as const;
+
+  wlSetOpaqueRegion(args: { region: WlRegion }) {
     this.opaqueRegions.pending = args.region.instructions;
   }
-  setInputRegion(args: { region: WlRegion }) {
+  wlSetInputRegion(args: { region: WlRegion }) {
     this.inputRegions.pending = args.region.instructions;
   }
 
-  scale: DoubleBuffer<number> = createDoubleBuffer(() => 1);
-  setBufferScale(args: { scale: number }) {
+  wlFrame({ callback }: { callback: WlCallback }) {
+    this.connection.compositor.once('tick', (function (this: WlSurface) {
+      callback.done(Date.now());
+    }).bind(this));
+  }
+
+  wlSetBufferScale(args: { scale: number }) {
     this.scale.pending = args.scale;
   }
 
-  commit(args: {}) {
-    // The attached wl_buffer, or the pixels making up the content of the surface
-    update(this.buffers)
-    // The region which was "damaged" since the last frame, and needs to be redrawn
-    // The region which accepts input events
-    update(this.inputRegions);
-    // The region considered opaque
-    update(this.opaqueRegions);
-    // Transformations on the attached wl_buffer, to rotate or present a subset of the buffer
-    // The scale factor of the buffer, used for HiDPI displays
-    update(this.scale);
+  wlAttach(args: { buffer: WlBuffer | null }) {
+    this.buffer.pending = args.buffer;
+  }
+
+  get synced(): boolean {
+    if (!this.subsurface) return false;
+    return this.subsurface.isSynced || this.subsurface.assocParent.synced;
+  }
+
+  update<T>() {
+    for (const doubleBuffed of WlSurface.doubleBufferedState) {
+      this[doubleBuffed].cached = this[doubleBuffed].pending;
+    }
+    if (this.subsurface && !this.subsurface.isSynced) this.applyCache();
+  }
+  applyCache<T>() {
+    this.daughterSurfaces.forEach((surf) => surf.applyCache());
+
+    for (const doubleBuffed of WlSurface.doubleBufferedState) {
+      if (this[doubleBuffed].current instanceof WlBuffer) this[doubleBuffed].current.wlRelease();
+      if (this[doubleBuffed].cached != null) {
+        this[doubleBuffed].current = this[doubleBuffed].cached;
+      }
+      this[doubleBuffed].cached = null;
+    }
+  }
+
+  wlCommit() {
+    this.update();
+
+    const frame = this.buffer.current?.read();
+    // console.log(frame);
+    if (frame) this.connection.emit('frame', frame, this);
   }
 }

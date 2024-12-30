@@ -1,40 +1,92 @@
 import { rmSync } from "node:fs";
 import fsp from "node:fs/promises";
-import net from "node:net";
 import path from "node:path";
 import { console } from "./logger.js";
-import { Connection } from "./connection.js";
+import { Connection, parseOnReadable } from "./connection.js";
+import { UServer, USocket } from "@cathodique/usocket";
+import EventEmitter from "node:events";
 
-export class Compositor {
-  server: net.Server;
+type CompositorEvents = {
+  tick: [],
+  connection: [Connection],
+  newMon: [OutputConfiguration],
+  delMon: [OutputConfiguration],
+};
+
+export interface OutputConfiguration {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export class Compositor extends EventEmitter<CompositorEvents> {
+  server: UServer;
   closed: boolean = true;
   socketPath?: string;
   socketLockfile?: string;
   currConnId = 0;
 
-  constructor() {
+  outputConfigurations: OutputConfiguration[];
+
+  constructor(outputConfigurations: OutputConfiguration[]) {
+    super();
+    this.outputConfigurations = [...outputConfigurations];
     // Create a server
-    this.server = net.createServer((function (this: Compositor, socket: net.Socket) {
-      // Comment one:
+    this.server = new UServer();
+    this.server.on(
+      "connection",
+      function (this: Compositor, socket: USocket) {
+        // Comment one:
 
-      // - As compositor
-      new Connection(this.currConnId ++, this, socket);
+        // - As compositor
+        this.emit('connection', new Connection(this.currConnId++, this, socket, false));
 
-      console.log('New Connection!!!');
+        console.log("New Connection!!!");
 
-      // - As MITM
-      // const socket2 = new net.Socket();
-      // new Connection(this.currConnId ++, this, socket, socket2);
-      // socket2.on('data', (v) => { console.log('S2C', v.toString('hex')); socket.write(v); });
-      // socket.on('data', (v) => { console.log('C2S', v.toString('hex')); socket2.write(v); });
-      // socket2.connect('/run/user/1000/wayland-0');
-    }).bind(this));
+        // - As MITM
+        // const socket2 = new USocket();
+        // const conx = new Connection(this.currConnId++, this, socket, true);
+        // socket2.connect("/run/user/1000/wayland-0", () => {
+        //   socket.on("readable", () => {
+        //     parseOnReadable(socket, ({ data, fds }) => {
+        //       // console.log("C2S", data && data.toString("hex"), fds);
+        //       try {
+        //         const [[a, b, c]] = [...conx.parser(data)];
+        //         console.log("C2S", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
+        //         socket2.write({ data, fds });
+        //       } catch (e) {
+        //         socket2.write({ data, fds });
+        //       }
+        //     });
+        //   });
+        //   socket2.on("readable", () => {
+        //     parseOnReadable(socket2, ({ data, fds }) => {
+        //       // console.log("S2C", data && data.toString("hex"), fds);
+        //       try {
+        //         const [[a, b, c]] = [...conx.parser(data, true)];
+        //         console.log("S2C", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
+        //         if (b === 'global' && !WlRegistry.registry.includes(c.interface)) return console.log('Ignoring');
+        //         // if (!WlRegistry.registry.includes(c.))
+        //         socket.write({ data, fds });
+        //       } catch (e) {
+        //         socket.write({ data, fds });
+        //       }
+        //     });
+        //   });
+        // });
+      }.bind(this),
+    );
 
-    for (const event of (['exit', 'SIGINT', 'SIGTERM'] as const)) {
-      process.on(event, (function (this: Compositor) {
-        this.close();
-        process.exit();
-      }).bind(this));
+    for (const event of ["exit", "SIGINT", "SIGTERM"] as const) {
+      process.on(
+        event,
+        function (this: Compositor) {
+          console.log(event);
+          this.close();
+          process.exit();
+        }.bind(this),
+      );
     }
   }
 
@@ -48,28 +100,37 @@ export class Compositor {
   start() {
     if (!this.closed) return;
     this.closed = false;
-    return new Promise<void>((async function (this: Compositor, r: () => void) {
-      const runtimeDir = process.env.XDG_RUNTIME_DIR;
-      if (!runtimeDir) throw new Error('XDG_RUNGIME_DIR is not set; panicking');
-      
-      const waylandServersMax = Math.max(
-        ...(await fsp.readdir(runtimeDir))
-          .filter((v) => v.match(/^wayland-\d+$/))
-          .map((v) => +v.match(/\d+$/)![0]),
-        0,
-      );
-      
-      // Define the socket path
-      this.socketPath = path.join(runtimeDir, `wayland-${waylandServersMax + 1}`);
-      this.socketLockfile = `${this.socketPath}.lock`;
-      
-      // Listen on the socket path
-      this.server.listen(this.socketPath, (async function (this: Compositor) {
-        const fileHandle = await fsp.open(this.socketLockfile!, 'a');
-        fileHandle.close();
+    return new Promise<void>(
+      async function (this: Compositor, r: () => void) {
+        const runtimeDir = process.env.XDG_RUNTIME_DIR;
+        if (!runtimeDir)
+          throw new Error("XDG_RUNGIME_DIR is not set; panicking");
 
-        console.log(`Server listening on ${this.socketPath}`);
-      }).bind(this));
-    }).bind(this));
+        const waylandServersMax = Math.max(
+          ...(await fsp.readdir(runtimeDir))
+            .filter((v) => v.match(/^wayland-\d+$/))
+            .map((v) => +v.match(/\d+$/)![0]),
+          0,
+        );
+
+        // Define the socket path
+        this.socketPath = path.join(
+          runtimeDir,
+          `wayland-${waylandServersMax + 1}`,
+        );
+        this.socketLockfile = `${this.socketPath}.lock`;
+
+        // Listen on the socket path
+        this.server.listen(
+          this.socketPath,
+          async function (this: Compositor) {
+            const fileHandle = await fsp.open(this.socketLockfile!, "a");
+            fileHandle.close();
+
+            console.log(`Server listening on ${this.socketPath}`);
+          }.bind(this),
+        );
+      }.bind(this),
+    );
   }
 }

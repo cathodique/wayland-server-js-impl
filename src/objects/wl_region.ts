@@ -1,4 +1,4 @@
-import { WlObject } from "./wl_object.js";
+import { ExistentParent, WlObject } from "./base_object.js";
 
 export enum InstructionType {
   Add,
@@ -25,17 +25,17 @@ export class RegRectangle {
   }
 }
 
-const name = 'wl_region';
-export class WlRegion extends WlObject {
+const name = 'wl_region' as const;
+export class WlRegion extends WlObject<ExistentParent> {
   get iface() { return name }
 
   instructions: RegRectangle[] = [];
 
-  add(args: Record<string, any>) {
+  wlAdd(args: Record<string, any>) {
     this.instructions.push(new RegRectangle(InstructionType.Add, args.y, args.x, args.h, args.w));
   }
-  
-  subtract(args: Record<string, any>) {
+
+  wlSubtract(args: Record<string, any>) {
     this.instructions.push(new RegRectangle(InstructionType.Subtract, args.y, args.x, args.h, args.w));
   }
 }

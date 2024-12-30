@@ -1,7 +1,6 @@
 import { endianness as getEndianness } from "node:os";
-import { Socket } from "node:net";
 import type { Compositor } from "./compositor.js";
-import { WlObject } from "./objects/wl_object.js";
+import { ExistentParent, Parent, WlObject as BaseObject } from "./objects/base_object.js";
 import { WlRegistry } from "./objects/wl_registry.js";
 import { WlCallback } from "./objects/wl_callback.js";
 import { WlDisplay } from "./objects/wl_display.js";
@@ -20,23 +19,39 @@ import { XdgSurface } from "./objects/xdg_surface.js";
 import { XdgToplevel } from "./objects/xdg_toplevel.js";
 import { WlSubsurface } from "./objects/wl_subsurface.js";
 
-const endianness = getEndianness();
-const read = (b: Buffer, i: number, signed: boolean = true) => {
-  const unsignedness = signed ? '' : 'U';
+import { USocket } from "@cathodique/usocket";
+import { WlShmPool } from "./objects/wl_shm_pool.js";
+
+import FIFO from "fast-fifo";
+import { snakePrepend } from "./utils.js";
+import { WlDummy } from "./objects/dummy_object.js";
+import { WlBuffer } from "./objects/wl_buffer.js";
+import EventEmitter from "node:events";
+
+import { console } from "./logger.js";
+
+export const endianness = getEndianness();
+export const read = (b: Buffer, i: number, signed: boolean = true) => {
+  const unsignedness = signed ? "" : "U";
   return b[`read${unsignedness}Int32${endianness}`](i);
 };
 const write = (v: number, b: Buffer, i: number, signed: boolean = true) => {
-  const unsignedness = signed ? '' : 'U';
+  const unsignedness = signed ? "" : "U";
   return b[`write${unsignedness}Int32${endianness}`](v, i);
 };
 
 export type HypotheticalObject = { oid: number };
 
-const newIdMap: Record<string, { new(comp: Connection, oid: number, args: Record<string, any>): WlObject }> = {
+const newIdMap: Record<
+  string,
+  { new (comp: Connection, oid: number, parent: ExistentParent, args: Record<string, any>): BaseObject<Parent> }
+> = {
+  wl_buffer: WlBuffer,
   wl_registry: WlRegistry,
   wl_callback: WlCallback,
   wl_compositor: WlCompositor,
   wl_shm: WlShm,
+  wl_shm_pool: WlShmPool,
   wl_seat: WlSeat,
   wl_subcompositor: WlSubcompositor,
   wl_output: WlOutput,
@@ -50,134 +65,234 @@ const newIdMap: Record<string, { new(comp: Connection, oid: number, args: Record
   wl_region: WlRegion,
 };
 
-export class Connection {
+export function parseOnReadable(
+  sock: USocket,
+  callback: ({ data, fds }: { data: Buffer; fds: number[] }) => void,
+) {
+  try {
+    while (true) {
+      const { data: headerStuff, fds: fds1 } = sock.read(8, null) || {
+        data: null,
+        fds: null,
+      };
+      if (!headerStuff) return;
+      const metadataNumber = read(headerStuff, 4);
+      const size = metadataNumber >> 16;
+
+      const { data: payload, fds: fds2 } = sock.read(size - 8, null) || {
+        data: null,
+        fds: null,
+      };
+
+      const data = Buffer.concat([headerStuff, payload || Buffer.from([])]);
+
+      const fds = [...(fds1 || []), ...(fds2 || [])];
+      callback({ data, fds });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+interface ParsingContext {
+  buf: Buffer;
+  idx: number;
+  fdQ: FIFO<number>;
+  callbacks: ((args: Record<string, any>) => void)[];
+  parent: BaseObject<Parent>;
+}
+
+export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
   compositor: Compositor;
-  socket: Socket;
-  socket2?: Socket;
+  socket: USocket;
+  socket2?: USocket;
   connId: number;
-  
+
   muzzled: boolean;
 
-  objects: Map<number, WlObject>;
+  objects: Map<number, BaseObject<Parent>>;
 
-  constructor(connId: number, comp: Compositor, sock: Socket, sock2?: Socket) {
-    if (sock2) console.log('Received sock2; now playing MITM');
+  registry: WlRegistry | null = null;
+
+  fdQ: FIFO<number>;
+
+  constructor(
+    connId: number,
+    comp: Compositor,
+    sock: USocket,
+    muzzled: boolean,
+  ) {
+    super();
+
+    if (muzzled) console.log("Muzzled; Will not interfere with sockets (use for MITM)");
 
     this.connId = connId;
     this.compositor = comp;
     this.socket = sock;
-    this.socket2 = sock2;
-    this.muzzled = Boolean(sock2);
+    this.muzzled = muzzled;
 
-    this.objects = new Map<number, WlObject>([[1, new WlDisplay(this, 1, {})]]);
+    this.fdQ = new FIFO();
 
-    // Handle data from the client
-    sock.on('data', (async function (this: Connection, data: Buffer) {
-      try {
-        console.log('C2S', data.toString('hex'));
-        for (const [obj, method, args] of this.parser(data)) {
-          console.log(this.connId, 'C --> S', obj.iface, obj.oid, method);
-          if (!(method in obj) || sock2) {
-            // console.error('Unimplemented method:', method, 'in', obj.iface);
-          } else {
-            (obj as unknown as Record<string, (args: Record<string, any>) => void>)[method](args);
-          }
-        }
-      } catch (err) {
-        console.error(err);
-        sock.end();
-      }
-    }).bind(this));
+    this.objects = new Map<number, BaseObject<Parent>>([[1, new WlDisplay(this, 1, null, {})]]);
 
-    if (sock2) {
-      sock2.on('data', (async function (this: Connection, data: Buffer) {
-        try {
-          for (const [obj, method, args] of this.parser(data, true)) {
-            console.log(this.connId, 'S --> C', obj.iface, obj.oid, method, args);
-          }
-        } catch (err) {
-          console.error(err);
-          sock.end();
-        }
-      }).bind(this));
+    if (!muzzled) {
+      // Handle data from the client
+      sock.on(
+        "readable",
+        async function (this: Connection) {
+          parseOnReadable(
+            sock,
+            function (
+              this: Connection,
+              { data, fds }: { data: Buffer; fds: number[] },
+            ) {
+              fds.forEach((fd) => this.fdQ.push(fd));
+              try {
+                // console.log("C2S", data.toString("hex"), fds);
+                for (const [obj, method, args] of this.parser(data)) {
+                  console.log(this.connId, "C --> S", Connection.prettyWlObj(obj), method);
+                  const functionActualName = snakePrepend("wl", method);
+                  if (!(functionActualName in obj)) {
+                    console.error('Unimplemented method:', method, 'in', obj.iface);
+                  } else {
+                    (
+                      obj as unknown as Record<
+                        string,
+                        (args: Record<string, any>) => void
+                      >
+                    )[functionActualName](args);
+                  }
+                }
+              } catch (err) {
+                console.error(err);
+                sock.end();
+              }
+            }.bind(this),
+          );
+        }.bind(this),
+      );
     }
 
     // Handle client disconnect
-    sock.on('end', () => {
+    sock.on("end", () => {
       // console.log('Client disconnected');
     });
   }
 
-  createObject(type: string, id: number, args: Record<string, any>) {
-    if (this.objects.has(id)) throw new Error(`Tried to recreate existant OID ${id}`);
-    if (!(type in newIdMap)) throw new Error(`Tried to create object of unknown type ${type}`);
+  static prettyWlObj(object: BaseObject<any>) {
+    return `[${object.iface}#${object.oid}]`;
+  }
+  static prettyArgs(args: Record<string, any>) {
+    return Object.fromEntries(
+      Object.entries(args)
+        .map(([k, v]) => [k, v instanceof BaseObject ? Connection.prettyWlObj(v) : v]),
+    );
+  }
 
-    // console.log('New', type, 'with id', id);
-    const newOfIface = new newIdMap[type](this, id, args);
+  createObject(type: string, id: number, parent: BaseObject<Parent>, args: Record<string, any>) {
+    if (this.objects.has(id))
+      throw new Error(`Tried to recreate existant OID ${id}`);
+    if (!(type in newIdMap) && !this.muzzled)
+      throw new Error(`Tried to create object of unknown type ${type}`);
+    else if (!(type in newIdMap))
+      return this.objects.set(id, new WlDummy(this, id, parent, args));
+
+    // console.log(`New [${type}#${id}]`, Connection.prettyArgs(args));
+    const newOfIface = new newIdMap[type](this, id, parent, args);
     this.objects.set(id, newOfIface);
     return newOfIface;
   }
-  
-  parseBlock(
-    type: string,
-    idx: number,
-    buf: Buffer,
-    iface?: string,
-  ): [any, number]
-    | [any, number, (args: Record<string, any>) => unknown] {
-    // console.log(arg, idx, buf)
+
+  parseBlock(ctx: ParsingContext, type: string, arg?: WlArg): any {
+    const idx = ctx.idx;
     switch (type) {
       case "int": {
-        return [read(buf, idx, true), idx + 4];
+        ctx.idx += 4;
+        return read(ctx.buf, idx, true);
       }
       case "uint": {
-        return [read(buf, idx), idx + 4];
+        ctx.idx += 4;
+        return read(ctx.buf, idx);
       }
       case "fixed": {
-        return [read(buf, idx, true) / 2 ** 8, idx + 4];
+        ctx.idx += 4;
+        return read(ctx.buf, idx, true) / 2 ** 8;
       }
       case "object": {
-        const hypotheticalOID = read(buf, idx);
+        if (!arg) throw new Error("Need whole arg to parse object");
+        const hypotheticalOID = read(ctx.buf, ctx.idx);
+        ctx.idx += 4;
+        if (hypotheticalOID === 0 && 'allowNull' in arg && arg.allowNull) {
+          return null;
+        }
         const object = this.objects.get(hypotheticalOID);
-        if (!object) throw new Error(`Client mentionned inexistant OID ${hypotheticalOID}`);
-        return [object, idx + 4];
+        if (!object)
+          throw new Error(
+            `Client mentionned inexistant OID ${hypotheticalOID}`,
+          );
+        return object;
       }
       case "new_id": {
-        if (iface) {
-          const oid = read(buf, idx);
-          return [null, idx + 4, (args: Record<string, any>) => this.createObject(iface, oid, args)];
+        if (!arg) throw new Error("Need whole arg to parse new_id");
+        if (!("interface" in arg))
+          throw new Error("new_id has no interface attribute");
+        const iface = arg.interface;
+        if (iface != null) {
+          const oid = read(ctx.buf, ctx.idx);
+          ctx.idx += 4;
+          ctx.callbacks.push(
+            (args: Record<string, any>) =>
+              (args[arg.name] = this.createObject(iface, oid, ctx.parent, args)),
+          );
+          return;
         } else {
-          const [ifaceName, idxPrime] = this.parseBlock("string", idx, buf);
-          const [ifaceVersion, idxSecond] = this.parseBlock("uint", idxPrime, buf);
-          const [oid, idxThird] = this.parseBlock("uint", idxSecond, buf);
+          const ifaceName = this.parseBlock(ctx, "string");
+          const ifaceVersion = this.parseBlock(ctx, "uint");
+          const oid = this.parseBlock(ctx, "uint");
 
-          console.log(ifaceName);
-          const knownVersion = interfaces[ifaceName].version;
-          if (knownVersion < ifaceVersion) {
-            throw new Error(`Of ${ifaceName}: version ${ifaceVersion} is incompatible with version ${knownVersion}`);
+          const knownVersion = interfaces[ifaceName]?.version;
+          if (!this.muzzled && knownVersion < ifaceVersion) {
+            throw new Error(
+              `Of ${ifaceName}: version ${ifaceVersion} is incompatible with version ${knownVersion}`,
+            );
           }
-          return [null, idxThird, (args: Record<string, any>) => this.createObject(ifaceName, oid, args)];
+          ctx.callbacks.push(
+            (args: Record<string, any>) =>
+              (args[arg.name] = this.createObject(ifaceName, oid, ctx.parent, args)),
+          );
+          return null;
         }
       }
       case "string": {
-        const size = read(buf, idx);
-        const string = buf.subarray(idx + 4, idx + size + 3);
+        const size = read(ctx.buf, idx);
+        ctx.idx += 4;
 
-        return [string.toString(), Math.ceil((idx + size) / 4) * 4 + 4];
+        const string = ctx.buf.subarray(idx + 4, idx + size + 3);
+        ctx.idx += Math.ceil(size / 4) * 4;
+        return string.toString();
       }
       case "array": {
-        const size = read(buf, idx);
-        const buffer = buf.subarray(idx + 4, idx + size + 4);
+        const size = read(ctx.buf, idx);
+        ctx.idx += 4;
 
-        return [buffer, Math.ceil((idx + size) / 4) * 4 + 4];
+        const buffer = ctx.buf.subarray(idx + 4, idx + size + 4);
+        ctx.idx += Math.ceil(size / 4) * 4;
+
+        return buffer;
+      }
+      case "fd": {
+        return ctx.fdQ.shift();
       }
       default:
         throw new Error(`While parsing message: unknown type ${type}`);
     }
   }
 
-  *parser(buf: Buffer, isEvent?: boolean): Generator<[WlObject, string, Record<string, any>]> {
-    const header = (isEvent ? 'S2C' : 'C2S')
+  *parser(
+    buf: Buffer,
+    isEvent?: boolean,
+  ): Generator<[BaseObject<Parent>, string, Record<string, any>]> {
+    const header = isEvent ? "S2C" : "C2S";
     let newCommandAt = 0;
     while (newCommandAt < buf.length) {
       const objectId = read(buf, newCommandAt + 0);
@@ -189,39 +304,46 @@ export class Connection {
       const size = opcodeAndSize >> 16;
 
       const relevantObject = this.objects.get(objectId);
-      if (relevantObject == null) throw new Error('Client tried to invoke an operation on an unknown object');
+      if (relevantObject == null)
+        throw new Error(
+          "Client tried to invoke an operation on an unknown object",
+        );
 
       // console.log(relevantObject);
 
       const relevantIface = relevantObject.iface;
-      const relevantScope = interfaces[relevantIface][isEvent ? 'events' : 'requests'];
+      const relevantScope =
+        interfaces[relevantIface][isEvent ? "events" : "requests"];
       const { name: commandName, args: signature } = relevantScope[opcode];
 
       const argsResult: Record<string, any> = {};
-      const callbacks: [string, (args: Record<string, any>) => unknown][] = [];
 
       let currentIndex = newCommandAt + 8;
-      for (const arg of signature) {
-        // console.log(arg);
 
-        let argResult, callback;
-        [argResult, currentIndex, callback] = this.parseBlock(arg.type, currentIndex, buf, 'interface' in arg ? arg.interface : undefined);
-        argsResult[arg.name] = argResult;
-        if (callback) callbacks.push([arg.name, callback]);
+      const parsingContext: ParsingContext = {
+        buf,
+        idx: currentIndex,
+        callbacks: [],
+        fdQ: this.fdQ,
+        parent: relevantObject,
+      };
+
+      for (const arg of signature) {
+        argsResult[arg.name] = this.parseBlock(parsingContext, arg.type, arg);
       }
 
-      for (const [argName, callback] of callbacks) {
-        argsResult[argName] = callback(argsResult);
+      for (const callback of parsingContext.callbacks) {
+        callback(argsResult);
       }
 
       yield [relevantObject, commandName, argsResult];
-      
+
       newCommandAt += size;
     }
-    if (newCommandAt !== buf.length) throw new Error('Possibly missing data');
+    if (newCommandAt !== buf.length) throw new Error("Possibly missing data");
     // return commands;
   }
-  
+
   buildBlock(val: any, arg: WlArg, idx: number, buf: Buffer): number {
     switch (arg.type) {
       case "int": {
@@ -244,10 +366,10 @@ export class Connection {
         throw new Error("Is that even possible?");
       }
       case "string": {
-        const size = 1 + val.length as number;
+        const size = (1 + val.length) as number;
         const string = val;
         write(size, buf, idx);
-        buf.write(string, idx + 4, 'utf-8');
+        buf.write(string, idx + 4, "utf-8");
 
         return idx + 4 + Math.ceil(size / 4) * 4;
       }
@@ -266,7 +388,7 @@ export class Connection {
     let result = 0;
 
     for (const arg of msg.args) {
-      if (['int', 'uint', 'new_id', 'object'].includes(arg.type)) {
+      if (["int", "uint", "new_id", "object"].includes(arg.type)) {
         result += 4;
         continue;
       }
@@ -276,9 +398,9 @@ export class Connection {
     return result;
   }
 
-  builder(obj: WlObject, eventName: string, args: Record<string, any>) {
+  builder(obj: BaseObject<Parent>, eventName: string, args: Record<string, any>) {
     const msg = interfaces[obj.iface].eventsReverse[eventName];
-    // console.log(eventName, args)
+    // console.log(eventName, interfaces[obj.iface]?.eventsReverse, args)
     const opcode = msg.index;
 
     const size = this.getFinalSize(msg, args) + 8;
@@ -297,24 +419,30 @@ export class Connection {
     return result;
   }
 
-  buffersSoFar: Buffer[] = [];
-  immediate?: NodeJS.Immediate;
-  addCommand(obj: WlObject, eventName: string, args: Record<string, any>) {
+  protected buffersSoFar: Buffer[] = [];
+  protected immediate?: NodeJS.Immediate;
+  addCommand(obj: BaseObject<Parent>, eventName: string, args: Record<string, any>) {
     if (this.muzzled) return;
     const toBeSent = this.builder(obj, eventName, args);
     this.buffersSoFar.push(toBeSent);
-    if (!this.immediate) this.immediate = setImmediate((() => this.sendPending()).bind(this));
+    if (!this.immediate)
+      this.immediate = setImmediate((() => this.sendPending()).bind(this));
   }
 
-  sendPending() {
+  protected sendPending() {
     if (this.muzzled) return;
     const resBuf = Buffer.concat(this.buffersSoFar);
     this.socket.write(resBuf);
-    console.log('S2C', resBuf.toString('hex'));
+    // console.log("S2C", resBuf.toString("hex"));
 
     // console.log('flushed', this.buffersSoFar.length, 'buffers');
 
     this.buffersSoFar = [];
     this.immediate = undefined;
+  }
+
+  destroy(obj: BaseObject<any>) {
+    this.objects.delete(obj.oid);
+    this.addCommand(this.objects.get(1)!, 'deleteId', { id: obj.oid });
   }
 }

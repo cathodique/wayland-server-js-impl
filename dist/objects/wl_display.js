@@ -1,9 +1,15 @@
-import { WlObject } from "./wl_object.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlDisplay = void 0;
+const base_object_js_1 = require("./base_object.js");
 const name = 'wl_display';
-export class WlDisplay extends WlObject {
+class WlDisplay extends base_object_js_1.WlObject {
     get iface() { return name; } // We <3 JS prototype chain
-    sync(args) {
+    wlSync(args) {
         args.callback.done(1);
     }
-    getRegistry() { }
+    wlGetRegistry(args) {
+        this.connection.registry = args.registry;
+    }
 }
+exports.WlDisplay = WlDisplay;

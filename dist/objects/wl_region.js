@@ -1,10 +1,13 @@
-import { WlObject } from "./wl_object.js";
-export var InstructionType;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WlRegion = exports.RegRectangle = exports.InstructionType = void 0;
+const base_object_js_1 = require("./base_object.js");
+var InstructionType;
 (function (InstructionType) {
     InstructionType[InstructionType["Add"] = 0] = "Add";
     InstructionType[InstructionType["Subtract"] = 1] = "Subtract";
-})(InstructionType || (InstructionType = {}));
-export class RegRectangle {
+})(InstructionType || (exports.InstructionType = InstructionType = {}));
+class RegRectangle {
     type;
     x;
     y;
@@ -22,14 +25,16 @@ export class RegRectangle {
             && x < this.w + this.x && y < this.h + this.y;
     }
 }
+exports.RegRectangle = RegRectangle;
 const name = 'wl_region';
-export class WlRegion extends WlObject {
+class WlRegion extends base_object_js_1.WlObject {
     get iface() { return name; }
     instructions = [];
-    add(args) {
+    wlAdd(args) {
         this.instructions.push(new RegRectangle(InstructionType.Add, args.y, args.x, args.h, args.w));
     }
-    subtract(args) {
+    wlSubtract(args) {
         this.instructions.push(new RegRectangle(InstructionType.Subtract, args.y, args.x, args.h, args.w));
     }
 }
+exports.WlRegion = WlRegion;

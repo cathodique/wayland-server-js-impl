@@ -1,6 +1,6 @@
-import { WlObject } from "./wl_object.js";
+import { ExistentParent, WlObject } from "./base_object.js";
 
-const name = 'wl_seat';
-export class WlSeat extends WlObject {
+const name = 'wl_seat' as const;
+export class WlSeat extends WlObject<ExistentParent> {
   get iface() { return name }
 }

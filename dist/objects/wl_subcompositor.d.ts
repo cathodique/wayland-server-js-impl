@@ -1,4 +1,5 @@
-import { WlObject } from "./wl_object.js";
-export declare class WlSubcompositor extends WlObject {
-    get iface(): string;
+import { ExistentParent, WlObject } from "./base_object.js";
+export declare class WlSubcompositor extends WlObject<ExistentParent> {
+    get iface(): "wl_subcompositor";
+    wlGetSubsurface(): void;
 }

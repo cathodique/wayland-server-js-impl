@@ -1,7 +1,7 @@
-import { WlObject } from "./wl_object.js";
+import { ExistentParent, WlObject } from "./base_object.js";
 
-const name = 'wl_callback';
-export class WlCallback extends WlObject {
+const name = 'wl_callback' as const;
+export class WlCallback extends WlObject<ExistentParent> {
   get iface() { return name }
 
   done(callbackData: number) {

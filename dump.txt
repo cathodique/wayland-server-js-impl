@@ -1,0 +1,3485 @@
+
+> @cathodique/wayland-server-js-impl@1.0.0 start
+> npx tsc && LOGGERS=wl_serv_i8a56qb0lm3ox1ng1cqai0e1 node .
+
+Server listening on /run/user/1000/wayland-1
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New [wl_registry#2] { registry: undefined }
+C2S [wl_display#1] getRegistry { registry: '[wl_registry#2]' }
+New [wl_callback#3] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#3]' }
+S2C [wl_registry#2] global { name: 1, interface: 'wl_compositor', version: 6 }
+S2C [wl_registry#2] global { name: 2, interface: 'wl_drm', version: 2 }
+Ignoring
+S2C [wl_registry#2] global { name: 3, interface: 'wl_shm', version: 2 }
+S2C [wl_registry#2] global { name: 5, interface: 'zxdg_output_manager_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 6, interface: 'wl_data_device_manager', version: 3 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 7,
+  interface: 'zwp_primary_selection_device_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 8, interface: 'wl_subcompositor', version: 1 }
+S2C [wl_registry#2] global { name: 9, interface: 'xdg_wm_base', version: 6 }
+S2C [wl_registry#2] global { name: 10, interface: 'gtk_shell1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global { name: 11, interface: 'wp_viewporter', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 12, interface: 'wp_fractional_scale_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 13, interface: 'zwp_pointer_gestures_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 14, interface: 'zwp_tablet_manager_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 15, interface: 'wl_seat', version: 8 }
+Ignoring
+S2C [wl_registry#2] global { name: 16, interface: 'zwp_relative_pointer_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 17, interface: 'zwp_pointer_constraints_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 18, interface: 'zxdg_exporter_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 19, interface: 'zxdg_importer_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 20, interface: 'zxdg_exporter_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 21, interface: 'zxdg_importer_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 22, interface: 'zwp_linux_dmabuf_v1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 23,
+  interface: 'wp_single_pixel_buffer_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global {
+  name: 24,
+  interface: 'zwp_keyboard_shortcuts_inhibit_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 25, interface: 'zwp_text_input_manager_v3', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 26, interface: 'wp_presentation', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 27, interface: 'xdg_activation_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 28, interface: 'zwp_idle_inhibit_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 29, interface: 'wp_linux_drm_syncobj_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 30, interface: 'xdg_wm_dialog_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 31, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 32, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 35, interface: 'wl_output', version: 4 }
+S2C [wl_callback#3] done { callbackData: 83822 }
+S2C [wl_display#1] deleteId { id: 3 }
+New [wl_compositor#4] { name: 1, id: null }
+C2S [wl_registry#2] bind { name: 1, id: '[wl_compositor#4]' }
+New [wl_shm#5] { name: 3, id: null }
+C2S [wl_registry#2] bind { name: 3, id: '[wl_shm#5]' }
+New [wl_subcompositor#6] { name: 8, id: null }
+C2S [wl_registry#2] bind { name: 8, id: '[wl_subcompositor#6]' }
+New [wl_output#7] { name: 35, id: null }
+C2S [wl_registry#2] bind { name: 35, id: '[wl_output#7]' }
+New [wl_callback#8] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#8]' }
+S2C [wl_shm#5] format { format: 0 }
+S2C [wl_shm#5] format { format: 1 }
+S2C [wl_shm#5] format { format: 875708993 }
+S2C [wl_shm#5] format { format: 875709016 }
+S2C [wl_shm#5] format { format: 909199186 }
+S2C [wl_shm#5] format { format: 808669761 }
+S2C [wl_shm#5] format { format: 808669784 }
+S2C [wl_shm#5] format { format: 808665665 }
+S2C [wl_shm#5] format { format: 808665688 }
+S2C [wl_shm#5] format { format: 1211388481 }
+S2C [wl_shm#5] format { format: 1211388504 }
+S2C [wl_shm#5] format { format: 1211384385 }
+S2C [wl_shm#5] format { format: 1211384408 }
+S2C [wl_shm#5] format { format: 1448695129 }
+S2C [wl_shm#5] format { format: 842094158 }
+S2C [wl_shm#5] format { format: 808530000 }
+S2C [wl_shm#5] format { format: 842093913 }
+S2C [wl_output#7] geometry {
+  x: 0,
+  y: 0,
+  physicalWidth: 480,
+  physicalHeight: 270,
+  subpixel: 0,
+  make: 'HWP',
+  model: 'HP LA2206',
+  transform: 0
+}
+S2C [wl_output#7] mode { flags: 3, width: 1920, height: 1080, refresh: 60000 }
+S2C [wl_output#7] scale { factor: 1 }
+S2C [wl_output#7] done {}
+S2C [wl_callback#8] done { callbackData: 83822 }
+S2C [wl_display#1] deleteId { id: 8 }
+New [wl_shm_pool#9] { id: undefined, fd: undefined, size: 2304 }
+C2S [wl_shm#5] createPool { id: '[wl_shm_pool#9]', fd: undefined, size: 2304 }
+C2S [wl_shm_pool#9] resize { size: 6912 }
+C2S [wl_shm_pool#9] resize { size: 16128 }
+C2S [wl_shm_pool#9] resize { size: 34560 }
+C2S [wl_shm_pool#9] resize { size: 71424 }
+C2S [wl_shm_pool#9] resize { size: 145152 }
+C2S [wl_shm_pool#9] resize { size: 292608 }
+C2S [wl_shm_pool#9] resize { size: 587520 }
+New [wl_callback#10] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#10]' }
+S2C [wl_callback#3] done { callbackData: 1 }
+S2C [wl_callback#3] done { callbackData: 2 }
+S2C [wl_callback#3] done { callbackData: 3 }
+S2C [wl_callback#3] done { callbackData: 5 }
+S2C [wl_callback#3] done { callbackData: 6 }
+S2C [wl_callback#3] done { callbackData: 7 }
+S2C [wl_callback#3] done { callbackData: 8 }
+S2C [wl_callback#3] done { callbackData: 9 }
+S2C [wl_callback#3] done { callbackData: 10 }
+S2C [wl_callback#3] done { callbackData: 11 }
+S2C [wl_callback#3] done { callbackData: 12 }
+S2C [wl_callback#3] done { callbackData: 13 }
+S2C [wl_callback#3] done { callbackData: 14 }
+S2C [wl_callback#3] done { callbackData: 15 }
+S2C [wl_callback#3] done { callbackData: 16 }
+S2C [wl_callback#3] done { callbackData: 17 }
+S2C [wl_callback#3] done { callbackData: 18 }
+S2C [wl_callback#3] done { callbackData: 19 }
+S2C [wl_callback#3] done { callbackData: 20 }
+S2C [wl_callback#3] done { callbackData: 21 }
+S2C [wl_callback#3] done { callbackData: 22 }
+S2C [wl_callback#3] done { callbackData: 23 }
+S2C [wl_callback#3] done { callbackData: 24 }
+S2C [wl_callback#3] done { callbackData: 25 }
+S2C [wl_callback#3] done { callbackData: 26 }
+S2C [wl_callback#3] done { callbackData: 27 }
+S2C [wl_callback#3] done { callbackData: 28 }
+S2C [wl_callback#3] done { callbackData: 29 }
+S2C [wl_callback#3] done { callbackData: 30 }
+S2C [wl_callback#3] done { callbackData: 31 }
+S2C [wl_callback#3] done { callbackData: 32 }
+S2C [wl_callback#3] done { callbackData: 35 }
+S2C [wl_callback#10] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 10 }
+New [wl_callback#23] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#23]' }
+S2C [wl_callback#23] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 23 }
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New [wl_registry#2] { registry: undefined }
+C2S [wl_display#1] getRegistry { registry: '[wl_registry#2]' }
+New [wl_callback#3] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#3]' }
+S2C [wl_registry#2] global { name: 1, interface: 'wl_compositor', version: 6 }
+S2C [wl_registry#2] global { name: 2, interface: 'wl_drm', version: 2 }
+Ignoring
+S2C [wl_registry#2] global { name: 3, interface: 'wl_shm', version: 2 }
+S2C [wl_registry#2] global { name: 5, interface: 'zxdg_output_manager_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 6, interface: 'wl_data_device_manager', version: 3 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 7,
+  interface: 'zwp_primary_selection_device_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 8, interface: 'wl_subcompositor', version: 1 }
+S2C [wl_registry#2] global { name: 9, interface: 'xdg_wm_base', version: 6 }
+S2C [wl_registry#2] global { name: 10, interface: 'gtk_shell1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global { name: 11, interface: 'wp_viewporter', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 12, interface: 'wp_fractional_scale_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 13, interface: 'zwp_pointer_gestures_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 14, interface: 'zwp_tablet_manager_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 15, interface: 'wl_seat', version: 8 }
+Ignoring
+S2C [wl_registry#2] global { name: 16, interface: 'zwp_relative_pointer_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 17, interface: 'zwp_pointer_constraints_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 18, interface: 'zxdg_exporter_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 19, interface: 'zxdg_importer_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 20, interface: 'zxdg_exporter_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 21, interface: 'zxdg_importer_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 22, interface: 'zwp_linux_dmabuf_v1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 23,
+  interface: 'wp_single_pixel_buffer_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global {
+  name: 24,
+  interface: 'zwp_keyboard_shortcuts_inhibit_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 25, interface: 'zwp_text_input_manager_v3', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 26, interface: 'wp_presentation', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 27, interface: 'xdg_activation_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 28, interface: 'zwp_idle_inhibit_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 29, interface: 'wp_linux_drm_syncobj_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 30, interface: 'xdg_wm_dialog_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 31, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 32, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 35, interface: 'wl_output', version: 4 }
+S2C [wl_callback#3] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 3 }
+New [wl_callback#4] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#4]' }
+S2C [wl_callback#4] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 4 }
+New [wl_callback#5] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#5]' }
+S2C [wl_callback#3] done { callbackData: 1 }
+S2C [wl_callback#3] done { callbackData: 2 }
+S2C [wl_callback#3] done { callbackData: 3 }
+S2C [wl_callback#3] done { callbackData: 5 }
+S2C [wl_callback#3] done { callbackData: 6 }
+S2C [wl_callback#3] done { callbackData: 7 }
+S2C [wl_callback#3] done { callbackData: 8 }
+S2C [wl_callback#3] done { callbackData: 9 }
+S2C [wl_callback#3] done { callbackData: 10 }
+S2C [wl_callback#3] done { callbackData: 11 }
+S2C [wl_callback#3] done { callbackData: 12 }
+S2C [wl_callback#3] done { callbackData: 13 }
+S2C [wl_callback#3] done { callbackData: 14 }
+S2C [wl_callback#3] done { callbackData: 15 }
+S2C [wl_callback#3] done { callbackData: 16 }
+S2C [wl_callback#3] done { callbackData: 17 }
+S2C [wl_callback#3] done { callbackData: 18 }
+S2C [wl_callback#3] done { callbackData: 19 }
+S2C [wl_callback#3] done { callbackData: 20 }
+S2C [wl_callback#3] done { callbackData: 21 }
+S2C [wl_callback#3] done { callbackData: 22 }
+S2C [wl_callback#3] done { callbackData: 23 }
+S2C [wl_callback#3] done { callbackData: 24 }
+S2C [wl_callback#3] done { callbackData: 25 }
+S2C [wl_callback#3] done { callbackData: 26 }
+S2C [wl_callback#3] done { callbackData: 27 }
+S2C [wl_callback#3] done { callbackData: 28 }
+S2C [wl_callback#3] done { callbackData: 29 }
+S2C [wl_callback#3] done { callbackData: 30 }
+S2C [wl_callback#3] done { callbackData: 31 }
+S2C [wl_callback#3] done { callbackData: 32 }
+S2C [wl_callback#3] done { callbackData: 35 }
+S2C [wl_callback#5] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 5 }
+New [wl_callback#6] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#6]' }
+S2C [wl_callback#4] done { callbackData: 0 }
+S2C [wl_callback#4] done { callbackData: 1 }
+S2C [wl_callback#4] done { callbackData: 875708993 }
+S2C [wl_callback#4] done { callbackData: 875709016 }
+S2C [wl_callback#4] done { callbackData: 909199186 }
+S2C [wl_callback#4] done { callbackData: 808669761 }
+S2C [wl_callback#4] done { callbackData: 808669784 }
+S2C [wl_callback#4] done { callbackData: 808665665 }
+S2C [wl_callback#4] done { callbackData: 808665688 }
+S2C [wl_callback#4] done { callbackData: 1211388481 }
+S2C [wl_callback#4] done { callbackData: 1211388504 }
+S2C [wl_callback#4] done { callbackData: 1211384385 }
+S2C [wl_callback#4] done { callbackData: 1211384408 }
+S2C [wl_callback#4] done { callbackData: 1448695129 }
+S2C [wl_callback#4] done { callbackData: 842094158 }
+S2C [wl_callback#4] done { callbackData: 808530000 }
+S2C [wl_callback#4] done { callbackData: 842093913 }
+S2C [wl_callback#6] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 6 }
+S2C [wl_callback#5] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 5 }
+New [wl_callback#7] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#7]' }
+S2C [wl_callback#6] done { callbackData: 1 }
+S2C [wl_callback#6] done { callbackData: 2 }
+S2C [wl_callback#6] done { callbackData: 3 }
+S2C [wl_callback#6] done { callbackData: 5 }
+S2C [wl_callback#6] done { callbackData: 6 }
+S2C [wl_callback#6] done { callbackData: 7 }
+S2C [wl_callback#6] done { callbackData: 8 }
+S2C [wl_callback#6] done { callbackData: 9 }
+S2C [wl_callback#6] done { callbackData: 10 }
+S2C [wl_callback#6] done { callbackData: 11 }
+S2C [wl_callback#6] done { callbackData: 12 }
+S2C [wl_callback#6] done { callbackData: 13 }
+S2C [wl_callback#6] done { callbackData: 14 }
+S2C [wl_callback#6] done { callbackData: 15 }
+S2C [wl_callback#6] done { callbackData: 16 }
+S2C [wl_callback#6] done { callbackData: 17 }
+S2C [wl_callback#6] done { callbackData: 18 }
+S2C [wl_callback#6] done { callbackData: 19 }
+S2C [wl_callback#6] done { callbackData: 20 }
+S2C [wl_callback#6] done { callbackData: 21 }
+S2C [wl_callback#6] done { callbackData: 22 }
+S2C [wl_callback#6] done { callbackData: 23 }
+S2C [wl_callback#6] done { callbackData: 24 }
+S2C [wl_callback#6] done { callbackData: 25 }
+S2C [wl_callback#6] done { callbackData: 26 }
+S2C [wl_callback#6] done { callbackData: 27 }
+S2C [wl_callback#6] done { callbackData: 28 }
+S2C [wl_callback#6] done { callbackData: 29 }
+S2C [wl_callback#6] done { callbackData: 30 }
+S2C [wl_callback#6] done { callbackData: 31 }
+S2C [wl_callback#6] done { callbackData: 32 }
+S2C [wl_callback#6] done { callbackData: 35 }
+S2C [wl_callback#7] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 7 }
+New [wl_callback#8] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#8]' }
+S2C [wl_callback#5] done { callbackData: 0 }
+S2C [wl_callback#5] done { callbackData: 1 }
+S2C [wl_callback#5] done { callbackData: 875708993 }
+S2C [wl_callback#5] done { callbackData: 875709016 }
+S2C [wl_callback#5] done { callbackData: 909199186 }
+S2C [wl_callback#5] done { callbackData: 808669761 }
+S2C [wl_callback#5] done { callbackData: 808669784 }
+S2C [wl_callback#5] done { callbackData: 808665665 }
+S2C [wl_callback#5] done { callbackData: 808665688 }
+S2C [wl_callback#5] done { callbackData: 1211388481 }
+S2C [wl_callback#5] done { callbackData: 1211388504 }
+S2C [wl_callback#5] done { callbackData: 1211384385 }
+S2C [wl_callback#5] done { callbackData: 1211384408 }
+S2C [wl_callback#5] done { callbackData: 1448695129 }
+S2C [wl_callback#5] done { callbackData: 842094158 }
+S2C [wl_callback#5] done { callbackData: 808530000 }
+S2C [wl_callback#5] done { callbackData: 842093913 }
+S2C [wl_callback#8] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 8 }
+S2C [wl_callback#7] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 7 }
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New [wl_registry#2] { registry: undefined }
+C2S [wl_display#1] getRegistry { registry: '[wl_registry#2]' }
+New [wl_callback#3] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#3]' }
+S2C [wl_registry#2] global { name: 1, interface: 'wl_compositor', version: 6 }
+S2C [wl_registry#2] global { name: 2, interface: 'wl_drm', version: 2 }
+Ignoring
+S2C [wl_registry#2] global { name: 3, interface: 'wl_shm', version: 2 }
+S2C [wl_registry#2] global { name: 5, interface: 'zxdg_output_manager_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 6, interface: 'wl_data_device_manager', version: 3 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 7,
+  interface: 'zwp_primary_selection_device_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 8, interface: 'wl_subcompositor', version: 1 }
+S2C [wl_registry#2] global { name: 9, interface: 'xdg_wm_base', version: 6 }
+S2C [wl_registry#2] global { name: 10, interface: 'gtk_shell1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global { name: 11, interface: 'wp_viewporter', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 12, interface: 'wp_fractional_scale_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 13, interface: 'zwp_pointer_gestures_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 14, interface: 'zwp_tablet_manager_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 15, interface: 'wl_seat', version: 8 }
+Ignoring
+S2C [wl_registry#2] global { name: 16, interface: 'zwp_relative_pointer_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 17, interface: 'zwp_pointer_constraints_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 18, interface: 'zxdg_exporter_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 19, interface: 'zxdg_importer_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 20, interface: 'zxdg_exporter_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 21, interface: 'zxdg_importer_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 22, interface: 'zwp_linux_dmabuf_v1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 23,
+  interface: 'wp_single_pixel_buffer_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global {
+  name: 24,
+  interface: 'zwp_keyboard_shortcuts_inhibit_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 25, interface: 'zwp_text_input_manager_v3', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 26, interface: 'wp_presentation', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 27, interface: 'xdg_activation_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 28, interface: 'zwp_idle_inhibit_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 29, interface: 'wp_linux_drm_syncobj_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 30, interface: 'xdg_wm_dialog_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 31, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 32, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 35, interface: 'wl_output', version: 4 }
+S2C [wl_callback#3] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 3 }
+New [wl_compositor#4] { name: 1, id: null }
+C2S [wl_registry#2] bind { name: 1, id: '[wl_compositor#4]' }
+New [wl_shm#5] { name: 3, id: null }
+C2S [wl_registry#2] bind { name: 3, id: '[wl_shm#5]' }
+New [wl_subcompositor#6] { name: 8, id: null }
+C2S [wl_registry#2] bind { name: 8, id: '[wl_subcompositor#6]' }
+New [wl_output#7] { name: 35, id: null }
+C2S [wl_registry#2] bind { name: 35, id: '[wl_output#7]' }
+New [wl_callback#8] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#8]' }
+S2C [wl_shm#5] format { format: 0 }
+S2C [wl_shm#5] format { format: 1 }
+S2C [wl_shm#5] format { format: 875708993 }
+S2C [wl_shm#5] format { format: 875709016 }
+S2C [wl_shm#5] format { format: 909199186 }
+S2C [wl_shm#5] format { format: 808669761 }
+S2C [wl_shm#5] format { format: 808669784 }
+S2C [wl_shm#5] format { format: 808665665 }
+S2C [wl_shm#5] format { format: 808665688 }
+S2C [wl_shm#5] format { format: 1211388481 }
+S2C [wl_shm#5] format { format: 1211388504 }
+S2C [wl_shm#5] format { format: 1211384385 }
+S2C [wl_shm#5] format { format: 1211384408 }
+S2C [wl_shm#5] format { format: 1448695129 }
+S2C [wl_shm#5] format { format: 842094158 }
+S2C [wl_shm#5] format { format: 808530000 }
+S2C [wl_shm#5] format { format: 842093913 }
+S2C [wl_output#7] geometry {
+  x: 0,
+  y: 0,
+  physicalWidth: 480,
+  physicalHeight: 270,
+  subpixel: 0,
+  make: 'HWP',
+  model: 'HP LA2206',
+  transform: 0
+}
+S2C [wl_output#7] mode { flags: 3, width: 1920, height: 1080, refresh: 60000 }
+S2C [wl_output#7] scale { factor: 1 }
+S2C [wl_output#7] done {}
+S2C [wl_callback#8] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 8 }
+New [wl_registry#9] { registry: undefined }
+C2S [wl_display#1] getRegistry { registry: '[wl_registry#9]' }
+New [wl_callback#10] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#10]' }
+S2C [wl_registry#9] global { name: 1, interface: 'wl_compositor', version: 6 }
+S2C [wl_registry#9] global { name: 2, interface: 'wl_drm', version: 2 }
+Ignoring
+S2C [wl_registry#9] global { name: 3, interface: 'wl_shm', version: 2 }
+S2C [wl_registry#9] global { name: 5, interface: 'zxdg_output_manager_v1', version: 3 }
+Ignoring
+S2C [wl_registry#9] global { name: 6, interface: 'wl_data_device_manager', version: 3 }
+Ignoring
+S2C [wl_registry#9] global {
+  name: 7,
+  interface: 'zwp_primary_selection_device_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#9] global { name: 8, interface: 'wl_subcompositor', version: 1 }
+S2C [wl_registry#9] global { name: 9, interface: 'xdg_wm_base', version: 6 }
+S2C [wl_registry#9] global { name: 10, interface: 'gtk_shell1', version: 5 }
+Ignoring
+S2C [wl_registry#9] global { name: 11, interface: 'wp_viewporter', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 12, interface: 'wp_fractional_scale_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 13, interface: 'zwp_pointer_gestures_v1', version: 3 }
+Ignoring
+S2C [wl_registry#9] global { name: 14, interface: 'zwp_tablet_manager_v2', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 15, interface: 'wl_seat', version: 8 }
+Ignoring
+S2C [wl_registry#9] global { name: 16, interface: 'zwp_relative_pointer_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 17, interface: 'zwp_pointer_constraints_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 18, interface: 'zxdg_exporter_v2', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 19, interface: 'zxdg_importer_v2', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 20, interface: 'zxdg_exporter_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 21, interface: 'zxdg_importer_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 22, interface: 'zwp_linux_dmabuf_v1', version: 5 }
+Ignoring
+S2C [wl_registry#9] global {
+  name: 23,
+  interface: 'wp_single_pixel_buffer_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#9] global {
+  name: 24,
+  interface: 'zwp_keyboard_shortcuts_inhibit_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#9] global { name: 25, interface: 'zwp_text_input_manager_v3', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 26, interface: 'wp_presentation', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 27, interface: 'xdg_activation_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 28, interface: 'zwp_idle_inhibit_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 29, interface: 'wp_linux_drm_syncobj_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 30, interface: 'xdg_wm_dialog_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 31, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 32, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#9] global { name: 35, interface: 'wl_output', version: 4 }
+S2C [wl_callback#10] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 10 }
+New [wl_compositor#11] { name: 1, id: null }
+C2S [wl_registry#9] bind { name: 1, id: '[wl_compositor#11]' }
+New [wl_shm#12] { name: 3, id: null }
+C2S [wl_registry#9] bind { name: 3, id: '[wl_shm#12]' }
+New [wl_subcompositor#13] { name: 8, id: null }
+C2S [wl_registry#9] bind { name: 8, id: '[wl_subcompositor#13]' }
+New [wl_callback#14] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#14]' }
+S2C [wl_shm#12] format { format: 0 }
+S2C [wl_shm#12] format { format: 1 }
+S2C [wl_shm#12] format { format: 875708993 }
+S2C [wl_shm#12] format { format: 875709016 }
+S2C [wl_shm#12] format { format: 909199186 }
+S2C [wl_shm#12] format { format: 808669761 }
+S2C [wl_shm#12] format { format: 808669784 }
+S2C [wl_shm#12] format { format: 808665665 }
+S2C [wl_shm#12] format { format: 808665688 }
+S2C [wl_shm#12] format { format: 1211388481 }
+S2C [wl_shm#12] format { format: 1211388504 }
+S2C [wl_shm#12] format { format: 1211384385 }
+S2C [wl_shm#12] format { format: 1211384408 }
+S2C [wl_shm#12] format { format: 1448695129 }
+S2C [wl_shm#12] format { format: 842094158 }
+S2C [wl_shm#12] format { format: 808530000 }
+S2C [wl_shm#12] format { format: 842093913 }
+S2C [wl_callback#14] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 14 }
+New Connection!!!
+Muzzled; Will not interfere with sockets (use for MITM)
+New [wl_registry#2] { registry: undefined }
+C2S [wl_display#1] getRegistry { registry: '[wl_registry#2]' }
+New [wl_callback#3] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#3]' }
+S2C [wl_registry#2] global { name: 1, interface: 'wl_compositor', version: 6 }
+S2C [wl_registry#2] global { name: 2, interface: 'wl_drm', version: 2 }
+Ignoring
+S2C [wl_registry#2] global { name: 3, interface: 'wl_shm', version: 2 }
+S2C [wl_registry#2] global { name: 5, interface: 'zxdg_output_manager_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 6, interface: 'wl_data_device_manager', version: 3 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 7,
+  interface: 'zwp_primary_selection_device_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 8, interface: 'wl_subcompositor', version: 1 }
+S2C [wl_registry#2] global { name: 9, interface: 'xdg_wm_base', version: 6 }
+S2C [wl_registry#2] global { name: 10, interface: 'gtk_shell1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global { name: 11, interface: 'wp_viewporter', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 12, interface: 'wp_fractional_scale_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 13, interface: 'zwp_pointer_gestures_v1', version: 3 }
+Ignoring
+S2C [wl_registry#2] global { name: 14, interface: 'zwp_tablet_manager_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 15, interface: 'wl_seat', version: 8 }
+Ignoring
+S2C [wl_registry#2] global { name: 16, interface: 'zwp_relative_pointer_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 17, interface: 'zwp_pointer_constraints_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 18, interface: 'zxdg_exporter_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 19, interface: 'zxdg_importer_v2', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 20, interface: 'zxdg_exporter_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 21, interface: 'zxdg_importer_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 22, interface: 'zwp_linux_dmabuf_v1', version: 5 }
+Ignoring
+S2C [wl_registry#2] global {
+  name: 23,
+  interface: 'wp_single_pixel_buffer_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global {
+  name: 24,
+  interface: 'zwp_keyboard_shortcuts_inhibit_manager_v1',
+  version: 1
+}
+Ignoring
+S2C [wl_registry#2] global { name: 25, interface: 'zwp_text_input_manager_v3', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 26, interface: 'wp_presentation', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 27, interface: 'xdg_activation_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 28, interface: 'zwp_idle_inhibit_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 29, interface: 'wp_linux_drm_syncobj_manager_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 30, interface: 'xdg_wm_dialog_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 31, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 32, interface: 'wp_drm_lease_device_v1', version: 1 }
+Ignoring
+S2C [wl_registry#2] global { name: 35, interface: 'wl_output', version: 4 }
+S2C [wl_callback#3] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 3 }
+New [wl_callback#4] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#4]' }
+S2C [wl_callback#4] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 4 }
+New [wl_callback#5] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#5]' }
+S2C [wl_callback#3] done { callbackData: 1 }
+S2C [wl_callback#3] done { callbackData: 2 }
+S2C [wl_callback#3] done { callbackData: 3 }
+S2C [wl_callback#3] done { callbackData: 5 }
+S2C [wl_callback#3] done { callbackData: 6 }
+S2C [wl_callback#3] done { callbackData: 7 }
+S2C [wl_callback#3] done { callbackData: 8 }
+S2C [wl_callback#3] done { callbackData: 9 }
+S2C [wl_callback#3] done { callbackData: 10 }
+S2C [wl_callback#3] done { callbackData: 11 }
+S2C [wl_callback#3] done { callbackData: 12 }
+S2C [wl_callback#3] done { callbackData: 13 }
+S2C [wl_callback#3] done { callbackData: 14 }
+S2C [wl_callback#3] done { callbackData: 15 }
+S2C [wl_callback#3] done { callbackData: 16 }
+S2C [wl_callback#3] done { callbackData: 17 }
+S2C [wl_callback#3] done { callbackData: 18 }
+S2C [wl_callback#3] done { callbackData: 19 }
+S2C [wl_callback#3] done { callbackData: 20 }
+S2C [wl_callback#3] done { callbackData: 21 }
+S2C [wl_callback#3] done { callbackData: 22 }
+S2C [wl_callback#3] done { callbackData: 23 }
+S2C [wl_callback#3] done { callbackData: 24 }
+S2C [wl_callback#3] done { callbackData: 25 }
+S2C [wl_callback#3] done { callbackData: 26 }
+S2C [wl_callback#3] done { callbackData: 27 }
+S2C [wl_callback#3] done { callbackData: 28 }
+S2C [wl_callback#3] done { callbackData: 29 }
+S2C [wl_callback#3] done { callbackData: 30 }
+S2C [wl_callback#3] done { callbackData: 31 }
+S2C [wl_callback#3] done { callbackData: 32 }
+S2C [wl_callback#3] done { callbackData: 35 }
+S2C [wl_callback#5] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 5 }
+New [wl_callback#6] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#6]' }
+S2C [wl_callback#4] done { callbackData: 0 }
+S2C [wl_callback#4] done { callbackData: 1 }
+S2C [wl_callback#4] done { callbackData: 875708993 }
+S2C [wl_callback#4] done { callbackData: 875709016 }
+S2C [wl_callback#4] done { callbackData: 909199186 }
+S2C [wl_callback#4] done { callbackData: 808669761 }
+S2C [wl_callback#4] done { callbackData: 808669784 }
+S2C [wl_callback#4] done { callbackData: 808665665 }
+S2C [wl_callback#4] done { callbackData: 808665688 }
+S2C [wl_callback#4] done { callbackData: 1211388481 }
+S2C [wl_callback#4] done { callbackData: 1211388504 }
+S2C [wl_callback#4] done { callbackData: 1211384385 }
+S2C [wl_callback#4] done { callbackData: 1211384408 }
+S2C [wl_callback#4] done { callbackData: 1448695129 }
+S2C [wl_callback#4] done { callbackData: 842094158 }
+S2C [wl_callback#4] done { callbackData: 808530000 }
+S2C [wl_callback#4] done { callbackData: 842093913 }
+S2C [wl_callback#6] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 6 }
+S2C [wl_callback#5] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 5 }
+New [wl_callback#7] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#7]' }
+S2C [wl_callback#6] done { callbackData: 1 }
+S2C [wl_callback#6] done { callbackData: 2 }
+S2C [wl_callback#6] done { callbackData: 3 }
+S2C [wl_callback#6] done { callbackData: 5 }
+S2C [wl_callback#6] done { callbackData: 6 }
+S2C [wl_callback#6] done { callbackData: 7 }
+S2C [wl_callback#6] done { callbackData: 8 }
+S2C [wl_callback#6] done { callbackData: 9 }
+S2C [wl_callback#6] done { callbackData: 10 }
+S2C [wl_callback#6] done { callbackData: 11 }
+S2C [wl_callback#6] done { callbackData: 12 }
+S2C [wl_callback#6] done { callbackData: 13 }
+S2C [wl_callback#6] done { callbackData: 14 }
+S2C [wl_callback#6] done { callbackData: 15 }
+S2C [wl_callback#6] done { callbackData: 16 }
+S2C [wl_callback#6] done { callbackData: 17 }
+S2C [wl_callback#6] done { callbackData: 18 }
+S2C [wl_callback#6] done { callbackData: 19 }
+S2C [wl_callback#6] done { callbackData: 20 }
+S2C [wl_callback#6] done { callbackData: 21 }
+S2C [wl_callback#6] done { callbackData: 22 }
+S2C [wl_callback#6] done { callbackData: 23 }
+S2C [wl_callback#6] done { callbackData: 24 }
+S2C [wl_callback#6] done { callbackData: 25 }
+S2C [wl_callback#6] done { callbackData: 26 }
+S2C [wl_callback#6] done { callbackData: 27 }
+S2C [wl_callback#6] done { callbackData: 28 }
+S2C [wl_callback#6] done { callbackData: 29 }
+S2C [wl_callback#6] done { callbackData: 30 }
+S2C [wl_callback#6] done { callbackData: 31 }
+S2C [wl_callback#6] done { callbackData: 32 }
+S2C [wl_callback#6] done { callbackData: 35 }
+S2C [wl_callback#7] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 7 }
+New [wl_callback#8] { callback: undefined }
+C2S [wl_display#1] sync { callback: '[wl_callback#8]' }
+S2C [wl_callback#5] done { callbackData: 0 }
+S2C [wl_callback#5] done { callbackData: 1 }
+S2C [wl_callback#5] done { callbackData: 875708993 }
+S2C [wl_callback#5] done { callbackData: 875709016 }
+S2C [wl_callback#5] done { callbackData: 909199186 }
+S2C [wl_callback#5] done { callbackData: 808669761 }
+S2C [wl_callback#5] done { callbackData: 808669784 }
+S2C [wl_callback#5] done { callbackData: 808665665 }
+S2C [wl_callback#5] done { callbackData: 808665688 }
+S2C [wl_callback#5] done { callbackData: 1211388481 }
+S2C [wl_callback#5] done { callbackData: 1211388504 }
+S2C [wl_callback#5] done { callbackData: 1211384385 }
+S2C [wl_callback#5] done { callbackData: 1211384408 }
+S2C [wl_callback#5] done { callbackData: 1448695129 }
+S2C [wl_callback#5] done { callbackData: 842094158 }
+S2C [wl_callback#5] done { callbackData: 808530000 }
+S2C [wl_callback#5] done { callbackData: 842093913 }
+S2C [wl_callback#8] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 8 }
+S2C [wl_callback#7] done { callbackData: 83823 }
+S2C [wl_display#1] deleteId { id: 7 }
+New [wl_surface#15] { id: undefined }
+C2S [wl_compositor#4] createSurface { id: '[wl_surface#15]' }
+C2S [wl_surface#15] destroy {}
+New [wl_surface#16] { id: undefined }
+C2S [wl_compositor#4] createSurface { id: '[wl_surface#16]' }
+New [wl_surface#17] { id: undefined }
+C2S [wl_compositor#4] createSurface { id: '[wl_surface#17]' }
+C2S [wl_surface#17] destroy {}
+C2S [wl_surface#16] commit {}
+New [wl_surface#20] { id: undefined }
+C2S [wl_compositor#11] createSurface { id: '[wl_surface#20]' }
+New [wl_subsurface#21] {
+  id: undefined,
+  surface: '[wl_surface#20]',
+  parent: '[wl_surface#16]'
+}
+C2S [wl_subcompositor#13] getSubsurface {
+  id: '[wl_subsurface#21]',
+  surface: '[wl_surface#20]',
+  parent: '[wl_surface#16]'
+}
+C2S [wl_subsurface#21] setDesync {}
+New [wl_callback#22] { callback: undefined }
+C2S [wl_surface#16] frame { callback: '[wl_callback#22]' }
+C2S [wl_surface#20] commit {}
+New [wl_region#23] { id: undefined }
+C2S [wl_compositor#11] createRegion { id: '[wl_region#23]' }
+C2S [wl_surface#20] setInputRegion { region: '[wl_region#23]' }
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 10 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 17 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_subsurface#21] setPosition { x: 26, y: 60 }
+C2S [wl_surface#20] setInputRegion { region: '[wl_surface#17]' }
+C2S [wl_surface#17] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#10]' }
+New [wl_callback#24] { callback: undefined }
+C2S [wl_surface#16] frame { callback: '[wl_callback#24]' }
+New [wl_callback#25] { callback: undefined }
+C2S [wl_surface#20] frame { callback: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 17 }
+S2C [wl_display#1] deleteId { id: 10 }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_callback#22] done { callbackData: 26081738 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#24] done { callbackData: 26081738 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#23] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#23]' }
+C2S [wl_region#23] destroy {}
+New [wl_callback#26] { callback: undefined }
+C2S [wl_surface#16] frame { callback: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#26] done { callbackData: 26081754 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26081754 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26081754 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081770 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081787 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081804 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081821 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081837 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081854 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081870 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081887 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081904 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081924 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26081940 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#22] done { callbackData: 26081949 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#22] done { callbackData: 26081958 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#26] done { callbackData: 26082237 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#25] done { callbackData: 26082237 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+New [wl_region#27] { id: undefined }
+C2S [wl_compositor#4] createRegion { id: '[wl_region#27]' }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+New [wl_callback#28] { callback: undefined }
+C2S [wl_surface#16] frame { callback: '[wl_callback#28]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#28] done { callbackData: 26082254 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#22] done { callbackData: 26082254 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_display#1] deleteId { id: 23 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#28]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#26] done { callbackData: 26082270 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#14] done { callbackData: 26082270 }
+S2C [wl_display#1] deleteId { id: 14 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#28] done { callbackData: 26082287 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#25] done { callbackData: 26082287 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 23 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#28]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_region#23] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#25] done { callbackData: 26082304 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26082304 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#22] done { callbackData: 26082304 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#28] done { callbackData: 26082320 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#14] done { callbackData: 26082320 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#25] done { callbackData: 26082320 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#23] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#23]' }
+C2S [wl_region#23] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 23 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26082338 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#26] done { callbackData: 26082338 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#15] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#22] done { callbackData: 26082354 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26082354 }
+S2C [wl_display#1] deleteId { id: 14 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#22] done { callbackData: 26082370 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#26] done { callbackData: 26082370 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26082370 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#25] done { callbackData: 26082387 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#22] done { callbackData: 26082387 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26082404 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#14] done { callbackData: 26082404 }
+S2C [wl_display#1] deleteId { id: 14 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#25] done { callbackData: 26082420 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26082420 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#25] done { callbackData: 26082437 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26082437 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#25] done { callbackData: 26082454 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26082454 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#24] done { callbackData: 26082454 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#25] done { callbackData: 26082470 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#28] done { callbackData: 26082470 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 27 }
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#14] done { callbackData: 26082487 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#22] done { callbackData: 26082487 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26082504 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 23 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_region#23] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26082520 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26082520 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26082520 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#25] done { callbackData: 26082537 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26082537 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26082537 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26082554 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#25] done { callbackData: 26082554 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26082554 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#28] done { callbackData: 26082570 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#25] done { callbackData: 26082570 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26082570 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_display#1] deleteId { id: 27 }
+C2S [wl_surface#15] destroy {}
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#25] done { callbackData: 26082587 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#14] done { callbackData: 26082587 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#24] done { callbackData: 26082587 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#25] done { callbackData: 26082604 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#22] done { callbackData: 26082620 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26082620 }
+S2C [wl_display#1] deleteId { id: 14 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#24]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#23] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#23]' }
+C2S [wl_region#23] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 23 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#22]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#25] done { callbackData: 26082637 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26082637 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26082637 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26082654 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26100972 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#25] done { callbackData: 26100972 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26100988 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101004 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101021 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101037 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101054 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101088 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101119 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101136 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101153 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101169 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26101201 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26122219 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26122219 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122237 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122253 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122286 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122321 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122337 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122354 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122403 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26122437 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#28] done { callbackData: 26153996 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26154021 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26154021 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154037 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26154053 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154071 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26154087 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154103 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26154120 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154136 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154153 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154170 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26154187 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154204 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26154220 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26154236 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#26] done { callbackData: 26216841 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26216841 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26216841 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26216857 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26216891 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26216922 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26216957 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26216991 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26217023 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26217056 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26227325 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227340 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227356 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227391 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227405 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227439 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227455 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227472 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227489 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227505 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227522 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26227556 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#28] done { callbackData: 26232700 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26232723 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26232723 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232739 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232755 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232773 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232789 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232806 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232822 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232839 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232856 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232872 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232889 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232906 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26232922 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26232938 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26237856 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26237856 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26237856 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#28] done { callbackData: 26237873 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26237906 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26237924 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26237939 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26237973 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26238006 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26238022 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26238040 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26238056 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26238073 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#28] done { callbackData: 26246632 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26246657 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26246657 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26246673 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246690 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26246706 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246723 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26246739 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246756 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246773 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26246789 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246806 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26246823 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246839 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246857 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26246872 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26252863 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26252863 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26252874 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26252874 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26252874 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26252889 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26252906 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26252923 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26252940 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26252956 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26252973 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26252989 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26253006 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26253023 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26253040 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26253056 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26253073 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26253089 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26278314 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26278314 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26278325 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278341 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278373 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278390 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278407 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278423 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278457 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278490 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26278541 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26320892 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26320910 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26320910 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26320925 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26320941 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26320959 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26320975 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26320991 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321008 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26321024 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321042 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26321058 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321075 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321092 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321108 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26321124 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26382474 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#25] done { callbackData: 26382474 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26382495 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#26] done { callbackData: 26382495 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26382495 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382510 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382526 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382544 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382560 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382577 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382593 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382610 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382626 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382643 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382660 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382677 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26382695 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#28] done { callbackData: 26382709 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#26] done { callbackData: 26441581 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26441581 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441598 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26441598 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441614 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441645 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441662 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441678 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441712 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441728 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441745 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441762 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441779 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#26] done { callbackData: 26441811 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#8] done { callbackData: 26443152 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#22]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26443183 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#28] done { callbackData: 26443183 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443199 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443216 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443232 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443249 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443265 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443282 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443316 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443349 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+S2C [wl_callback#25] done { callbackData: 26443366 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#8] done { callbackData: 26443494 }
+S2C [wl_callback#8] done { callbackData: 26443502 }
+S2C [wl_callback#8] done { callbackData: 26443510 }
+S2C [wl_callback#8] done { callbackData: 26443518 }
+S2C [wl_callback#8] done { callbackData: 26443526 }
+S2C [wl_callback#8] done { callbackData: 26443534 }
+S2C [wl_callback#8] done { callbackData: 26443542 }
+S2C [wl_callback#8] done { callbackData: 26443550 }
+S2C [wl_callback#8] done { callbackData: 26443556 }
+S2C [wl_callback#8] done { callbackData: 26443564 }
+S2C [wl_callback#8] done { callbackData: 26443572 }
+S2C [wl_callback#8] done { callbackData: 26443580 }
+S2C [wl_callback#8] done { callbackData: 26443588 }
+S2C [wl_callback#8] done { callbackData: 26443620 }
+S2C [wl_callback#8] done { callbackData: 26443720 }
+S2C [wl_callback#8] done { callbackData: 26443728 }
+S2C [wl_callback#8] done { callbackData: 26443736 }
+S2C [wl_callback#8] done { callbackData: 26443744 }
+S2C [wl_callback#8] done { callbackData: 26443752 }
+S2C [wl_callback#8] done { callbackData: 26443758 }
+S2C [wl_callback#8] done { callbackData: 26443766 }
+S2C [wl_callback#8] done { callbackData: 26443774 }
+S2C [wl_callback#8] done { callbackData: 26443782 }
+S2C [wl_callback#8] done { callbackData: 26443790 }
+S2C [wl_callback#8] done { callbackData: 26443798 }
+S2C [wl_callback#8] done { callbackData: 26443806 }
+S2C [wl_callback#8] done { callbackData: 26443814 }
+S2C [wl_callback#8] done { callbackData: 26443820 }
+S2C [wl_callback#8] done { callbackData: 26443828 }
+S2C [wl_callback#8] done { callbackData: 26443836 }
+S2C [wl_callback#8] done { callbackData: 26443844 }
+S2C [wl_callback#8] done { callbackData: 26443852 }
+S2C [wl_callback#8] done { callbackData: 26443868 }
+S2C [wl_callback#8] done { callbackData: 26443938 }
+S2C [wl_callback#8] done { callbackData: 26443984 }
+S2C [wl_callback#8] done { callbackData: 26443992 }
+S2C [wl_callback#8] done { callbackData: 26444000 }
+S2C [wl_callback#8] done { callbackData: 26444008 }
+S2C [wl_callback#8] done { callbackData: 26444014 }
+S2C [wl_callback#8] done { callbackData: 26444022 }
+S2C [wl_callback#8] done { callbackData: 26444030 }
+S2C [wl_callback#8] done { callbackData: 26444038 }
+S2C [wl_callback#8] done { callbackData: 26444046 }
+S2C [wl_callback#8] done { callbackData: 26444054 }
+S2C [wl_callback#8] done { callbackData: 26444062 }
+S2C [wl_callback#8] done { callbackData: 26444070 }
+S2C [wl_callback#8] done { callbackData: 26444078 }
+S2C [wl_callback#8] done { callbackData: 26444084 }
+S2C [wl_callback#8] done { callbackData: 26444092 }
+S2C [wl_callback#8] done { callbackData: 26444102 }
+S2C [wl_callback#8] done { callbackData: 26444108 }
+S2C [wl_callback#8] done { callbackData: 26444116 }
+S2C [wl_callback#8] done { callbackData: 26444264 }
+S2C [wl_callback#8] done { callbackData: 26444272 }
+S2C [wl_callback#8] done { callbackData: 26444280 }
+S2C [wl_callback#8] done { callbackData: 26444286 }
+S2C [wl_callback#8] done { callbackData: 26444294 }
+S2C [wl_callback#8] done { callbackData: 26444302 }
+S2C [wl_callback#8] done { callbackData: 26444310 }
+S2C [wl_callback#8] done { callbackData: 26444318 }
+S2C [wl_callback#8] done { callbackData: 26444326 }
+S2C [wl_callback#8] done { callbackData: 26444334 }
+S2C [wl_callback#8] done { callbackData: 26444342 }
+S2C [wl_callback#8] done { callbackData: 26444348 }
+S2C [wl_callback#8] done { callbackData: 26444356 }
+S2C [wl_callback#8] done { callbackData: 26444364 }
+S2C [wl_callback#8] done { callbackData: 26444372 }
+S2C [wl_callback#8] done { callbackData: 26444443 }
+S2C [wl_callback#8] done { callbackData: 26444450 }
+S2C [wl_callback#8] done { callbackData: 26444458 }
+S2C [wl_callback#8] done { callbackData: 26444466 }
+S2C [wl_callback#8] done { callbackData: 26444474 }
+S2C [wl_callback#8] done { callbackData: 26444480 }
+S2C [wl_callback#8] done { callbackData: 26444488 }
+S2C [wl_callback#8] done { callbackData: 26444496 }
+S2C [wl_callback#8] done { callbackData: 26444504 }
+S2C [wl_callback#8] done { callbackData: 26444512 }
+S2C [wl_callback#8] done { callbackData: 26444520 }
+S2C [wl_callback#8] done { callbackData: 26444528 }
+S2C [wl_callback#8] done { callbackData: 26444536 }
+S2C [wl_callback#8] done { callbackData: 26444542 }
+S2C [wl_callback#8] done { callbackData: 26444550 }
+S2C [wl_callback#8] done { callbackData: 26444792 }
+S2C [wl_callback#8] done { callbackData: 26445040 }
+S2C [wl_callback#8] done { callbackData: 26445048 }
+S2C [wl_callback#8] done { callbackData: 26445056 }
+S2C [wl_callback#8] done { callbackData: 26445064 }
+S2C [wl_callback#8] done { callbackData: 26445072 }
+S2C [wl_callback#8] done { callbackData: 26445078 }
+S2C [wl_callback#8] done { callbackData: 26445086 }
+S2C [wl_callback#8] done { callbackData: 26445094 }
+S2C [wl_callback#8] done { callbackData: 26445102 }
+S2C [wl_callback#8] done { callbackData: 26445110 }
+S2C [wl_callback#8] done { callbackData: 26445118 }
+S2C [wl_callback#8] done { callbackData: 26445126 }
+S2C [wl_callback#8] done { callbackData: 26445134 }
+S2C [wl_callback#8] done { callbackData: 26445140 }
+S2C [wl_callback#8] done { callbackData: 26445148 }
+S2C [wl_callback#8] done { callbackData: 26445156 }
+S2C [wl_callback#8] done { callbackData: 26445164 }
+S2C [wl_callback#8] done { callbackData: 26445172 }
+S2C [wl_callback#8] done { callbackData: 26445180 }
+S2C [wl_callback#8] done { callbackData: 26445188 }
+S2C [wl_callback#8] done { callbackData: 26445196 }
+S2C [wl_callback#8] done { callbackData: 26445204 }
+S2C [wl_callback#8] done { callbackData: 26445210 }
+S2C [wl_callback#8] done { callbackData: 26445218 }
+S2C [wl_callback#8] done { callbackData: 26445226 }
+S2C [wl_callback#8] done { callbackData: 26445242 }
+S2C [wl_callback#8] done { callbackData: 26445258 }
+S2C [wl_callback#8] done { callbackData: 26445266 }
+S2C [wl_callback#8] done { callbackData: 26445274 }
+S2C [wl_callback#8] done { callbackData: 26445280 }
+S2C [wl_callback#8] done { callbackData: 26445288 }
+S2C [wl_callback#8] done { callbackData: 26445296 }
+S2C [wl_callback#8] done { callbackData: 26445304 }
+S2C [wl_callback#8] done { callbackData: 26445312 }
+S2C [wl_callback#8] done { callbackData: 26445320 }
+S2C [wl_callback#8] done { callbackData: 26445330 }
+S2C [wl_callback#8] done { callbackData: 26445336 }
+S2C [wl_callback#8] done { callbackData: 26445342 }
+S2C [wl_callback#8] done { callbackData: 26445350 }
+S2C [wl_callback#8] done { callbackData: 26445358 }
+S2C [wl_callback#8] done { callbackData: 26445366 }
+S2C [wl_callback#8] done { callbackData: 26445454 }
+S2C [wl_callback#8] done { callbackData: 26445560 }
+S2C [wl_callback#8] done { callbackData: 26445568 }
+S2C [wl_callback#8] done { callbackData: 26445578 }
+S2C [wl_callback#8] done { callbackData: 26445584 }
+S2C [wl_callback#8] done { callbackData: 26445592 }
+S2C [wl_callback#8] done { callbackData: 26445598 }
+S2C [wl_callback#8] done { callbackData: 26445606 }
+S2C [wl_callback#8] done { callbackData: 26445614 }
+S2C [wl_callback#8] done { callbackData: 26445622 }
+S2C [wl_callback#8] done { callbackData: 26445630 }
+S2C [wl_callback#8] done { callbackData: 26445638 }
+S2C [wl_callback#8] done { callbackData: 26445646 }
+S2C [wl_callback#8] done { callbackData: 26445654 }
+S2C [wl_callback#8] done { callbackData: 26445662 }
+S2C [wl_callback#8] done { callbackData: 26445668 }
+S2C [wl_callback#8] done { callbackData: 26445676 }
+S2C [wl_callback#8] done { callbackData: 26445684 }
+S2C [wl_callback#8] done { callbackData: 26445692 }
+S2C [wl_callback#8] done { callbackData: 26445700 }
+S2C [wl_callback#8] done { callbackData: 26445708 }
+S2C [wl_callback#8] done { callbackData: 26445716 }
+S2C [wl_callback#8] done { callbackData: 26445724 }
+S2C [wl_callback#8] done { callbackData: 26445732 }
+S2C [wl_callback#8] done { callbackData: 26445738 }
+S2C [wl_callback#8] done { callbackData: 26445786 }
+S2C [wl_callback#8] done { callbackData: 26445902 }
+S2C [wl_callback#8] done { callbackData: 26445910 }
+S2C [wl_callback#8] done { callbackData: 26445918 }
+S2C [wl_callback#8] done { callbackData: 26445926 }
+S2C [wl_callback#8] done { callbackData: 26445932 }
+S2C [wl_callback#8] done { callbackData: 26445940 }
+S2C [wl_callback#8] done { callbackData: 26445948 }
+S2C [wl_callback#8] done { callbackData: 26445956 }
+S2C [wl_callback#8] done { callbackData: 26445964 }
+S2C [wl_callback#8] done { callbackData: 26445972 }
+S2C [wl_callback#8] done { callbackData: 26445980 }
+S2C [wl_callback#8] done { callbackData: 26445988 }
+S2C [wl_callback#8] done { callbackData: 26445996 }
+S2C [wl_callback#8] done { callbackData: 26446002 }
+S2C [wl_callback#8] done { callbackData: 26446010 }
+S2C [wl_callback#8] done { callbackData: 26446018 }
+S2C [wl_callback#8] done { callbackData: 26446026 }
+S2C [wl_callback#8] done { callbackData: 26446050 }
+S2C [wl_callback#8] done { callbackData: 26446104 }
+S2C [wl_callback#8] done { callbackData: 26446112 }
+S2C [wl_callback#8] done { callbackData: 26446120 }
+S2C [wl_callback#8] done { callbackData: 26446128 }
+S2C [wl_callback#8] done { callbackData: 26446134 }
+S2C [wl_callback#8] done { callbackData: 26446142 }
+S2C [wl_callback#8] done { callbackData: 26446150 }
+S2C [wl_callback#8] done { callbackData: 26446158 }
+S2C [wl_callback#8] done { callbackData: 26446166 }
+S2C [wl_callback#8] done { callbackData: 26446174 }
+S2C [wl_callback#8] done { callbackData: 26446182 }
+S2C [wl_callback#8] done { callbackData: 26446190 }
+S2C [wl_callback#8] done { callbackData: 26446196 }
+S2C [wl_callback#8] done { callbackData: 26446204 }
+S2C [wl_callback#8] done { callbackData: 26446212 }
+S2C [wl_callback#8] done { callbackData: 26446220 }
+S2C [wl_callback#8] done { callbackData: 26446228 }
+S2C [wl_callback#8] done { callbackData: 26446266 }
+S2C [wl_callback#8] done { callbackData: 26446306 }
+S2C [wl_callback#8] done { callbackData: 26446314 }
+S2C [wl_callback#8] done { callbackData: 26446322 }
+S2C [wl_callback#8] done { callbackData: 26446328 }
+S2C [wl_callback#8] done { callbackData: 26446336 }
+S2C [wl_callback#8] done { callbackData: 26446344 }
+S2C [wl_callback#8] done { callbackData: 26446352 }
+S2C [wl_callback#8] done { callbackData: 26446360 }
+S2C [wl_callback#8] done { callbackData: 26446368 }
+S2C [wl_callback#8] done { callbackData: 26446376 }
+S2C [wl_callback#8] done { callbackData: 26446384 }
+S2C [wl_callback#8] done { callbackData: 26446392 }
+S2C [wl_callback#8] done { callbackData: 26446398 }
+S2C [wl_callback#8] done { callbackData: 26446406 }
+S2C [wl_callback#8] done { callbackData: 26446414 }
+S2C [wl_callback#8] done { callbackData: 26446422 }
+S2C [wl_callback#8] done { callbackData: 26446430 }
+S2C [wl_callback#8] done { callbackData: 26446438 }
+S2C [wl_callback#8] done { callbackData: 26446454 }
+S2C [wl_callback#8] done { callbackData: 26446492 }
+S2C [wl_callback#8] done { callbackData: 26446500 }
+S2C [wl_callback#8] done { callbackData: 26446508 }
+S2C [wl_callback#8] done { callbackData: 26446516 }
+S2C [wl_callback#8] done { callbackData: 26446522 }
+S2C [wl_callback#8] done { callbackData: 26446578 }
+S2C [wl_callback#8] done { callbackData: 26446586 }
+S2C [wl_callback#8] done { callbackData: 26446662 }
+S2C [wl_callback#8] done { callbackData: 26446671 }
+S2C [wl_callback#8] done { callbackData: 26446679 }
+S2C [wl_callback#8] done { callbackData: 26446726 }
+S2C [wl_callback#8] done { callbackData: 26446732 }
+S2C [wl_callback#8] done { callbackData: 26446740 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#8] done { callbackData: 26447866 }
+S2C [wl_callback#8] done { callbackData: 26448146 }
+S2C [wl_callback#8] done { callbackData: 26448310 }
+S2C [wl_callback#8] done { callbackData: 26448316 }
+S2C [wl_callback#8] done { callbackData: 26448324 }
+S2C [wl_callback#8] done { callbackData: 26448332 }
+S2C [wl_callback#8] done { callbackData: 26448340 }
+S2C [wl_callback#8] done { callbackData: 26448488 }
+S2C [wl_callback#8] done { callbackData: 26448504 }
+S2C [wl_callback#8] done { callbackData: 26448831 }
+S2C [wl_callback#8] done { callbackData: 26448845 }
+S2C [wl_callback#8] done { callbackData: 26448852 }
+S2C [wl_callback#8] done { callbackData: 26448861 }
+S2C [wl_callback#8] done { callbackData: 26448869 }
+S2C [wl_callback#8] done { callbackData: 26448877 }
+S2C [wl_callback#8] done { callbackData: 26448885 }
+S2C [wl_callback#8] done { callbackData: 26448894 }
+S2C [wl_callback#8] done { callbackData: 26448900 }
+S2C [wl_callback#8] done { callbackData: 26448908 }
+S2C [wl_callback#8] done { callbackData: 26448938 }
+S2C [wl_callback#8] done { callbackData: 26449707 }
+S2C [wl_callback#8] done { callbackData: 26449722 }
+S2C [wl_callback#8] done { callbackData: 26449731 }
+S2C [wl_callback#8] done { callbackData: 26449739 }
+S2C [wl_callback#8] done { callbackData: 26449746 }
+S2C [wl_callback#8] done { callbackData: 26449754 }
+S2C [wl_callback#8] done { callbackData: 26449762 }
+S2C [wl_callback#8] done { callbackData: 26449768 }
+S2C [wl_callback#8] done { callbackData: 26449776 }
+S2C [wl_callback#8] done { callbackData: 26449785 }
+S2C [wl_callback#8] done { callbackData: 26449792 }
+S2C [wl_callback#8] done { callbackData: 26449800 }
+S2C [wl_callback#8] done { callbackData: 26450196 }
+S2C [wl_callback#8] done { callbackData: 26450221 }
+S2C [wl_callback#8] done { callbackData: 26450226 }
+S2C [wl_callback#8] done { callbackData: 26450234 }
+S2C [wl_callback#8] done { callbackData: 26450246 }
+S2C [wl_callback#8] done { callbackData: 26450250 }
+S2C [wl_callback#8] done { callbackData: 26450259 }
+S2C [wl_callback#8] done { callbackData: 26450266 }
+S2C [wl_callback#8] done { callbackData: 26450274 }
+S2C [wl_callback#8] done { callbackData: 26450282 }
+S2C [wl_callback#8] done { callbackData: 26450290 }
+S2C [wl_callback#8] done { callbackData: 26450445 }
+S2C [wl_callback#8] done { callbackData: 26450453 }
+S2C [wl_callback#8] done { callbackData: 26450461 }
+S2C [wl_callback#8] done { callbackData: 26450468 }
+S2C [wl_callback#8] done { callbackData: 26450476 }
+S2C [wl_callback#8] done { callbackData: 26450484 }
+S2C [wl_callback#8] done { callbackData: 26450492 }
+S2C [wl_callback#8] done { callbackData: 26450498 }
+S2C [wl_callback#8] done { callbackData: 26450506 }
+S2C [wl_callback#8] done { callbackData: 26450514 }
+S2C [wl_callback#8] done { callbackData: 26450522 }
+S2C [wl_callback#8] done { callbackData: 26450530 }
+S2C [wl_callback#8] done { callbackData: 26450538 }
+S2C [wl_callback#8] done { callbackData: 26450546 }
+S2C [wl_callback#8] done { callbackData: 26450554 }
+S2C [wl_callback#8] done { callbackData: 26450560 }
+S2C [wl_callback#8] done { callbackData: 26450663 }
+S2C [wl_callback#8] done { callbackData: 26450741 }
+S2C [wl_callback#8] done { callbackData: 26450770 }
+S2C [wl_callback#8] done { callbackData: 26450778 }
+S2C [wl_callback#8] done { callbackData: 26450786 }
+S2C [wl_callback#8] done { callbackData: 26450794 }
+S2C [wl_callback#8] done { callbackData: 26450802 }
+S2C [wl_callback#8] done { callbackData: 26450810 }
+S2C [wl_callback#8] done { callbackData: 26450818 }
+S2C [wl_callback#8] done { callbackData: 26450824 }
+S2C [wl_callback#8] done { callbackData: 26450832 }
+S2C [wl_callback#8] done { callbackData: 26450848 }
+S2C [wl_callback#8] done { callbackData: 26450856 }
+S2C [wl_callback#8] done { callbackData: 26450872 }
+S2C [wl_callback#8] done { callbackData: 26450880 }
+S2C [wl_callback#8] done { callbackData: 26450889 }
+S2C [wl_callback#8] done { callbackData: 26450894 }
+S2C [wl_callback#8] done { callbackData: 26450903 }
+S2C [wl_callback#8] done { callbackData: 26450910 }
+S2C [wl_callback#8] done { callbackData: 26450919 }
+S2C [wl_callback#8] done { callbackData: 26450926 }
+S2C [wl_callback#8] done { callbackData: 26450934 }
+S2C [wl_callback#8] done { callbackData: 26450943 }
+S2C [wl_callback#8] done { callbackData: 26450951 }
+S2C [wl_callback#8] done { callbackData: 26450959 }
+S2C [wl_callback#8] done { callbackData: 26450965 }
+S2C [wl_callback#8] done { callbackData: 26450973 }
+S2C [wl_callback#8] done { callbackData: 26450984 }
+S2C [wl_callback#8] done { callbackData: 26450988 }
+S2C [wl_callback#8] done { callbackData: 26451035 }
+S2C [wl_callback#8] done { callbackData: 26451043 }
+S2C [wl_callback#8] done { callbackData: 26451066 }
+S2C [wl_callback#8] done { callbackData: 26451075 }
+S2C [wl_callback#8] done { callbackData: 26451082 }
+S2C [wl_callback#8] done { callbackData: 26451088 }
+S2C [wl_callback#8] done { callbackData: 26451096 }
+S2C [wl_callback#8] done { callbackData: 26451106 }
+S2C [wl_callback#8] done { callbackData: 26451112 }
+S2C [wl_callback#8] done { callbackData: 26451120 }
+S2C [wl_callback#8] done { callbackData: 26451128 }
+S2C [wl_callback#8] done { callbackData: 26451137 }
+S2C [wl_callback#8] done { callbackData: 26451144 }
+S2C [wl_callback#8] done { callbackData: 26451152 }
+S2C [wl_callback#8] done { callbackData: 26451159 }
+S2C [wl_callback#8] done { callbackData: 26451166 }
+S2C [wl_callback#8] done { callbackData: 26451174 }
+S2C [wl_callback#8] done { callbackData: 26451182 }
+S2C [wl_callback#8] done { callbackData: 26451190 }
+S2C [wl_callback#8] done { callbackData: 26451198 }
+S2C [wl_callback#8] done { callbackData: 26451214 }
+S2C [wl_callback#8] done { callbackData: 26451236 }
+S2C [wl_callback#8] done { callbackData: 26451245 }
+S2C [wl_callback#8] done { callbackData: 26451252 }
+S2C [wl_callback#8] done { callbackData: 26451261 }
+S2C [wl_callback#8] done { callbackData: 26451269 }
+S2C [wl_callback#8] done { callbackData: 26451277 }
+S2C [wl_callback#8] done { callbackData: 26451284 }
+S2C [wl_callback#8] done { callbackData: 26451290 }
+S2C [wl_callback#8] done { callbackData: 26451298 }
+S2C [wl_callback#8] done { callbackData: 26451307 }
+S2C [wl_callback#8] done { callbackData: 26451314 }
+S2C [wl_callback#8] done { callbackData: 26451323 }
+S2C [wl_callback#8] done { callbackData: 26451331 }
+S2C [wl_callback#8] done { callbackData: 26451339 }
+S2C [wl_callback#8] done { callbackData: 26451346 }
+S2C [wl_callback#8] done { callbackData: 26451352 }
+S2C [wl_callback#8] done { callbackData: 26451431 }
+S2C [wl_callback#8] done { callbackData: 26451485 }
+S2C [wl_callback#8] done { callbackData: 26451493 }
+S2C [wl_callback#8] done { callbackData: 26451501 }
+S2C [wl_callback#8] done { callbackData: 26451509 }
+S2C [wl_callback#8] done { callbackData: 26451516 }
+S2C [wl_callback#8] done { callbackData: 26451524 }
+S2C [wl_callback#8] done { callbackData: 26451532 }
+S2C [wl_callback#8] done { callbackData: 26451540 }
+S2C [wl_callback#8] done { callbackData: 26451563 }
+S2C [wl_callback#8] done { callbackData: 26451571 }
+S2C [wl_callback#8] done { callbackData: 26451578 }
+S2C [wl_callback#8] done { callbackData: 26451587 }
+S2C [wl_callback#8] done { callbackData: 26451595 }
+S2C [wl_callback#8] done { callbackData: 26451611 }
+S2C [wl_callback#8] done { callbackData: 26451617 }
+S2C [wl_callback#8] done { callbackData: 26451625 }
+S2C [wl_callback#8] done { callbackData: 26451632 }
+S2C [wl_callback#8] done { callbackData: 26451640 }
+S2C [wl_callback#8] done { callbackData: 26451649 }
+S2C [wl_callback#8] done { callbackData: 26451656 }
+S2C [wl_callback#8] done { callbackData: 26451665 }
+S2C [wl_callback#8] done { callbackData: 26451673 }
+S2C [wl_callback#8] done { callbackData: 26451679 }
+S2C [wl_callback#8] done { callbackData: 26451687 }
+S2C [wl_callback#8] done { callbackData: 26451695 }
+S2C [wl_callback#8] done { callbackData: 26451703 }
+S2C [wl_callback#8] done { callbackData: 26451710 }
+S2C [wl_callback#8] done { callbackData: 26451859 }
+S2C [wl_callback#8] done { callbackData: 26451867 }
+S2C [wl_callback#8] done { callbackData: 26451875 }
+S2C [wl_callback#8] done { callbackData: 26451881 }
+S2C [wl_callback#8] done { callbackData: 26451889 }
+S2C [wl_callback#8] done { callbackData: 26451897 }
+S2C [wl_callback#8] done { callbackData: 26451905 }
+S2C [wl_callback#8] done { callbackData: 26459515 }
+S2C [wl_callback#8] done { callbackData: 26459523 }
+S2C [wl_callback#8] done { callbackData: 26459531 }
+S2C [wl_callback#8] done { callbackData: 26459537 }
+S2C [wl_callback#8] done { callbackData: 26459545 }
+S2C [wl_callback#8] done { callbackData: 26459553 }
+S2C [wl_callback#8] done { callbackData: 26459561 }
+S2C [wl_callback#8] done { callbackData: 26459569 }
+S2C [wl_callback#8] done { callbackData: 26459577 }
+S2C [wl_callback#8] done { callbackData: 26459585 }
+S2C [wl_callback#8] done { callbackData: 26459593 }
+S2C [wl_callback#8] done { callbackData: 26459599 }
+S2C [wl_callback#8] done { callbackData: 26459607 }
+S2C [wl_callback#8] done { callbackData: 26459615 }
+S2C [wl_callback#8] done { callbackData: 26459623 }
+S2C [wl_callback#8] done { callbackData: 26459631 }
+S2C [wl_callback#8] done { callbackData: 26459639 }
+S2C [wl_callback#8] done { callbackData: 26459647 }
+S2C [wl_callback#8] done { callbackData: 26459655 }
+S2C [wl_callback#8] done { callbackData: 26459771 }
+S2C [wl_callback#8] done { callbackData: 26459801 }
+S2C [wl_callback#8] done { callbackData: 26459809 }
+S2C [wl_callback#8] done { callbackData: 26459817 }
+S2C [wl_callback#8] done { callbackData: 26459825 }
+S2C [wl_callback#8] done { callbackData: 26459833 }
+S2C [wl_callback#8] done { callbackData: 26459841 }
+S2C [wl_callback#8] done { callbackData: 26459849 }
+S2C [wl_callback#8] done { callbackData: 26459857 }
+S2C [wl_callback#8] done { callbackData: 26459863 }
+S2C [wl_callback#8] done { callbackData: 26459871 }
+S2C [wl_callback#8] done { callbackData: 26459879 }
+S2C [wl_callback#8] done { callbackData: 26459887 }
+S2C [wl_callback#8] done { callbackData: 26459895 }
+S2C [wl_callback#8] done { callbackData: 26459933 }
+S2C [wl_callback#8] done { callbackData: 26459941 }
+S2C [wl_callback#8] done { callbackData: 26459957 }
+S2C [wl_callback#8] done { callbackData: 26459965 }
+S2C [wl_callback#8] done { callbackData: 26459973 }
+S2C [wl_callback#8] done { callbackData: 26459981 }
+S2C [wl_callback#8] done { callbackData: 26459995 }
+S2C [wl_callback#8] done { callbackData: 26460003 }
+S2C [wl_callback#8] done { callbackData: 26460011 }
+S2C [wl_callback#8] done { callbackData: 26460019 }
+S2C [wl_callback#8] done { callbackData: 26460027 }
+S2C [wl_callback#8] done { callbackData: 26460035 }
+S2C [wl_callback#8] done { callbackData: 26460043 }
+S2C [wl_callback#8] done { callbackData: 26460051 }
+S2C [wl_callback#8] done { callbackData: 26460059 }
+S2C [wl_callback#8] done { callbackData: 26460065 }
+S2C [wl_callback#8] done { callbackData: 26460073 }
+S2C [wl_callback#8] done { callbackData: 26460081 }
+S2C [wl_callback#8] done { callbackData: 26460089 }
+S2C [wl_callback#8] done { callbackData: 26460097 }
+S2C [wl_callback#8] done { callbackData: 26460105 }
+S2C [wl_callback#8] done { callbackData: 26460113 }
+S2C [wl_callback#8] done { callbackData: 26460129 }
+S2C [wl_callback#8] done { callbackData: 26460205 }
+S2C [wl_callback#8] done { callbackData: 26460213 }
+S2C [wl_callback#8] done { callbackData: 26460221 }
+S2C [wl_callback#8] done { callbackData: 26460229 }
+S2C [wl_callback#8] done { callbackData: 26460237 }
+S2C [wl_callback#8] done { callbackData: 26460245 }
+S2C [wl_callback#8] done { callbackData: 26460253 }
+S2C [wl_callback#8] done { callbackData: 26460259 }
+S2C [wl_callback#8] done { callbackData: 26460267 }
+S2C [wl_callback#8] done { callbackData: 26460275 }
+S2C [wl_callback#8] done { callbackData: 26460283 }
+S2C [wl_callback#8] done { callbackData: 26460291 }
+S2C [wl_callback#8] done { callbackData: 26460299 }
+S2C [wl_callback#8] done { callbackData: 26460307 }
+S2C [wl_callback#8] done { callbackData: 26460315 }
+S2C [wl_callback#8] done { callbackData: 26460323 }
+S2C [wl_callback#8] done { callbackData: 26460329 }
+S2C [wl_callback#8] done { callbackData: 26460337 }
+S2C [wl_callback#8] done { callbackData: 26460345 }
+S2C [wl_callback#8] done { callbackData: 26460353 }
+S2C [wl_callback#8] done { callbackData: 26460361 }
+S2C [wl_callback#8] done { callbackData: 26460369 }
+S2C [wl_callback#8] done { callbackData: 26460377 }
+S2C [wl_callback#8] done { callbackData: 26460385 }
+S2C [wl_callback#8] done { callbackData: 26460393 }
+S2C [wl_callback#8] done { callbackData: 26460399 }
+S2C [wl_callback#8] done { callbackData: 26460455 }
+S2C [wl_callback#8] done { callbackData: 26460461 }
+S2C [wl_callback#8] done { callbackData: 26460469 }
+S2C [wl_callback#8] done { callbackData: 26460477 }
+S2C [wl_callback#8] done { callbackData: 26460485 }
+S2C [wl_callback#8] done { callbackData: 26460493 }
+S2C [wl_callback#8] done { callbackData: 26460501 }
+S2C [wl_callback#8] done { callbackData: 26460509 }
+S2C [wl_callback#8] done { callbackData: 26460517 }
+S2C [wl_callback#8] done { callbackData: 26460523 }
+S2C [wl_callback#8] done { callbackData: 26460531 }
+S2C [wl_callback#8] done { callbackData: 26460539 }
+S2C [wl_callback#8] done { callbackData: 26460547 }
+S2C [wl_callback#8] done { callbackData: 26460555 }
+S2C [wl_callback#8] done { callbackData: 26460563 }
+S2C [wl_callback#8] done { callbackData: 26460571 }
+S2C [wl_callback#8] done { callbackData: 26460579 }
+S2C [wl_callback#8] done { callbackData: 26460587 }
+S2C [wl_callback#8] done { callbackData: 26460593 }
+S2C [wl_callback#8] done { callbackData: 26460601 }
+S2C [wl_callback#8] done { callbackData: 26460609 }
+S2C [wl_callback#8] done { callbackData: 26460617 }
+S2C [wl_callback#8] done { callbackData: 26460625 }
+S2C [wl_callback#8] done { callbackData: 26460633 }
+S2C [wl_callback#8] done { callbackData: 26460641 }
+S2C [wl_callback#8] done { callbackData: 26460649 }
+S2C [wl_callback#8] done { callbackData: 26460655 }
+S2C [wl_callback#8] done { callbackData: 26460663 }
+S2C [wl_callback#8] done { callbackData: 26460671 }
+S2C [wl_callback#8] done { callbackData: 26460679 }
+S2C [wl_callback#8] done { callbackData: 26460703 }
+S2C [wl_callback#8] done { callbackData: 26460711 }
+S2C [wl_callback#8] done { callbackData: 26460719 }
+S2C [wl_callback#8] done { callbackData: 26460725 }
+S2C [wl_callback#8] done { callbackData: 26460733 }
+S2C [wl_callback#8] done { callbackData: 26460741 }
+S2C [wl_callback#8] done { callbackData: 26460749 }
+S2C [wl_callback#8] done { callbackData: 26460757 }
+S2C [wl_callback#8] done { callbackData: 26460765 }
+S2C [wl_callback#8] done { callbackData: 26460773 }
+S2C [wl_callback#8] done { callbackData: 26460781 }
+S2C [wl_callback#8] done { callbackData: 26460787 }
+S2C [wl_callback#8] done { callbackData: 26460803 }
+S2C [wl_callback#8] done { callbackData: 26460811 }
+S2C [wl_callback#8] done { callbackData: 26460819 }
+S2C [wl_callback#8] done { callbackData: 26460865 }
+S2C [wl_callback#8] done { callbackData: 26460889 }
+S2C [wl_callback#8] done { callbackData: 26460897 }
+S2C [wl_callback#8] done { callbackData: 26460905 }
+S2C [wl_callback#8] done { callbackData: 26460913 }
+S2C [wl_callback#8] done { callbackData: 26460919 }
+S2C [wl_callback#8] done { callbackData: 26460927 }
+S2C [wl_callback#8] done { callbackData: 26460937 }
+S2C [wl_callback#8] done { callbackData: 26460943 }
+S2C [wl_callback#8] done { callbackData: 26460951 }
+S2C [wl_callback#8] done { callbackData: 26460959 }
+S2C [wl_callback#8] done { callbackData: 26460967 }
+S2C [wl_callback#8] done { callbackData: 26460975 }
+S2C [wl_callback#8] done { callbackData: 26460981 }
+S2C [wl_callback#8] done { callbackData: 26460989 }
+S2C [wl_callback#8] done { callbackData: 26460997 }
+S2C [wl_callback#8] done { callbackData: 26461005 }
+S2C [wl_callback#8] done { callbackData: 26461013 }
+S2C [wl_callback#8] done { callbackData: 26461021 }
+S2C [wl_callback#8] done { callbackData: 26461067 }
+S2C [wl_callback#8] done { callbackData: 26461153 }
+S2C [wl_callback#8] done { callbackData: 26461161 }
+S2C [wl_callback#8] done { callbackData: 26461169 }
+S2C [wl_callback#8] done { callbackData: 26461177 }
+S2C [wl_callback#8] done { callbackData: 26461183 }
+S2C [wl_callback#8] done { callbackData: 26461191 }
+S2C [wl_callback#8] done { callbackData: 26461199 }
+S2C [wl_callback#8] done { callbackData: 26461207 }
+S2C [wl_callback#8] done { callbackData: 26461215 }
+S2C [wl_callback#8] done { callbackData: 26461223 }
+S2C [wl_callback#8] done { callbackData: 26461231 }
+S2C [wl_callback#8] done { callbackData: 26461239 }
+S2C [wl_callback#8] done { callbackData: 26461247 }
+S2C [wl_callback#8] done { callbackData: 26461253 }
+S2C [wl_callback#8] done { callbackData: 26461261 }
+S2C [wl_callback#8] done { callbackData: 26461269 }
+S2C [wl_callback#8] done { callbackData: 26461277 }
+S2C [wl_callback#8] done { callbackData: 26461371 }
+S2C [wl_callback#8] done { callbackData: 26461379 }
+S2C [wl_callback#8] done { callbackData: 26461385 }
+S2C [wl_callback#8] done { callbackData: 26461393 }
+S2C [wl_callback#8] done { callbackData: 26461401 }
+S2C [wl_callback#8] done { callbackData: 26461409 }
+S2C [wl_callback#8] done { callbackData: 26461417 }
+S2C [wl_callback#8] done { callbackData: 26461425 }
+S2C [wl_callback#8] done { callbackData: 26461433 }
+S2C [wl_callback#8] done { callbackData: 26461441 }
+S2C [wl_callback#8] done { callbackData: 26461447 }
+S2C [wl_callback#8] done { callbackData: 26461455 }
+S2C [wl_callback#8] done { callbackData: 26461463 }
+S2C [wl_callback#8] done { callbackData: 26461471 }
+S2C [wl_callback#8] done { callbackData: 26461479 }
+S2C [wl_callback#8] done { callbackData: 26461487 }
+S2C [wl_callback#8] done { callbackData: 26461495 }
+S2C [wl_callback#8] done { callbackData: 26461503 }
+S2C [wl_callback#8] done { callbackData: 26461511 }
+S2C [wl_callback#8] done { callbackData: 26461541 }
+S2C [wl_callback#8] done { callbackData: 26461549 }
+S2C [wl_callback#8] done { callbackData: 26461557 }
+S2C [wl_callback#8] done { callbackData: 26461565 }
+S2C [wl_callback#8] done { callbackData: 26461573 }
+S2C [wl_callback#8] done { callbackData: 26461705 }
+S2C [wl_callback#8] done { callbackData: 26461711 }
+S2C [wl_callback#8] done { callbackData: 26461719 }
+S2C [wl_callback#8] done { callbackData: 26461727 }
+S2C [wl_callback#8] done { callbackData: 26461735 }
+S2C [wl_callback#8] done { callbackData: 26461743 }
+S2C [wl_callback#8] done { callbackData: 26461899 }
+S2C [wl_callback#8] done { callbackData: 26462007 }
+S2C [wl_callback#8] done { callbackData: 26462015 }
+S2C [wl_callback#8] done { callbackData: 26462023 }
+S2C [wl_callback#8] done { callbackData: 26462031 }
+S2C [wl_callback#8] done { callbackData: 26462039 }
+S2C [wl_callback#8] done { callbackData: 26462045 }
+S2C [wl_callback#8] done { callbackData: 26462053 }
+S2C [wl_callback#8] done { callbackData: 26462061 }
+S2C [wl_callback#8] done { callbackData: 26462069 }
+S2C [wl_callback#8] done { callbackData: 26462077 }
+S2C [wl_callback#8] done { callbackData: 26462085 }
+S2C [wl_callback#8] done { callbackData: 26462093 }
+S2C [wl_callback#8] done { callbackData: 26462101 }
+S2C [wl_callback#8] done { callbackData: 26462107 }
+S2C [wl_callback#8] done { callbackData: 26462131 }
+S2C [wl_callback#8] done { callbackData: 26462225 }
+S2C [wl_callback#8] done { callbackData: 26462233 }
+S2C [wl_callback#8] done { callbackData: 26462239 }
+S2C [wl_callback#8] done { callbackData: 26462247 }
+S2C [wl_callback#8] done { callbackData: 26462255 }
+S2C [wl_callback#8] done { callbackData: 26462263 }
+S2C [wl_callback#8] done { callbackData: 26462271 }
+S2C [wl_callback#8] done { callbackData: 26462279 }
+S2C [wl_callback#8] done { callbackData: 26462325 }
+S2C [wl_callback#8] done { callbackData: 26462341 }
+S2C [wl_callback#8] done { callbackData: 26462349 }
+S2C [wl_callback#8] done { callbackData: 26462357 }
+S2C [wl_callback#8] done { callbackData: 26462365 }
+S2C [wl_callback#8] done { callbackData: 26462371 }
+S2C [wl_callback#8] done { callbackData: 26462379 }
+S2C [wl_callback#8] done { callbackData: 26462387 }
+S2C [wl_callback#8] done { callbackData: 26462395 }
+S2C [wl_callback#8] done { callbackData: 26462403 }
+S2C [wl_callback#8] done { callbackData: 26462411 }
+S2C [wl_callback#8] done { callbackData: 26462419 }
+S2C [wl_callback#8] done { callbackData: 26462427 }
+S2C [wl_callback#8] done { callbackData: 26462435 }
+S2C [wl_callback#8] done { callbackData: 26462441 }
+S2C [wl_callback#8] done { callbackData: 26462449 }
+S2C [wl_callback#8] done { callbackData: 26462457 }
+S2C [wl_callback#8] done { callbackData: 26462465 }
+S2C [wl_callback#8] done { callbackData: 26462473 }
+S2C [wl_callback#8] done { callbackData: 26462481 }
+S2C [wl_callback#8] done { callbackData: 26462489 }
+S2C [wl_callback#8] done { callbackData: 26462497 }
+S2C [wl_callback#8] done { callbackData: 26462505 }
+S2C [wl_callback#8] done { callbackData: 26462559 }
+S2C [wl_callback#8] done { callbackData: 26462597 }
+S2C [wl_callback#8] done { callbackData: 26462605 }
+S2C [wl_callback#8] done { callbackData: 26462613 }
+S2C [wl_callback#8] done { callbackData: 26462621 }
+S2C [wl_callback#8] done { callbackData: 26462629 }
+S2C [wl_callback#8] done { callbackData: 26462637 }
+S2C [wl_callback#8] done { callbackData: 26462643 }
+S2C [wl_callback#8] done { callbackData: 26462651 }
+S2C [wl_callback#8] done { callbackData: 26462659 }
+S2C [wl_callback#8] done { callbackData: 26462667 }
+S2C [wl_callback#8] done { callbackData: 26462675 }
+S2C [wl_callback#8] done { callbackData: 26462683 }
+S2C [wl_callback#8] done { callbackData: 26462691 }
+S2C [wl_callback#8] done { callbackData: 26462699 }
+S2C [wl_callback#8] done { callbackData: 26462705 }
+S2C [wl_callback#8] done { callbackData: 26462713 }
+S2C [wl_callback#8] done { callbackData: 26462721 }
+S2C [wl_callback#8] done { callbackData: 26462729 }
+S2C [wl_callback#8] done { callbackData: 26462861 }
+S2C [wl_callback#8] done { callbackData: 26462869 }
+S2C [wl_callback#8] done { callbackData: 26462877 }
+S2C [wl_callback#8] done { callbackData: 26462885 }
+S2C [wl_callback#8] done { callbackData: 26462893 }
+S2C [wl_callback#8] done { callbackData: 26462899 }
+S2C [wl_callback#8] done { callbackData: 26462907 }
+S2C [wl_callback#8] done { callbackData: 26462915 }
+S2C [wl_callback#8] done { callbackData: 26462923 }
+S2C [wl_callback#8] done { callbackData: 26462931 }
+S2C [wl_callback#8] done { callbackData: 26462939 }
+S2C [wl_callback#8] done { callbackData: 26462947 }
+S2C [wl_callback#8] done { callbackData: 26462955 }
+S2C [wl_callback#8] done { callbackData: 26462961 }
+S2C [wl_callback#8] done { callbackData: 26462969 }
+S2C [wl_callback#8] done { callbackData: 26462977 }
+S2C [wl_callback#8] done { callbackData: 26462985 }
+S2C [wl_callback#8] done { callbackData: 26462993 }
+S2C [wl_callback#8] done { callbackData: 26463001 }
+S2C [wl_callback#8] done { callbackData: 26463009 }
+S2C [wl_callback#8] done { callbackData: 26463017 }
+S2C [wl_callback#8] done { callbackData: 26463025 }
+S2C [wl_callback#8] done { callbackData: 26463031 }
+S2C [wl_callback#8] done { callbackData: 26463039 }
+S2C [wl_callback#8] done { callbackData: 26463047 }
+S2C [wl_callback#8] done { callbackData: 26463063 }
+S2C [wl_callback#8] done { callbackData: 26463087 }
+S2C [wl_callback#8] done { callbackData: 26463141 }
+S2C [wl_callback#8] done { callbackData: 26463149 }
+S2C [wl_callback#8] done { callbackData: 26463157 }
+S2C [wl_callback#8] done { callbackData: 26463163 }
+S2C [wl_callback#8] done { callbackData: 26463171 }
+S2C [wl_callback#8] done { callbackData: 26463179 }
+S2C [wl_callback#8] done { callbackData: 26463187 }
+S2C [wl_callback#8] done { callbackData: 26463195 }
+S2C [wl_callback#8] done { callbackData: 26463203 }
+S2C [wl_callback#8] done { callbackData: 26463211 }
+S2C [wl_callback#8] done { callbackData: 26463219 }
+S2C [wl_callback#8] done { callbackData: 26463227 }
+S2C [wl_callback#8] done { callbackData: 26463233 }
+S2C [wl_callback#8] done { callbackData: 26463241 }
+S2C [wl_callback#8] done { callbackData: 26463373 }
+S2C [wl_callback#8] done { callbackData: 26463381 }
+S2C [wl_callback#8] done { callbackData: 26463389 }
+S2C [wl_callback#8] done { callbackData: 26463397 }
+S2C [wl_callback#8] done { callbackData: 26463405 }
+S2C [wl_callback#8] done { callbackData: 26463413 }
+S2C [wl_callback#8] done { callbackData: 26463421 }
+S2C [wl_callback#8] done { callbackData: 26463427 }
+S2C [wl_callback#8] done { callbackData: 26463435 }
+S2C [wl_callback#8] done { callbackData: 26463443 }
+S2C [wl_callback#8] done { callbackData: 26463451 }
+S2C [wl_callback#8] done { callbackData: 26463459 }
+S2C [wl_callback#8] done { callbackData: 26463467 }
+S2C [wl_callback#8] done { callbackData: 26463475 }
+S2C [wl_callback#8] done { callbackData: 26463483 }
+S2C [wl_callback#8] done { callbackData: 26463489 }
+S2C [wl_callback#8] done { callbackData: 26463497 }
+S2C [wl_callback#8] done { callbackData: 26463505 }
+S2C [wl_callback#8] done { callbackData: 26463513 }
+S2C [wl_callback#8] done { callbackData: 26463521 }
+S2C [wl_callback#8] done { callbackData: 26463537 }
+S2C [wl_callback#8] done { callbackData: 26463545 }
+S2C [wl_callback#8] done { callbackData: 26463615 }
+S2C [wl_callback#8] done { callbackData: 26463653 }
+S2C [wl_callback#8] done { callbackData: 26463661 }
+S2C [wl_callback#8] done { callbackData: 26463669 }
+S2C [wl_callback#8] done { callbackData: 26463677 }
+S2C [wl_callback#8] done { callbackData: 26463685 }
+S2C [wl_callback#8] done { callbackData: 26463691 }
+S2C [wl_callback#8] done { callbackData: 26463699 }
+S2C [wl_callback#8] done { callbackData: 26463707 }
+S2C [wl_callback#8] done { callbackData: 26463715 }
+S2C [wl_callback#8] done { callbackData: 26463723 }
+S2C [wl_callback#8] done { callbackData: 26463731 }
+S2C [wl_callback#8] done { callbackData: 26463739 }
+S2C [wl_callback#8] done { callbackData: 26463747 }
+S2C [wl_callback#8] done { callbackData: 26463753 }
+S2C [wl_callback#8] done { callbackData: 26463761 }
+S2C [wl_callback#8] done { callbackData: 26463769 }
+S2C [wl_callback#8] done { callbackData: 26463777 }
+S2C [wl_callback#8] done { callbackData: 26463785 }
+S2C [wl_callback#8] done { callbackData: 26463793 }
+S2C [wl_callback#8] done { callbackData: 26463801 }
+S2C [wl_callback#8] done { callbackData: 26463809 }
+S2C [wl_callback#8] done { callbackData: 26463815 }
+S2C [wl_callback#8] done { callbackData: 26463823 }
+S2C [wl_callback#8] done { callbackData: 26463831 }
+S2C [wl_callback#8] done { callbackData: 26463839 }
+S2C [wl_callback#8] done { callbackData: 26463847 }
+S2C [wl_callback#8] done { callbackData: 26463855 }
+S2C [wl_callback#8] done { callbackData: 26463863 }
+S2C [wl_callback#8] done { callbackData: 26463871 }
+S2C [wl_callback#8] done { callbackData: 26463879 }
+S2C [wl_callback#8] done { callbackData: 26463885 }
+S2C [wl_callback#8] done { callbackData: 26463893 }
+S2C [wl_callback#8] done { callbackData: 26463901 }
+S2C [wl_callback#8] done { callbackData: 26463909 }
+S2C [wl_callback#8] done { callbackData: 26463917 }
+S2C [wl_callback#8] done { callbackData: 26463925 }
+S2C [wl_callback#8] done { callbackData: 26463933 }
+S2C [wl_callback#8] done { callbackData: 26463941 }
+S2C [wl_callback#8] done { callbackData: 26463947 }
+S2C [wl_callback#8] done { callbackData: 26463955 }
+S2C [wl_callback#8] done { callbackData: 26463963 }
+S2C [wl_callback#8] done { callbackData: 26463971 }
+S2C [wl_callback#8] done { callbackData: 26463979 }
+S2C [wl_callback#8] done { callbackData: 26463987 }
+S2C [wl_callback#8] done { callbackData: 26463995 }
+S2C [wl_callback#8] done { callbackData: 26464003 }
+S2C [wl_callback#8] done { callbackData: 26464017 }
+S2C [wl_callback#8] done { callbackData: 26464025 }
+S2C [wl_callback#8] done { callbackData: 26464033 }
+S2C [wl_callback#8] done { callbackData: 26464041 }
+S2C [wl_callback#8] done { callbackData: 26464049 }
+S2C [wl_callback#8] done { callbackData: 26464057 }
+S2C [wl_callback#8] done { callbackData: 26464065 }
+S2C [wl_callback#8] done { callbackData: 26464073 }
+S2C [wl_callback#8] done { callbackData: 26464079 }
+S2C [wl_callback#8] done { callbackData: 26464087 }
+S2C [wl_callback#8] done { callbackData: 26464135 }
+S2C [wl_callback#8] done { callbackData: 26464157 }
+S2C [wl_callback#8] done { callbackData: 26464165 }
+S2C [wl_callback#8] done { callbackData: 26464173 }
+S2C [wl_callback#8] done { callbackData: 26464181 }
+S2C [wl_callback#8] done { callbackData: 26464189 }
+S2C [wl_callback#8] done { callbackData: 26464197 }
+S2C [wl_callback#8] done { callbackData: 26464205 }
+S2C [wl_callback#8] done { callbackData: 26464211 }
+S2C [wl_callback#8] done { callbackData: 26464219 }
+S2C [wl_callback#8] done { callbackData: 26464227 }
+S2C [wl_callback#8] done { callbackData: 26464235 }
+S2C [wl_callback#8] done { callbackData: 26464243 }
+S2C [wl_callback#8] done { callbackData: 26464383 }
+S2C [wl_callback#8] done { callbackData: 26464483 }
+S2C [wl_callback#8] done { callbackData: 26464531 }
+S2C [wl_callback#8] done { callbackData: 26464593 }
+S2C [wl_callback#8] done { callbackData: 26464615 }
+S2C [wl_callback#8] done { callbackData: 26464625 }
+S2C [wl_callback#8] done { callbackData: 26464631 }
+S2C [wl_callback#8] done { callbackData: 26464639 }
+S2C [wl_callback#8] done { callbackData: 26464647 }
+S2C [wl_callback#8] done { callbackData: 26464655 }
+S2C [wl_callback#8] done { callbackData: 26464663 }
+S2C [wl_callback#8] done { callbackData: 26464671 }
+S2C [wl_callback#8] done { callbackData: 26464677 }
+S2C [wl_callback#8] done { callbackData: 26464685 }
+S2C [wl_callback#8] done { callbackData: 26464693 }
+S2C [wl_callback#8] done { callbackData: 26464701 }
+S2C [wl_callback#8] done { callbackData: 26464709 }
+S2C [wl_callback#8] done { callbackData: 26464717 }
+S2C [wl_callback#8] done { callbackData: 26464725 }
+S2C [wl_callback#8] done { callbackData: 26464733 }
+S2C [wl_callback#8] done { callbackData: 26464739 }
+S2C [wl_callback#8] done { callbackData: 26464747 }
+S2C [wl_callback#8] done { callbackData: 26464755 }
+S2C [wl_callback#8] done { callbackData: 26464787 }
+S2C [wl_callback#8] done { callbackData: 26464795 }
+S2C [wl_callback#8] done { callbackData: 26464803 }
+S2C [wl_callback#8] done { callbackData: 26464811 }
+S2C [wl_callback#8] done { callbackData: 26464817 }
+S2C [wl_callback#8] done { callbackData: 26464825 }
+S2C [wl_callback#8] done { callbackData: 26464833 }
+S2C [wl_callback#8] done { callbackData: 26464841 }
+S2C [wl_callback#8] done { callbackData: 26464849 }
+S2C [wl_callback#8] done { callbackData: 26464857 }
+S2C [wl_callback#8] done { callbackData: 26464865 }
+S2C [wl_callback#8] done { callbackData: 26464935 }
+S2C [wl_callback#8] done { callbackData: 26464941 }
+S2C [wl_callback#8] done { callbackData: 26464957 }
+S2C [wl_callback#8] done { callbackData: 26464965 }
+S2C [wl_callback#8] done { callbackData: 26464973 }
+S2C [wl_callback#8] done { callbackData: 26464981 }
+S2C [wl_callback#8] done { callbackData: 26464989 }
+S2C [wl_callback#8] done { callbackData: 26464997 }
+S2C [wl_callback#8] done { callbackData: 26465003 }
+S2C [wl_callback#8] done { callbackData: 26465011 }
+S2C [wl_callback#8] done { callbackData: 26465019 }
+S2C [wl_callback#8] done { callbackData: 26465027 }
+S2C [wl_callback#8] done { callbackData: 26465035 }
+S2C [wl_callback#8] done { callbackData: 26465105 }
+S2C [wl_callback#8] done { callbackData: 26465113 }
+S2C [wl_callback#8] done { callbackData: 26465121 }
+S2C [wl_callback#8] done { callbackData: 26465129 }
+S2C [wl_callback#8] done { callbackData: 26465151 }
+S2C [wl_callback#8] done { callbackData: 26465175 }
+S2C [wl_callback#8] done { callbackData: 26466363 }
+S2C [wl_callback#8] done { callbackData: 26466371 }
+S2C [wl_callback#8] done { callbackData: 26466379 }
+S2C [wl_callback#8] done { callbackData: 26466387 }
+S2C [wl_callback#8] done { callbackData: 26466393 }
+S2C [wl_callback#8] done { callbackData: 26466401 }
+S2C [wl_callback#8] done { callbackData: 26466409 }
+S2C [wl_callback#8] done { callbackData: 26466417 }
+S2C [wl_callback#8] done { callbackData: 26466425 }
+S2C [wl_callback#8] done { callbackData: 26466433 }
+S2C [wl_callback#8] done { callbackData: 26466441 }
+S2C [wl_callback#8] done { callbackData: 26466449 }
+S2C [wl_callback#8] done { callbackData: 26466455 }
+S2C [wl_callback#8] done { callbackData: 26466465 }
+S2C [wl_callback#8] done { callbackData: 26466471 }
+S2C [wl_callback#8] done { callbackData: 26466479 }
+S2C [wl_callback#8] done { callbackData: 26466495 }
+S2C [wl_callback#8] done { callbackData: 26466503 }
+S2C [wl_callback#8] done { callbackData: 26466511 }
+S2C [wl_callback#8] done { callbackData: 26466589 }
+S2C [wl_callback#8] done { callbackData: 26466603 }
+S2C [wl_callback#8] done { callbackData: 26466611 }
+S2C [wl_callback#8] done { callbackData: 26466619 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#22]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_surface#16] leave { output: '[wl_output#7]' }
+S2C [wl_surface#20] leave { output: '[wl_output#7]' }
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+S2C [wl_surface#16] enter { output: '[wl_output#7]' }
+S2C [wl_surface#20] enter { output: '[wl_output#7]' }
+S2C [wl_callback#28] done { callbackData: 26508181 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#26] done { callbackData: 26508181 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 15 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#22]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 0, y: 0, width: 452, height: 217 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] damageBuffer { x: 0, y: 0, width: 400, height: 128 }
+C2S [wl_surface#20] attach { buffer: '[wl_surface#17]', x: 0, y: 0 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#15] destroy {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_callback#24] done { callbackData: 26508200 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_callback#26] done { callbackData: 26508200 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26508215 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#25] done { callbackData: 26508215 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26508215 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#25] done { callbackData: 26508233 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26508233 }
+S2C [wl_display#1] deleteId { id: 26 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 27 }
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#14] done { callbackData: 26508249 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#22] done { callbackData: 26508249 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26508265 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#24] done { callbackData: 26508265 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#16] attach { buffer: '[wl_callback#28]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#14]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_display#1] deleteId { id: 27 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#25] done { callbackData: 26508282 }
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26508282 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_callback#26] done { callbackData: 26508298 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#28] done { callbackData: 26508298 }
+S2C [wl_display#1] deleteId { id: 28 }
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_display#1] deleteId { id: 27 }
+C2S [wl_region#23] destroy {}
+S2C [wl_display#1] deleteId { id: 23 }
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_callback#26] done { callbackData: 26508315 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#14] done { callbackData: 26508315 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#22] done { callbackData: 26508315 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26508332 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#26] done { callbackData: 26508332 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#24] done { callbackData: 26508332 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#24]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 24 }
+S2C [wl_callback#14] done { callbackData: 26508348 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#26] done { callbackData: 26508348 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#22] done { callbackData: 26508348 }
+S2C [wl_display#1] deleteId { id: 22 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#22]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26508366 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#26] done { callbackData: 26508366 }
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_callback#24] done { callbackData: 26508366 }
+S2C [wl_display#1] deleteId { id: 24 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_surface#15]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#26]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_region#27] add { x: 16, y: 13, width: 420, height: 185 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_region#27]' }
+C2S [wl_region#27] destroy {}
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 26 }
+S2C [wl_display#1] deleteId { id: 27 }
+C2S [wl_surface#15] destroy {}
+S2C [wl_display#1] deleteId { id: 15 }
+S2C [wl_display#1] deleteId { id: 28 }
+S2C [wl_callback#22] done { callbackData: 26508382 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26508382 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#25] done { callbackData: 26508382 }
+S2C [wl_display#1] deleteId { id: 25 }
+C2S [wl_surface#20] commit {}
+C2S [wl_surface#16] attach { buffer: '[wl_region#23]', x: 0, y: 0 }
+C2S [wl_surface#16] setBufferScale { scale: 1 }
+C2S [wl_surface#16] damage { x: 395, y: 28, width: 26, height: 26 }
+C2S [wl_surface#16] setInputRegion { region: '[wl_callback#25]' }
+C2S [wl_surface#16] commit {}
+C2S [wl_surface#20] commit {}
+S2C [wl_display#1] deleteId { id: 25 }
+S2C [wl_callback#22] done { callbackData: 26508399 }
+S2C [wl_display#1] deleteId { id: 22 }
+S2C [wl_callback#14] done { callbackData: 26508399 }
+S2C [wl_display#1] deleteId { id: 14 }
+S2C [wl_callback#28] done { callbackData: 26508399 }
+S2C [wl_display#1] deleteId { id: 28 }
+SIGINT
+exit

@@ -14,20 +14,23 @@ export interface WlMessage {
 }
 interface WlArgBasic {
     name: string;
-    type: 'int' | 'uint' | 'fixed' | 'array' | 'string';
+    type: "int" | "uint" | "fixed" | "array" | "string";
 }
 interface WlArgInterface {
     name: string;
-    type: 'object' | 'new_id';
-    allowNull?: boolean;
-    interface: string;
+    type: "object" | "new_id";
+    allowNull: boolean;
+    interface: string | undefined;
 }
 interface WlArgEnum {
     name: string;
-    type: 'uint';
+    type: "uint";
     enum: string;
 }
 export type WlArg = WlArgBasic | WlArgInterface | WlArgEnum;
-export type WlEnum = Record<string, number>;
+export interface WlEnum {
+    itoa: Record<number, string>;
+    atoi: Record<string, number>;
+}
 declare const interfaces: Record<string, WlInterface>;
 export { interfaces };
