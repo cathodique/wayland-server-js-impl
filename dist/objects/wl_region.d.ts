@@ -1,4 +1,4 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { BaseObject } from "./base_object.js";
 export declare enum InstructionType {
     Add = 0,
     Subtract = 1
@@ -12,7 +12,7 @@ export declare class RegRectangle {
     constructor(type: InstructionType, y: number, x: number, h: number, w: number);
     hasCoordinate(y: number, x: number): boolean;
 }
-export declare class WlRegion extends WlObject<ExistentParent> {
+export declare class WlRegion extends BaseObject {
     get iface(): "wl_region";
     instructions: RegRectangle[];
     wlAdd(args: Record<string, any>): void;

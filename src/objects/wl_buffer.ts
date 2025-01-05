@@ -1,12 +1,12 @@
 import { Connection } from "../connection.js";
 import { colorspaces } from "../misc/colorspaces.js";
 import { interfaces } from "../wayland_interpreter.js";
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlShmPool } from "./wl_shm_pool.js";
 import mmap from "@cathodique/mmap-io";
 
 const name = 'wl_buffer' as const;
-export class WlBuffer extends WlObject<ExistentParent> {
+export class WlBuffer extends BaseObject {
   get iface() { return name }
 
   offset: number;
@@ -51,6 +51,6 @@ export class WlBuffer extends WlObject<ExistentParent> {
 
   read() {
     // console.log((this.parent as WlShmPool).size);
-    return mmap.tobuffer(this.bufferId, this.offset, this.size - this.offset);
+    return mmap.tobuffer(this.bufferId, this.offset, this.size);
   }
 }

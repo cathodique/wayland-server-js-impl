@@ -27,7 +27,7 @@ class RegRectangle {
 }
 exports.RegRectangle = RegRectangle;
 const name = 'wl_region';
-class WlRegion extends base_object_js_1.WlObject {
+class WlRegion extends base_object_js_1.BaseObject {
     get iface() { return name; }
     instructions = [];
     wlAdd(args) {

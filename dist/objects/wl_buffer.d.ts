@@ -1,6 +1,6 @@
 import { Connection } from "../connection.js";
-import { ExistentParent, WlObject } from "./base_object.js";
-export declare class WlBuffer extends WlObject<ExistentParent> {
+import { ExistentParent, BaseObject } from "./base_object.js";
+export declare class WlBuffer extends BaseObject {
     get iface(): "wl_buffer";
     offset: number;
     width: number;

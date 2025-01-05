@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WlObject = void 0;
-class WlObject {
+exports.BaseObject = void 0;
+const node_events_1 = require("node:events");
+class BaseObject extends node_events_1.EventEmitter {
     connection;
     oid;
     parent;
     constructor(conx, oid, parent, args) {
+        super();
         this.oid = oid;
         this.connection = conx;
         this.parent = parent;
@@ -21,4 +23,4 @@ class WlObject {
         this.connection.addCommand(this, eventName, args);
     }
 }
-exports.WlObject = WlObject;
+exports.BaseObject = BaseObject;

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlSubsurface = void 0;
 const base_object_js_1 = require("./base_object.js");
 const name = 'wl_subsurface';
-class WlSubsurface extends base_object_js_1.WlObject {
+class WlSubsurface extends base_object_js_1.BaseObject {
     get iface() { return name; }
     assocSurface;
     assocParent;

@@ -1,9 +1,9 @@
 import { Connection } from "../connection.js";
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlSurface } from "./wl_surface.js";
 
 const name = 'xdg_wm_base';
-export class XdgWmBase extends WlObject<ExistentParent> {
+export class XdgWmBase extends BaseObject {
   wlSurface: WlSurface;
 
   get iface() { return name }

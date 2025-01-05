@@ -1,10 +1,10 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 import { console } from "../logger.js";
 import { Connection } from "../connection.js";
 import { WlSurface } from "./wl_surface.js";
 
 const name = 'wl_subsurface' as const;
-export class WlSubsurface extends WlObject<ExistentParent> {
+export class WlSubsurface extends BaseObject {
   get iface() { return name }
 
   assocSurface: WlSurface;

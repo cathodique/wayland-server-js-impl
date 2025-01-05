@@ -1,14 +1,10 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { BaseObject } from "./base_object.js";
 import { WlBuffer } from "./wl_buffer.js";
 import { RegRectangle, WlRegion } from "./wl_region.js";
 import { WlCallback } from "./wl_callback.js";
 import { WlSubsurface } from "./wl_subsurface.js";
-interface DoubleBuffer<T> {
-    current: T;
-    cached: T | null;
-    pending: T;
-}
-export declare class WlSurface extends WlObject<ExistentParent> {
+import { DoubleBuffer } from "../lib/doublebuffer.js";
+export declare class WlSurface extends BaseObject {
     daughterSurfaces: WlSurface[];
     subsurface: WlSubsurface | null;
     get iface(): "wl_surface";
@@ -16,7 +12,8 @@ export declare class WlSurface extends WlObject<ExistentParent> {
     inputRegions: DoubleBuffer<RegRectangle[]>;
     buffer: DoubleBuffer<WlBuffer | null>;
     scale: DoubleBuffer<number>;
-    static doubleBufferedState: readonly ["opaqueRegions", "inputRegions", "buffer", "scale"];
+    doubleBufferedState: Set<DoubleBuffer<any>>;
+    surfaceToBufferDelta: [number, number];
     wlSetOpaqueRegion(args: {
         region: WlRegion;
     }): void;
@@ -33,8 +30,7 @@ export declare class WlSurface extends WlObject<ExistentParent> {
         buffer: WlBuffer | null;
     }): void;
     get synced(): boolean;
-    update<T>(): void;
-    applyCache<T>(): void;
-    wlCommit(): void;
+    update(): void;
+    applyCache(): void;
+    wlCommit(): Buffer<ArrayBufferLike> | undefined;
 }
-export {};

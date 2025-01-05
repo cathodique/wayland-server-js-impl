@@ -1,34 +1,20 @@
 import { endianness as getEndianness } from "node:os";
 import type { Compositor } from "./compositor.js";
-import { ExistentParent, Parent, WlObject as BaseObject } from "./objects/base_object.js";
+import { Parent, BaseObject as BaseObject, DefaultEventMap } from "./objects/base_object.js";
 import { WlRegistry } from "./objects/wl_registry.js";
-import { WlCallback } from "./objects/wl_callback.js";
 import { WlDisplay } from "./objects/wl_display.js";
 import { interfaces, WlArg, WlMessage } from "./wayland_interpreter.js";
-import { WlCompositor } from "./objects/wl_compositor.js";
-import { WlShm } from "./objects/wl_shm.js";
-import { WlOutput } from "./objects/wl_output.js";
-import { WlSubcompositor } from "./objects/wl_subcompositor.js";
-import { WlSeat } from "./objects/wl_seat.js";
-import { XdgWmBase } from "./objects/xdg_wm_base.js";
-import { WlDataDeviceManager } from "./objects/wl_data_device_manager.js";
-import { WlDataDevice } from "./objects/wl_data_device.js";
-import { WlSurface } from "./objects/wl_surface.js";
-import { WlRegion } from "./objects/wl_region.js";
-import { XdgSurface } from "./objects/xdg_surface.js";
-import { XdgToplevel } from "./objects/xdg_toplevel.js";
-import { WlSubsurface } from "./objects/wl_subsurface.js";
 
 import { USocket } from "@cathodique/usocket";
-import { WlShmPool } from "./objects/wl_shm_pool.js";
 
 import FIFO from "fast-fifo";
 import { snakePrepend } from "./utils.js";
 import { WlDummy } from "./objects/dummy_object.js";
-import { WlBuffer } from "./objects/wl_buffer.js";
-import EventEmitter from "node:events";
 
 import { console } from "./logger.js";
+import { newIdMap } from "./new_id_map.js";
+import { Time } from "./lib/time.js";
+import EventEmitter from "node:events";
 
 export const endianness = getEndianness();
 export const read = (b: Buffer, i: number, signed: boolean = true) => {
@@ -41,29 +27,6 @@ const write = (v: number, b: Buffer, i: number, signed: boolean = true) => {
 };
 
 export type HypotheticalObject = { oid: number };
-
-const newIdMap: Record<
-  string,
-  { new (comp: Connection, oid: number, parent: ExistentParent, args: Record<string, any>): BaseObject<Parent> }
-> = {
-  wl_buffer: WlBuffer,
-  wl_registry: WlRegistry,
-  wl_callback: WlCallback,
-  wl_compositor: WlCompositor,
-  wl_shm: WlShm,
-  wl_shm_pool: WlShmPool,
-  wl_seat: WlSeat,
-  wl_subcompositor: WlSubcompositor,
-  wl_output: WlOutput,
-  xdg_wm_base: XdgWmBase,
-  wl_data_device_manager: WlDataDeviceManager,
-  wl_data_device: WlDataDevice,
-  wl_surface: WlSurface,
-  wl_subsurface: WlSubsurface,
-  xdg_surface: XdgSurface,
-  xdg_toplevel: XdgToplevel,
-  wl_region: WlRegion,
-};
 
 export function parseOnReadable(
   sock: USocket,
@@ -99,10 +62,11 @@ interface ParsingContext {
   idx: number;
   fdQ: FIFO<number>;
   callbacks: ((args: Record<string, any>) => void)[];
-  parent: BaseObject<Parent>;
+  parent: BaseObject<DefaultEventMap, Parent>;
 }
 
-export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
+type ConnectionEvents = { [k in keyof typeof newIdMap]: [InstanceType<typeof newIdMap[k]>] };
+export class Connection extends EventEmitter<ConnectionEvents> {
   compositor: Compositor;
   socket: USocket;
   socket2?: USocket;
@@ -110,11 +74,12 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
 
   muzzled: boolean;
 
-  objects: Map<number, BaseObject<Parent>>;
+  objects: Map<number, BaseObject<DefaultEventMap, Parent>>;
 
   registry: WlRegistry | null = null;
 
   fdQ: FIFO<number>;
+  time = new Time();
 
   constructor(
     connId: number,
@@ -133,53 +98,45 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
 
     this.fdQ = new FIFO();
 
-    this.objects = new Map<number, BaseObject<Parent>>([[1, new WlDisplay(this, 1, null, {})]]);
+    this.objects = new Map<number, BaseObject<DefaultEventMap, Parent>>([[1, new WlDisplay(this, 1, null, {})]]);
 
     if (!muzzled) {
       // Handle data from the client
-      sock.on(
-        "readable",
-        async function (this: Connection) {
-          parseOnReadable(
-            sock,
-            function (
-              this: Connection,
-              { data, fds }: { data: Buffer; fds: number[] },
-            ) {
-              fds.forEach((fd) => this.fdQ.push(fd));
-              try {
-                // console.log("C2S", data.toString("hex"), fds);
-                for (const [obj, method, args] of this.parser(data)) {
-                  console.log(this.connId, "C --> S", Connection.prettyWlObj(obj), method);
-                  const functionActualName = snakePrepend("wl", method);
-                  if (!(functionActualName in obj)) {
-                    console.error('Unimplemented method:', method, 'in', obj.iface);
-                  } else {
-                    (
-                      obj as unknown as Record<
-                        string,
-                        (args: Record<string, any>) => void
-                      >
-                    )[functionActualName](args);
-                  }
-                }
-              } catch (err) {
-                console.error(err);
-                sock.end();
+      sock.on("readable", async function (this: Connection) {
+        parseOnReadable(sock, function (this: Connection, { data, fds }: { data: Buffer; fds: number[] },) {
+          fds.forEach((fd) => this.fdQ.push(fd));
+          try {
+            // console.log("C2S", data.toString("hex"), fds);
+            for (const [obj, method, args] of this.parser(data)) {
+              console.log(this.connId, "C --> S", Connection.prettyWlObj(obj), method);
+              const functionActualName = snakePrepend("wl", method);
+              if (!(functionActualName in obj)) {
+                console.error('Unimplemented method:', method, 'in', obj.iface);
+              } else {
+                const sendToCallback = (obj as unknown as Record<string, (args: Record<string, any>) => any>)
+                  [functionActualName](args);
+
+                obj.emit(method, sendToCallback);
               }
-            }.bind(this),
-          );
-        }.bind(this),
-      );
+            }
+          } catch (err) {
+            console.error(err);
+            sock.end();
+          }
+        }.bind(this));
+      }.bind(this));
     }
 
     // Handle client disconnect
-    sock.on("end", () => {
-      // console.log('Client disconnected');
-    });
+    sock.on("end", function (this: Connection) {
+      const deleteMe = [...this.objects.values()];
+      for (let i = deleteMe.length - 1; i >= 0; i -= 1) {
+        deleteMe[i].wlDestroy();
+      }
+    }.bind(this));
   }
 
-  static prettyWlObj(object: BaseObject<any>) {
+  static prettyWlObj(object: BaseObject<DefaultEventMap, any>) {
     return `[${object.iface}#${object.oid}]`;
   }
   static prettyArgs(args: Record<string, any>) {
@@ -189,17 +146,28 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
     );
   }
 
-  createObject(type: string, id: number, parent: BaseObject<Parent>, args: Record<string, any>) {
+  createObject(type: string, id: number, parent: BaseObject<DefaultEventMap, Parent>, args: Record<string, any>) {
+    if (this.muzzled) {
+      const dummyObj = new WlDummy(this, id, parent, args);
+      dummyObj.iface = type;
+      this.objects.set(id, dummyObj);
+      return dummyObj;
+    }
+
     if (this.objects.has(id))
       throw new Error(`Tried to recreate existant OID ${id}`);
-    if (!(type in newIdMap) && !this.muzzled)
+
+    const isInIdMap = (v: string): v is keyof typeof newIdMap => v in newIdMap;
+
+    if (!isInIdMap(type))
       throw new Error(`Tried to create object of unknown type ${type}`);
-    else if (!(type in newIdMap))
-      return this.objects.set(id, new WlDummy(this, id, parent, args));
 
     // console.log(`New [${type}#${id}]`, Connection.prettyArgs(args));
-    const newOfIface = new newIdMap[type](this, id, parent, args);
+    const newOfIface = new newIdMap[type](this, id, parent, args, this.compositor.metadata);
     this.objects.set(id, newOfIface);
+
+    this.emit(type, newOfIface);
+
     return newOfIface;
   }
 
@@ -267,7 +235,7 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
         const size = read(ctx.buf, idx);
         ctx.idx += 4;
 
-        const string = ctx.buf.subarray(idx + 4, idx + size + 3);
+        const string = ctx.buf.subarray(idx + 4, idx + size + 4 - 1); // -1 for the NUL at the end
         ctx.idx += Math.ceil(size / 4) * 4;
         return string.toString();
       }
@@ -291,7 +259,7 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
   *parser(
     buf: Buffer,
     isEvent?: boolean,
-  ): Generator<[BaseObject<Parent>, string, Record<string, any>]> {
+  ): Generator<[BaseObject<DefaultEventMap, Parent>, string, Record<string, any>]> {
     const header = isEvent ? "S2C" : "C2S";
     let newCommandAt = 0;
     while (newCommandAt < buf.length) {
@@ -398,9 +366,9 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
     return result;
   }
 
-  builder(obj: BaseObject<Parent>, eventName: string, args: Record<string, any>) {
+  builder(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>) {
+    // console.log(obj.iface);
     const msg = interfaces[obj.iface].eventsReverse[eventName];
-    // console.log(eventName, interfaces[obj.iface]?.eventsReverse, args)
     const opcode = msg.index;
 
     const size = this.getFinalSize(msg, args) + 8;
@@ -419,29 +387,31 @@ export class Connection extends EventEmitter<{ frame: [Buffer, WlSurface] }> {
     return result;
   }
 
-  protected buffersSoFar: Buffer[] = [];
-  protected immediate?: NodeJS.Immediate;
-  addCommand(obj: BaseObject<Parent>, eventName: string, args: Record<string, any>) {
+  // protected buffersSoFar: Buffer[] = [];
+  // protected immediate?: NodeJS.Immediate;
+  addCommand(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>) {
     if (this.muzzled) return;
     const toBeSent = this.builder(obj, eventName, args);
-    this.buffersSoFar.push(toBeSent);
-    if (!this.immediate)
-      this.immediate = setImmediate((() => this.sendPending()).bind(this));
+    // this.buffersSoFar.push(toBeSent);
+    // if (!this.immediate)
+    //   this.immediate = setImmediate((() => this.sendPending()).bind(this));
+    // Just checked and setImmediate can tAKE TWELVE MILLISECONDS?? im a dumbass
+    this.socket.write(toBeSent);
   }
 
-  protected sendPending() {
-    if (this.muzzled) return;
-    const resBuf = Buffer.concat(this.buffersSoFar);
-    this.socket.write(resBuf);
-    // console.log("S2C", resBuf.toString("hex"));
+  // protected sendPending() {
+  //   if (this.muzzled) return;
+  //   const resBuf = Buffer.concat(this.buffersSoFar);
+  //   this.socket.write(resBuf);
+  //   // console.log("S2C", resBuf.toString("hex"));
 
-    // console.log('flushed', this.buffersSoFar.length, 'buffers');
+  //   // console.log('flushed', this.buffersSoFar.length, 'buffers');
 
-    this.buffersSoFar = [];
-    this.immediate = undefined;
-  }
+  //   this.buffersSoFar = [];
+  //   this.immediate = undefined;
+  // }
 
-  destroy(obj: BaseObject<any>) {
+  destroy(obj: BaseObject<DefaultEventMap, any>) {
     this.objects.delete(obj.oid);
     this.addCommand(this.objects.get(1)!, 'deleteId', { id: obj.oid });
   }

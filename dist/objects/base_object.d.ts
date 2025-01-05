@@ -1,11 +1,13 @@
+import { EventEmitter } from "node:events";
 import { Connection } from "../connection.js";
-export type Parent = WlObject<Parent> | null;
-export type ExistentParent = WlObject<Parent>;
-export declare class WlObject<T extends Parent> {
+export type Parent = BaseObject<Record<string, any[]>, Parent> | null;
+export type ExistentParent = BaseObject<Record<string, any[]>, Parent>;
+export type DefaultEventMap = Record<string, any[]>;
+export declare class BaseObject<T extends Record<string, any[]> = DefaultEventMap, U extends Parent = ExistentParent> extends EventEmitter<T> {
     connection: Connection;
     oid: number;
-    parent: T;
-    constructor(conx: Connection, oid: number, parent: T, args: Record<string, any>);
+    parent: U;
+    constructor(conx: Connection, oid: number, parent: U, args: Record<string, any>);
     get iface(): string;
     wlDestroy(): void;
     toString(): string;

@@ -1,6 +1,7 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 
-const name = 'wl_dummy' as const;
-export class WlDummy extends WlObject<ExistentParent> {
-  get iface() { return name }
+export class WlDummy extends BaseObject {
+  _iface: string = 'wl_dummy';
+  get iface() { return this._iface }
+  set iface(v) { this._iface = v; }
 }

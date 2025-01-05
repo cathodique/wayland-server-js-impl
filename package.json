@@ -1,13 +1,13 @@
 {
   "name": "@cathodique/wayland-server-js-impl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Wayland server JS implementation",
   "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "npx tsc && LOGGERS=wl_serv_i8a56qb0lm3ox1ng1cqai0e1 node .",
-    "build": "npx tsc",
-    "publish": "npx tsc && npm publish"
+    "start": "npx tsc && LOGGERS=wl_serv_i8a56qb0lm3ox1ng1cqai0e1 node dist/tests/test.js",
+    "debug": "npx tsc && LOGGERS=wl_serv_i8a56qb0lm3ox1ng1cqai0e1 node --inspect-brk dist/tests/test.js",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/cathodique/wayland-server-js-impl#readme",
   "devDependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@types/fast-fifo": "^1.3.0",
     "@types/node": "^22.10.1",
     "@types/xml-parser": "^1.2.33",
@@ -31,7 +32,7 @@
   },
   "dependencies": {
     "@cathodique/mmap-io": "^1.4.5",
-    "@cathodique/usocket": "^1.0.4",
+    "@cathodique/usocket": "^1.0.5",
     "fast-fifo": "^1.3.2",
     "node-gyp": "^11.0.0",
     "xml-parser": "^1.2.1"

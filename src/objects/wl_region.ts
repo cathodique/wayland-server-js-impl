@@ -1,4 +1,4 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { BaseObject } from "./base_object.js";
 
 export enum InstructionType {
   Add,
@@ -26,7 +26,7 @@ export class RegRectangle {
 }
 
 const name = 'wl_region' as const;
-export class WlRegion extends WlObject<ExistentParent> {
+export class WlRegion extends BaseObject {
   get iface() { return name }
 
   instructions: RegRectangle[] = [];

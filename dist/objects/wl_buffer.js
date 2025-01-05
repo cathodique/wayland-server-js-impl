@@ -10,7 +10,7 @@ const base_object_js_1 = require("./base_object.js");
 const wl_shm_pool_js_1 = require("./wl_shm_pool.js");
 const mmap_io_1 = __importDefault(require("@cathodique/mmap-io"));
 const name = 'wl_buffer';
-class WlBuffer extends base_object_js_1.WlObject {
+class WlBuffer extends base_object_js_1.BaseObject {
     get iface() { return name; }
     offset;
     width;
@@ -44,7 +44,7 @@ class WlBuffer extends base_object_js_1.WlObject {
     }
     read() {
         // console.log((this.parent as WlShmPool).size);
-        return mmap_io_1.default.tobuffer(this.bufferId, this.offset, this.size - this.offset);
+        return mmap_io_1.default.tobuffer(this.bufferId, this.offset, this.size);
     }
 }
 exports.WlBuffer = WlBuffer;

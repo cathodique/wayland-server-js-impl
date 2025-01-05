@@ -4,7 +4,7 @@ exports.XdgToplevel = void 0;
 const base_object_js_1 = require("./base_object.js");
 const xdg_surface_js_1 = require("./xdg_surface.js");
 const name = 'xdg_toplevel';
-class XdgToplevel extends base_object_js_1.WlObject {
+class XdgToplevel extends base_object_js_1.BaseObject {
     appId;
     assocParent = null;
     get iface() { return name; }

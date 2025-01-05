@@ -3,19 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlSurface = void 0;
 const base_object_js_1 = require("./base_object.js");
 const wl_buffer_js_1 = require("./wl_buffer.js");
-function createDoubleBuffer(v) {
-    return { current: v(), cached: v(), pending: v() };
-}
+const doublebuffer_js_1 = require("../lib/doublebuffer.js");
 const name = 'wl_surface';
-class WlSurface extends base_object_js_1.WlObject {
+class WlSurface extends base_object_js_1.BaseObject {
     daughterSurfaces = [];
     subsurface = null;
     get iface() { return name; }
-    opaqueRegions = createDoubleBuffer(() => []);
-    inputRegions = createDoubleBuffer(() => []);
-    buffer = createDoubleBuffer(() => null);
-    scale = createDoubleBuffer(() => 1);
-    static doubleBufferedState = ['opaqueRegions', 'inputRegions', 'buffer', 'scale'];
+    opaqueRegions = new doublebuffer_js_1.DoubleBuffer([]);
+    inputRegions = new doublebuffer_js_1.DoubleBuffer([]);
+    buffer = new doublebuffer_js_1.DoubleBuffer(null);
+    scale = new doublebuffer_js_1.DoubleBuffer(1);
+    doubleBufferedState = new Set([this.opaqueRegions, this.inputRegions, this.buffer, this.scale]);
+    surfaceToBufferDelta = [0, 0];
     wlSetOpaqueRegion(args) {
         this.opaqueRegions.pending = args.region.instructions;
     }
@@ -39,29 +38,23 @@ class WlSurface extends base_object_js_1.WlObject {
         return this.subsurface.isSynced || this.subsurface.assocParent.synced;
     }
     update() {
-        for (const doubleBuffed of WlSurface.doubleBufferedState) {
-            this[doubleBuffed].cached = this[doubleBuffed].pending;
+        for (const doubleBuffed of this.doubleBufferedState) {
+            doubleBuffed.cached = doubleBuffed.pending;
         }
         if (this.subsurface && !this.subsurface.isSynced)
             this.applyCache();
     }
     applyCache() {
         this.daughterSurfaces.forEach((surf) => surf.applyCache());
-        for (const doubleBuffed of WlSurface.doubleBufferedState) {
-            if (this[doubleBuffed].current instanceof wl_buffer_js_1.WlBuffer)
-                this[doubleBuffed].current.wlRelease();
-            if (this[doubleBuffed].cached != null) {
-                this[doubleBuffed].current = this[doubleBuffed].cached;
-            }
-            this[doubleBuffed].cached = null;
+        for (const doubleBuffed of this.doubleBufferedState) {
+            if (doubleBuffed.current instanceof wl_buffer_js_1.WlBuffer && doubleBuffed.current !== doubleBuffed.cached)
+                doubleBuffed.current.wlRelease();
+            doubleBuffed.current = doubleBuffed.cached;
         }
     }
     wlCommit() {
         this.update();
-        const frame = this.buffer.current?.read();
-        // console.log(frame);
-        if (frame)
-            this.connection.emit('frame', frame, this);
+        return this.buffer.current?.read();
     }
 }
 exports.WlSurface = WlSurface;

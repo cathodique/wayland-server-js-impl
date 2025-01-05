@@ -1,6 +1,6 @@
 import { Connection } from "../connection.js";
-import { ExistentParent, WlObject } from "./base_object.js";
-export declare class XdgToplevel extends WlObject<ExistentParent> {
+import { ExistentParent, BaseObject } from "./base_object.js";
+export declare class XdgToplevel extends BaseObject {
     appId?: string;
     assocParent: XdgToplevel | null;
     get iface(): string;

@@ -7,30 +7,15 @@ exports.Connection = exports.read = exports.endianness = void 0;
 exports.parseOnReadable = parseOnReadable;
 const node_os_1 = require("node:os");
 const base_object_js_1 = require("./objects/base_object.js");
-const wl_registry_js_1 = require("./objects/wl_registry.js");
-const wl_callback_js_1 = require("./objects/wl_callback.js");
 const wl_display_js_1 = require("./objects/wl_display.js");
 const wayland_interpreter_js_1 = require("./wayland_interpreter.js");
-const wl_compositor_js_1 = require("./objects/wl_compositor.js");
-const wl_shm_js_1 = require("./objects/wl_shm.js");
-const wl_output_js_1 = require("./objects/wl_output.js");
-const wl_subcompositor_js_1 = require("./objects/wl_subcompositor.js");
-const wl_seat_js_1 = require("./objects/wl_seat.js");
-const xdg_wm_base_js_1 = require("./objects/xdg_wm_base.js");
-const wl_data_device_manager_js_1 = require("./objects/wl_data_device_manager.js");
-const wl_data_device_js_1 = require("./objects/wl_data_device.js");
-const wl_surface_js_1 = require("./objects/wl_surface.js");
-const wl_region_js_1 = require("./objects/wl_region.js");
-const xdg_surface_js_1 = require("./objects/xdg_surface.js");
-const xdg_toplevel_js_1 = require("./objects/xdg_toplevel.js");
-const wl_subsurface_js_1 = require("./objects/wl_subsurface.js");
-const wl_shm_pool_js_1 = require("./objects/wl_shm_pool.js");
 const fast_fifo_1 = __importDefault(require("fast-fifo"));
 const utils_js_1 = require("./utils.js");
 const dummy_object_js_1 = require("./objects/dummy_object.js");
-const wl_buffer_js_1 = require("./objects/wl_buffer.js");
-const node_events_1 = __importDefault(require("node:events"));
 const logger_js_1 = require("./logger.js");
+const new_id_map_js_1 = require("./new_id_map.js");
+const time_js_1 = require("./lib/time.js");
+const node_events_1 = __importDefault(require("node:events"));
 exports.endianness = (0, node_os_1.endianness)();
 const read = (b, i, signed = true) => {
     const unsignedness = signed ? "" : "U";
@@ -40,25 +25,6 @@ exports.read = read;
 const write = (v, b, i, signed = true) => {
     const unsignedness = signed ? "" : "U";
     return b[`write${unsignedness}Int32${exports.endianness}`](v, i);
-};
-const newIdMap = {
-    wl_buffer: wl_buffer_js_1.WlBuffer,
-    wl_registry: wl_registry_js_1.WlRegistry,
-    wl_callback: wl_callback_js_1.WlCallback,
-    wl_compositor: wl_compositor_js_1.WlCompositor,
-    wl_shm: wl_shm_js_1.WlShm,
-    wl_shm_pool: wl_shm_pool_js_1.WlShmPool,
-    wl_seat: wl_seat_js_1.WlSeat,
-    wl_subcompositor: wl_subcompositor_js_1.WlSubcompositor,
-    wl_output: wl_output_js_1.WlOutput,
-    xdg_wm_base: xdg_wm_base_js_1.XdgWmBase,
-    wl_data_device_manager: wl_data_device_manager_js_1.WlDataDeviceManager,
-    wl_data_device: wl_data_device_js_1.WlDataDevice,
-    wl_surface: wl_surface_js_1.WlSurface,
-    wl_subsurface: wl_subsurface_js_1.WlSubsurface,
-    xdg_surface: xdg_surface_js_1.XdgSurface,
-    xdg_toplevel: xdg_toplevel_js_1.XdgToplevel,
-    wl_region: wl_region_js_1.WlRegion,
 };
 function parseOnReadable(sock, callback) {
     try {
@@ -93,6 +59,7 @@ class Connection extends node_events_1.default {
     objects;
     registry = null;
     fdQ;
+    time = new time_js_1.Time();
     constructor(connId, comp, sock, muzzled) {
         super();
         if (muzzled)
@@ -117,7 +84,8 @@ class Connection extends node_events_1.default {
                                 logger_js_1.console.error('Unimplemented method:', method, 'in', obj.iface);
                             }
                             else {
-                                obj[functionActualName](args);
+                                const sendToCallback = obj[functionActualName](args);
+                                obj.emit(method, sendToCallback);
                             }
                         }
                     }
@@ -129,27 +97,36 @@ class Connection extends node_events_1.default {
             }.bind(this));
         }
         // Handle client disconnect
-        sock.on("end", () => {
-            // console.log('Client disconnected');
-        });
+        sock.on("end", function () {
+            const deleteMe = [...this.objects.values()];
+            for (let i = deleteMe.length - 1; i >= 0; i -= 1) {
+                deleteMe[i].wlDestroy();
+            }
+        }.bind(this));
     }
     static prettyWlObj(object) {
         return `[${object.iface}#${object.oid}]`;
     }
     static prettyArgs(args) {
         return Object.fromEntries(Object.entries(args)
-            .map(([k, v]) => [k, v instanceof base_object_js_1.WlObject ? Connection.prettyWlObj(v) : v]));
+            .map(([k, v]) => [k, v instanceof base_object_js_1.BaseObject ? Connection.prettyWlObj(v) : v]));
     }
     createObject(type, id, parent, args) {
+        if (this.muzzled) {
+            const dummyObj = new dummy_object_js_1.WlDummy(this, id, parent, args);
+            dummyObj.iface = type;
+            this.objects.set(id, dummyObj);
+            return dummyObj;
+        }
         if (this.objects.has(id))
             throw new Error(`Tried to recreate existant OID ${id}`);
-        if (!(type in newIdMap) && !this.muzzled)
+        const isInIdMap = (v) => v in new_id_map_js_1.newIdMap;
+        if (!isInIdMap(type))
             throw new Error(`Tried to create object of unknown type ${type}`);
-        else if (!(type in newIdMap))
-            return this.objects.set(id, new dummy_object_js_1.WlDummy(this, id, parent, args));
         // console.log(`New [${type}#${id}]`, Connection.prettyArgs(args));
-        const newOfIface = new newIdMap[type](this, id, parent, args);
+        const newOfIface = new new_id_map_js_1.newIdMap[type](this, id, parent, args, this.compositor.metadata);
         this.objects.set(id, newOfIface);
+        this.emit(type, newOfIface);
         return newOfIface;
     }
     parseBlock(ctx, type, arg) {
@@ -207,7 +184,7 @@ class Connection extends node_events_1.default {
             case "string": {
                 const size = (0, exports.read)(ctx.buf, idx);
                 ctx.idx += 4;
-                const string = ctx.buf.subarray(idx + 4, idx + size + 3);
+                const string = ctx.buf.subarray(idx + 4, idx + size + 4 - 1); // -1 for the NUL at the end
                 ctx.idx += Math.ceil(size / 4) * 4;
                 return string.toString();
             }
@@ -312,8 +289,8 @@ class Connection extends node_events_1.default {
         return result;
     }
     builder(obj, eventName, args) {
+        // console.log(obj.iface);
         const msg = wayland_interpreter_js_1.interfaces[obj.iface].eventsReverse[eventName];
-        // console.log(eventName, interfaces[obj.iface]?.eventsReverse, args)
         const opcode = msg.index;
         const size = this.getFinalSize(msg, args) + 8;
         const result = Buffer.alloc(size);
@@ -327,26 +304,27 @@ class Connection extends node_events_1.default {
         // console.log(size * 2 ** 16 + opcode, result);
         return result;
     }
-    buffersSoFar = [];
-    immediate;
+    // protected buffersSoFar: Buffer[] = [];
+    // protected immediate?: NodeJS.Immediate;
     addCommand(obj, eventName, args) {
         if (this.muzzled)
             return;
         const toBeSent = this.builder(obj, eventName, args);
-        this.buffersSoFar.push(toBeSent);
-        if (!this.immediate)
-            this.immediate = setImmediate((() => this.sendPending()).bind(this));
+        // this.buffersSoFar.push(toBeSent);
+        // if (!this.immediate)
+        //   this.immediate = setImmediate((() => this.sendPending()).bind(this));
+        // Just checked and setImmediate can tAKE TWELVE MILLISECONDS?? im a dumbass
+        this.socket.write(toBeSent);
     }
-    sendPending() {
-        if (this.muzzled)
-            return;
-        const resBuf = Buffer.concat(this.buffersSoFar);
-        this.socket.write(resBuf);
-        // console.log("S2C", resBuf.toString("hex"));
-        // console.log('flushed', this.buffersSoFar.length, 'buffers');
-        this.buffersSoFar = [];
-        this.immediate = undefined;
-    }
+    // protected sendPending() {
+    //   if (this.muzzled) return;
+    //   const resBuf = Buffer.concat(this.buffersSoFar);
+    //   this.socket.write(resBuf);
+    //   // console.log("S2C", resBuf.toString("hex"));
+    //   // console.log('flushed', this.buffersSoFar.length, 'buffers');
+    //   this.buffersSoFar = [];
+    //   this.immediate = undefined;
+    // }
     destroy(obj) {
         this.objects.delete(obj.oid);
         this.addCommand(this.objects.get(1), 'deleteId', { id: obj.oid });

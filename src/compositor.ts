@@ -5,19 +5,28 @@ import { console } from "./logger.js";
 import { Connection, parseOnReadable } from "./connection.js";
 import { UServer, USocket } from "@cathodique/usocket";
 import EventEmitter from "node:events";
+import { ExistentParent } from "./objects/base_object.js";
+import { newIdMap } from "./new_id_map.js";
+import { WlRegistry, WlRegistryMetadata } from "./objects/wl_registry.js";
+import { createId } from "@paralleldrive/cuid2";
 
 type CompositorEvents = {
   tick: [],
   connection: [Connection],
-  newMon: [OutputConfiguration],
-  delMon: [OutputConfiguration],
 };
 
-export interface OutputConfiguration {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
+export type ObjectMetadata = {
+  wl_registry: WlRegistryMetadata;
+};
+
+export interface CompositorArgs {
+  // replacements?: {
+  //   [k in keyof typeof newIdMap]: {
+  //     new(comp: Connection, oid: number, parent: ExistentParent, args: Record<string, any>): InstanceType<(typeof newIdMap)[k]>
+  //     | { onConstructor(v: InstanceType<(typeof newIdMap)[k]>): void };
+  //   };
+  // };
+  metadata: ObjectMetadata;
 }
 
 export class Compositor extends EventEmitter<CompositorEvents> {
@@ -27,11 +36,13 @@ export class Compositor extends EventEmitter<CompositorEvents> {
   socketLockfile?: string;
   currConnId = 0;
 
-  outputConfigurations: OutputConfiguration[];
+  metadata: ObjectMetadata;
 
-  constructor(outputConfigurations: OutputConfiguration[]) {
+  constructor(args: CompositorArgs) {
     super();
-    this.outputConfigurations = [...outputConfigurations];
+
+    this.metadata = args.metadata;
+
     // Create a server
     this.server = new UServer();
     this.server.on(
@@ -39,15 +50,15 @@ export class Compositor extends EventEmitter<CompositorEvents> {
       function (this: Compositor, socket: USocket) {
         // Comment one:
 
+        console.log("New Connection!!!");
+
         // - As compositor
         this.emit('connection', new Connection(this.currConnId++, this, socket, false));
 
-        console.log("New Connection!!!");
-
         // - As MITM
-        // const socket2 = new USocket();
+        // const socket2 = new USocket({});
         // const conx = new Connection(this.currConnId++, this, socket, true);
-        // socket2.connect("/run/user/1000/wayland-0", () => {
+        // socket2.connect({ path: "/run/user/1000/wayland-0" }, () => {
         //   socket.on("readable", () => {
         //     parseOnReadable(socket, ({ data, fds }) => {
         //       // console.log("C2S", data && data.toString("hex"), fds);
@@ -56,6 +67,7 @@ export class Compositor extends EventEmitter<CompositorEvents> {
         //         console.log("C2S", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
         //         socket2.write({ data, fds });
         //       } catch (e) {
+        //         console.log('C2S got error', e);
         //         socket2.write({ data, fds });
         //       }
         //     });
@@ -66,10 +78,11 @@ export class Compositor extends EventEmitter<CompositorEvents> {
         //       try {
         //         const [[a, b, c]] = [...conx.parser(data, true)];
         //         console.log("S2C", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
-        //         if (b === 'global' && !WlRegistry.registry.includes(c.interface)) return console.log('Ignoring');
+        //         if (b === 'global' && !WlRegistry.supportedByRegistry.includes(c.interface)) return console.log('Ignoring');
         //         // if (!WlRegistry.registry.includes(c.))
         //         socket.write({ data, fds });
         //       } catch (e) {
+        //         console.log('S2C got error', e);
         //         socket.write({ data, fds });
         //       }
         //     });

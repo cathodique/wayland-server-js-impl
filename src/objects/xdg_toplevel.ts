@@ -1,9 +1,9 @@
 import { Connection } from "../connection.js";
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 import { XdgSurface } from "./xdg_surface.js";
 
 const name = 'xdg_toplevel';
-export class XdgToplevel extends WlObject<ExistentParent> {
+export class XdgToplevel extends BaseObject {
   appId?: string;
 
   assocParent: XdgToplevel | null = null;

@@ -1,33 +1,25 @@
-import { ExistentParent, WlObject } from "./base_object.js";
+import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlBuffer } from "./wl_buffer.js";
 import { RegRectangle, WlRegion } from "./wl_region.js";
 import { WlCallback } from "./wl_callback.js";
 import { WlSubsurface } from "./wl_subsurface.js";
-import mmap from "@cathodique/mmap-io";
-
-interface DoubleBuffer<T> {
-  current: T;
-  cached: T | null;
-  pending: T;
-}
-
-function createDoubleBuffer<T>(v: () => T) {
-  return { current: v(), cached: v(), pending: v() };
-}
+import { DoubleBuffer } from "../lib/doublebuffer.js";
 
 const name = 'wl_surface' as const;
-export class WlSurface extends WlObject<ExistentParent> {
+export class WlSurface extends BaseObject {
   daughterSurfaces: WlSurface[] = [];
   subsurface: WlSubsurface | null = null;
 
   get iface() { return name }
 
-  opaqueRegions: DoubleBuffer<RegRectangle[]> = createDoubleBuffer(() => []);
-  inputRegions: DoubleBuffer<RegRectangle[]> = createDoubleBuffer(() => []);
-  buffer: DoubleBuffer<WlBuffer | null> = createDoubleBuffer(() => null);
-  scale: DoubleBuffer<number> = createDoubleBuffer(() => 1);
+  opaqueRegions: DoubleBuffer<RegRectangle[]> = new DoubleBuffer([]);
+  inputRegions: DoubleBuffer<RegRectangle[]> = new DoubleBuffer([]);
+  buffer: DoubleBuffer<WlBuffer | null> = new DoubleBuffer(null);
+  scale: DoubleBuffer<number> = new DoubleBuffer(1);
 
-  static doubleBufferedState = ['opaqueRegions', 'inputRegions', 'buffer', 'scale'] as const;
+  doubleBufferedState: Set<DoubleBuffer<any>> = new Set([this.opaqueRegions, this.inputRegions, this.buffer, this.scale]);
+
+  surfaceToBufferDelta = [0, 0] as [number, number];
 
   wlSetOpaqueRegion(args: { region: WlRegion }) {
     this.opaqueRegions.pending = args.region.instructions;
@@ -55,29 +47,24 @@ export class WlSurface extends WlObject<ExistentParent> {
     return this.subsurface.isSynced || this.subsurface.assocParent.synced;
   }
 
-  update<T>() {
-    for (const doubleBuffed of WlSurface.doubleBufferedState) {
-      this[doubleBuffed].cached = this[doubleBuffed].pending;
+  update() {
+    for (const doubleBuffed of this.doubleBufferedState) {
+      doubleBuffed.cached = doubleBuffed.pending;
     }
     if (this.subsurface && !this.subsurface.isSynced) this.applyCache();
   }
-  applyCache<T>() {
+  applyCache() {
     this.daughterSurfaces.forEach((surf) => surf.applyCache());
 
-    for (const doubleBuffed of WlSurface.doubleBufferedState) {
-      if (this[doubleBuffed].current instanceof WlBuffer) this[doubleBuffed].current.wlRelease();
-      if (this[doubleBuffed].cached != null) {
-        this[doubleBuffed].current = this[doubleBuffed].cached;
-      }
-      this[doubleBuffed].cached = null;
+    for (const doubleBuffed of this.doubleBufferedState) {
+      if (doubleBuffed.current instanceof WlBuffer && doubleBuffed.current !== doubleBuffed.cached) doubleBuffed.current.wlRelease();
+      doubleBuffed.current = doubleBuffed.cached;
     }
   }
 
   wlCommit() {
     this.update();
 
-    const frame = this.buffer.current?.read();
-    // console.log(frame);
-    if (frame) this.connection.emit('frame', frame, this);
+    return this.buffer.current?.read();
   }
 }
