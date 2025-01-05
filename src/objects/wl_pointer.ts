@@ -17,9 +17,8 @@ export class WlPointer extends BaseObject {
     if (!(parent instanceof WlSeat)) throw new Error('WlPointer needs to be initialized in the scope of a wl_seat');
 
     const seatRegistry = parent.seatRegistry;
-    const info = seatRegistry.map.get(args.name)!;
 
-    this.recipient = seatRegistry.transports.get(info)!.createRecipient();
+    this.recipient = seatRegistry.transports.get(parent.info)!.createRecipient();
 
     this.recipient.on('enter', (function (this: WlPointer, enteringSurface: number, surfX: number, surfY: number) {
       this.addCommand('enter', {
