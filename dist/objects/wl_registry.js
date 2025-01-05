@@ -10,8 +10,13 @@ class SpecificRegistry extends node_stream_1.EventEmitter {
     get iface() { throw new Error("SpecificRegistry (base class for specific registries) does not have an iface name"); }
     ;
     vs;
-    transport;
-    constructor(vs) { super(); this.vs = new Set(vs); this.transport = new event_clientserver_js_1.EventServer(); }
+    transports = new Map();
+    constructor(vs) {
+        super();
+        this.vs = new Set(vs);
+        for (const v of vs)
+            this.transports.set(v, new event_clientserver_js_1.EventServer());
+    }
     add(v) { this.vs.add(v); this.emit('new', v); }
     delete(v) { this.vs.delete(v); this.emit('del', v); }
     addTo(r, v) {

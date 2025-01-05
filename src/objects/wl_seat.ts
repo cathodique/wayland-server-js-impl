@@ -13,7 +13,7 @@ const name = 'wl_seat' as const;
 type SeatServerToClient = {
   'enter': [number, number, number];
   'moveTo': [number, number];
-  'leave': [number, number, number];
+  'leave': [number];
   'buttonDown': [number];
   'buttonUp': [number];
 };

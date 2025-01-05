@@ -1,6 +1,5 @@
 import { EventEmitter } from "node:events";
 import { Connection } from "../connection.js";
-import { Time } from "../lib/time.js";
 
 export type Parent = BaseObject<Record<string, any[]>, Parent> | null;
 export type ExistentParent = BaseObject<Record<string, any[]>, Parent>;

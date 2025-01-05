@@ -12,7 +12,7 @@ export declare class SpecificRegistry<T, U extends EventServer<Record<string, an
     map: Map<number, T>;
     get iface(): string;
     vs: Set<T>;
-    transport: U;
+    transports: Map<T, U>;
     constructor(vs: T[]);
     add(v: T): void;
     delete(v: T): void;

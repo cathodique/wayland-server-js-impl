@@ -17,7 +17,7 @@ class WlOutput extends base_object_js_1.BaseObject {
         super(conx, oid, parent, args);
         const outputReg = this.connection.registry.outputRegistry;
         this.info = outputReg.map.get(args.name);
-        this.recipient = outputReg.transport.createRecipient();
+        this.recipient = outputReg.transports.get(this.info).createRecipient();
         this.advertise();
         this.recipient.on('update', this.advertise.bind(this));
     }
