@@ -6,7 +6,7 @@ const name = 'wl_callback';
 class WlCallback extends base_object_js_1.BaseObject {
     get iface() { return name; }
     done(callbackData) {
-        this.connection.addCommand(this, 'done', { callback_data: callbackData });
+        this.connection.addCommand(this, 'done', { callbackData: callbackData });
         this.connection.objects.delete(this.oid);
     }
 }

@@ -8,7 +8,7 @@ import { interfaces, WlArg, WlMessage } from "./wayland_interpreter.js";
 import { USocket } from "@cathodique/usocket";
 
 import FIFO from "fast-fifo";
-import { snakePrepend } from "./utils.js";
+import { snakePrepend, snakeToCamel } from "./utils.js";
 import { WlDummy } from "./objects/dummy_object.js";
 
 import { console } from "./logger.js";
@@ -379,7 +379,9 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     let currIdx = 8;
     for (let i = 0; i < msg.args.length; i += 1) {
       const arg = msg.args[i];
-      currIdx = this.buildBlock(args[arg.name], arg, currIdx, result);
+      const key = snakeToCamel(arg.name);
+      if (!Object.hasOwn(args, key)) throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
+      currIdx = this.buildBlock(args[key], arg, currIdx, result);
     }
 
     // console.log(size * 2 ** 16 + opcode, result);

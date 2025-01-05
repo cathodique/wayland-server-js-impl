@@ -44,8 +44,8 @@ export class WlOutput extends BaseObject {
     this.addCommand('geometry', {
       x: this.info.x,
       y: this.info.y,
-      physical_width: this.info.w / 3.8,
-      physical_height: this.info.h / 3.8,
+      physicalWidth: this.info.w / 3.8,
+      physicalHeight: this.info.h / 3.8,
       subpixel: interfaces.wl_output.enums.subpixel.atoi.horizontal_rgb,
       make: 'IDK',
       model: 'IDK As if I knew',

@@ -5,7 +5,7 @@ export class WlCallback extends BaseObject {
   get iface() { return name }
 
   done(callbackData: number) {
-    this.connection.addCommand(this, 'done', { callback_data: callbackData });
+    this.connection.addCommand(this, 'done', { callbackData: callbackData });
     this.connection.objects.delete(this.oid);
   }
 }
