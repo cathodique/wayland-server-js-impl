@@ -14,8 +14,7 @@ class WlPointer extends base_object_js_1.BaseObject {
         if (!(parent instanceof wl_seat_js_1.WlSeat))
             throw new Error('WlPointer needs to be initialized in the scope of a wl_seat');
         const seatRegistry = parent.seatRegistry;
-        const info = seatRegistry.map.get(args.name);
-        this.recipient = seatRegistry.transports.get(info).createRecipient();
+        this.recipient = seatRegistry.transports.get(parent.info).createRecipient();
         this.recipient.on('enter', (function (enteringSurface, surfX, surfY) {
             this.addCommand('enter', {
                 serial: this.latestSerial = this.connection.time.getTime(),
