@@ -356,7 +356,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     let result = 0;
 
     for (const arg of msg.args) {
-      if (["int", "uint", "new_id", "object"].includes(arg.type)) {
+      if (["int", "uint", "new_id", "object", "fixed"].includes(arg.type)) {
         result += 4;
         continue;
       }
