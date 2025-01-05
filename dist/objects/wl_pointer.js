@@ -41,7 +41,7 @@ class WlPointer extends base_object_js_1.BaseObject {
                 serial: this.latestSerial = this.connection.time.getTime(),
                 time: this.connection.time.getTime(),
                 button: button,
-                state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.button_state.atoi.pressed,
+                state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.buttonState.atoi.pressed,
             });
         }).bind(this));
         this.recipient.on('buttonUp', (function (button) {
@@ -49,7 +49,7 @@ class WlPointer extends base_object_js_1.BaseObject {
                 serial: this.latestSerial = this.connection.time.getTime(),
                 time: this.connection.time.getTime(),
                 button: button,
-                state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.button_state.atoi.released,
+                state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.buttonState.atoi.released,
             });
         }).bind(this));
     }

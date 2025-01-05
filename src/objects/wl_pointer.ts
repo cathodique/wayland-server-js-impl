@@ -46,7 +46,7 @@ export class WlPointer extends BaseObject {
         serial: this.latestSerial = this.connection.time.getTime(),
         time: this.connection.time.getTime(),
         button: button,
-        state: interfaces.wl_pointer.enums.button_state.atoi.pressed,
+        state: interfaces.wl_pointer.enums.buttonState.atoi.pressed,
       });
     }).bind(this));
     this.recipient.on('buttonUp', (function (this: WlPointer, button: number) {
@@ -54,7 +54,7 @@ export class WlPointer extends BaseObject {
         serial: this.latestSerial = this.connection.time.getTime(),
         time: this.connection.time.getTime(),
         button: button,
-        state: interfaces.wl_pointer.enums.button_state.atoi.released,
+        state: interfaces.wl_pointer.enums.buttonState.atoi.released,
       });
     }).bind(this));
   }
