@@ -4,8 +4,8 @@ import { interfaces } from "../wayland_interpreter.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { OutputConfiguration, OutputRegistry } from "./wl_output.js";
 import { ObjectMetadata } from "../compositor.js";
-import { SeatConfiguration, SeatRegistry } from "./wl_seat.js";
-import { EventClient, EventServer } from "../lib/event_clientserver.js";
+import { SeatRegistry } from "./wl_seat.js";
+import { EventServer } from "../lib/event_clientserver.js";
 
 export class SpecificRegistry<T, U extends EventServer<Record<string, any[]>, Record<string, any[]>>> extends EventEmitter<{ 'new': [T], 'del': [T] }> {
   map: Map<number, T> = new Map();
@@ -14,9 +14,13 @@ export class SpecificRegistry<T, U extends EventServer<Record<string, any[]>, Re
 
   vs: Set<T>;
 
-  transport: U;
+  transports: Map<T, U> = new Map();
 
-  constructor(vs: T[]) { super(); this.vs = new Set(vs); this.transport = new EventServer() as U; }
+  constructor(vs: T[]) {
+    super();
+    this.vs = new Set(vs);
+    for (const v of vs) this.transports.set(v, new EventServer() as U);
+  }
   add(v: T) { this.vs.add(v); this.emit('new', v); }
   delete(v: T) { this.vs.delete(v); this.emit('del', v); }
 

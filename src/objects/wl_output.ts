@@ -33,7 +33,7 @@ export class WlOutput extends BaseObject {
     const outputReg = this.connection.registry!.outputRegistry;
     this.info = outputReg.map.get(args.name)!;
 
-    this.recipient = outputReg.transport.createRecipient();
+    this.recipient = outputReg.transports.get(this.info).createRecipient();
 
     this.advertise();
     this.recipient.on('update', this.advertise.bind(this));
