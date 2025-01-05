@@ -20,6 +20,9 @@ class WlOutput extends base_object_js_1.BaseObject {
         this.recipient = outputReg.transports.get(this.info).createRecipient();
         this.advertise();
         this.recipient.on('update', this.advertise.bind(this));
+        this.recipient.on('enter', function (surf) {
+            surf.addCommand('enter', { output: this });
+        }.bind(this));
     }
     advertise() {
         // TODO: FIX THIS MESS

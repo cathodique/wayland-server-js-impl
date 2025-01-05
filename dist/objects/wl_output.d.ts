@@ -2,8 +2,10 @@ import { Connection } from "../connection.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { EventClient, EventServer } from "../lib/event_clientserver.js";
 import { SpecificRegistry } from "./wl_registry.js";
+import { WlSurface } from "./wl_surface.js";
 type OutputServerToClient = {
     'update': [];
+    'enter': [WlSurface];
 };
 export type OutputEventServer = EventServer<OutputServerToClient, {}>;
 export type OutputEventClient = EventClient<{}, OutputServerToClient>;

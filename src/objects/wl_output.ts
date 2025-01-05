@@ -4,10 +4,11 @@ import { interfaces } from "../wayland_interpreter.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { EventClient, EventServer } from "../lib/event_clientserver.js";
 import { SpecificRegistry } from "./wl_registry.js";
+import { WlSurface } from "./wl_surface.js";
 
 const name = 'wl_output' as const;
 
-type OutputServerToClient = { 'update': [] };
+type OutputServerToClient = { 'update': [], 'enter': [WlSurface] };
 export type OutputEventServer = EventServer<OutputServerToClient, {}>;
 export type OutputEventClient = EventClient<{}, OutputServerToClient>;
 export class OutputRegistry extends SpecificRegistry<OutputConfiguration, OutputEventServer> {
@@ -37,6 +38,9 @@ export class WlOutput extends BaseObject {
 
     this.advertise();
     this.recipient.on('update', this.advertise.bind(this));
+    this.recipient.on('enter', function (this: WlOutput, surf: WlSurface) {
+      surf.addCommand('enter', { output: this })
+    }.bind(this));
   }
 
   advertise() {

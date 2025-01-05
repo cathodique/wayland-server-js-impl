@@ -31,7 +31,7 @@ class Compositor extends node_events_1.default {
             // - As MITM
             // const socket2 = new USocket({});
             // const conx = new Connection(this.currConnId++, this, socket, true);
-            // socket2.connect({ path: "/run/user/1000/wayland-0" }, () => {
+            // socket2.connect({ path: "/run/user/1000/wayland-1" }, () => {
             //   socket.on("readable", () => {
             //     parseOnReadable(socket, ({ data, fds }) => {
             //       // console.log("C2S", data && data.toString("hex"), fds);
