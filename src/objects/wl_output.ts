@@ -52,7 +52,7 @@ export class WlOutput extends BaseObject {
       transform: interfaces.wl_output.enums.transform.atoi.normal,
     });
     this.addCommand('mode', {
-      mode: 3, // idc i just wann move on
+      flags: 3, // idc i just wann move on
       width: this.info.w,
       height: this.info.h,
       refresh: 60, // again idrc for now
