@@ -22,6 +22,7 @@ class WlPointer extends base_object_js_1.BaseObject {
                 surfaceX: surfX,
                 surfaceY: surfY,
             });
+            this.addCommand('frame', {});
         }).bind(this));
         this.recipient.on('moveTo', (function (surfX, surfY) {
             this.addCommand('motion', {
@@ -29,12 +30,14 @@ class WlPointer extends base_object_js_1.BaseObject {
                 surfaceX: surfX,
                 surfaceY: surfY,
             });
+            this.addCommand('frame', {});
         }).bind(this));
         this.recipient.on('leave', (function (leavingSurface) {
             this.addCommand('leave', {
                 serial: this.latestSerial = this.connection.time.getTime(),
                 surface: leavingSurface,
             });
+            this.addCommand('frame', {});
         }).bind(this));
         this.recipient.on('buttonDown', (function (button) {
             this.addCommand('button', {
@@ -43,6 +46,7 @@ class WlPointer extends base_object_js_1.BaseObject {
                 button: button,
                 state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.buttonState.atoi.pressed,
             });
+            this.addCommand('frame', {});
         }).bind(this));
         this.recipient.on('buttonUp', (function (button) {
             this.addCommand('button', {
@@ -51,6 +55,7 @@ class WlPointer extends base_object_js_1.BaseObject {
                 button: button,
                 state: wayland_interpreter_js_1.interfaces.wl_pointer.enums.buttonState.atoi.released,
             });
+            this.addCommand('frame', {});
         }).bind(this));
     }
 }

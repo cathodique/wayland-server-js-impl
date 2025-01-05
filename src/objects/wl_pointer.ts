@@ -2,6 +2,7 @@ import { Connection } from "../connection.js";
 import { interfaces } from "../wayland_interpreter.js";
 import { BaseObject, ExistentParent } from "./base_object.js";
 import { SeatEventClient, WlSeat } from "./wl_seat.js";
+import { WlSurface } from "./wl_surface.js";
 
 const name = 'wl_pointer' as const;
 export class WlPointer extends BaseObject {
@@ -20,13 +21,14 @@ export class WlPointer extends BaseObject {
 
     this.recipient = seatRegistry.transports.get(parent.info)!.createRecipient();
 
-    this.recipient.on('enter', (function (this: WlPointer, enteringSurface: number, surfX: number, surfY: number) {
+    this.recipient.on('enter', (function (this: WlPointer, enteringSurface: WlSurface, surfX: number, surfY: number) {
       this.addCommand('enter', {
         serial: this.latestSerial = this.connection.time.getTime(),
         surface: enteringSurface,
         surfaceX: surfX,
         surfaceY: surfY,
       });
+      this.addCommand('frame', {});
     }).bind(this));
     this.recipient.on('moveTo', (function (this: WlPointer, surfX: number, surfY: number) {
       this.addCommand('motion', {
@@ -34,12 +36,14 @@ export class WlPointer extends BaseObject {
         surfaceX: surfX,
         surfaceY: surfY,
       });
+      this.addCommand('frame', {});
     }).bind(this));
-    this.recipient.on('leave', (function (this: WlPointer, leavingSurface: number) {
+    this.recipient.on('leave', (function (this: WlPointer, leavingSurface: WlSurface) {
       this.addCommand('leave', {
         serial: this.latestSerial = this.connection.time.getTime(),
         surface: leavingSurface,
       });
+      this.addCommand('frame', {});
     }).bind(this));
     this.recipient.on('buttonDown', (function (this: WlPointer, button: number) {
       this.addCommand('button', {
@@ -48,6 +52,7 @@ export class WlPointer extends BaseObject {
         button: button,
         state: interfaces.wl_pointer.enums.buttonState.atoi.pressed,
       });
+      this.addCommand('frame', {});
     }).bind(this));
     this.recipient.on('buttonUp', (function (this: WlPointer, button: number) {
       this.addCommand('button', {
@@ -56,6 +61,7 @@ export class WlPointer extends BaseObject {
         button: button,
         state: interfaces.wl_pointer.enums.buttonState.atoi.released,
       });
+      this.addCommand('frame', {});
     }).bind(this));
   }
 }
