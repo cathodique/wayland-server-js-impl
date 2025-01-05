@@ -30,7 +30,7 @@ export class WlSurface extends BaseObject {
 
   wlFrame({ callback }: { callback: WlCallback }) {
     this.connection.compositor.once('tick', (function (this: WlSurface) {
-      callback.done(Date.now());
+      callback.done(this.connection.time.getTime());
     }).bind(this));
   }
 

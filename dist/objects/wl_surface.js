@@ -23,7 +23,7 @@ class WlSurface extends base_object_js_1.BaseObject {
     }
     wlFrame({ callback }) {
         this.connection.compositor.once('tick', (function () {
-            callback.done(Date.now());
+            callback.done(this.connection.time.getTime());
         }).bind(this));
     }
     wlSetBufferScale(args) {
