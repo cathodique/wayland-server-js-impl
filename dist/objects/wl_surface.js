@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlSurface = void 0;
 const base_object_js_1 = require("./base_object.js");
-const wl_buffer_js_1 = require("./wl_buffer.js");
 const doublebuffer_js_1 = require("../lib/doublebuffer.js");
 const name = 'wl_surface';
 class WlSurface extends base_object_js_1.BaseObject {
@@ -50,8 +49,7 @@ class WlSurface extends base_object_js_1.BaseObject {
     applyCache() {
         this.daughterSurfaces.forEach((surf) => surf.applyCache());
         for (const doubleBuffed of this.doubleBufferedState) {
-            if (doubleBuffed.current instanceof wl_buffer_js_1.WlBuffer && doubleBuffed.current !== doubleBuffed.cached)
-                doubleBuffed.current.wlRelease();
+            // if (doubleBuffed.current instanceof WlBuffer && doubleBuffed.current !== doubleBuffed.cached) doubleBuffed.current.wlRelease();
             doubleBuffed.current = doubleBuffed.cached;
         }
     }
