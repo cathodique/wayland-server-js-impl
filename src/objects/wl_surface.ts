@@ -59,7 +59,7 @@ export class WlSurface extends BaseObject {
     this.daughterSurfaces.forEach((surf) => surf.applyCache());
 
     for (const doubleBuffed of this.doubleBufferedState) {
-      if (doubleBuffed.current instanceof WlBuffer && doubleBuffed.current !== doubleBuffed.cached) doubleBuffed.current.wlRelease();
+      // if (doubleBuffed.current instanceof WlBuffer && doubleBuffed.current !== doubleBuffed.cached) doubleBuffed.current.wlRelease();
       doubleBuffed.current = doubleBuffed.cached;
     }
   }
