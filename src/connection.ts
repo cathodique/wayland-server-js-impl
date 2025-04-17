@@ -16,12 +16,14 @@ import { newIdMap } from "./new_id_map.js";
 import { Time } from "./lib/time.js";
 import EventEmitter from "node:events";
 
+import { ifaceVersion as ifaceVersionSymbol } from "./utils.js";
+
 export const endianness = getEndianness();
-export const read = (b: Buffer, i: number, signed: boolean = true) => {
+export const read = (b: Buffer, i: number, signed: boolean = false) => {
   const unsignedness = signed ? "" : "U";
   return b[`read${unsignedness}Int32${endianness}`](i);
 };
-const write = (v: number, b: Buffer, i: number, signed: boolean = true) => {
+const write = (v: number, b: Buffer, i: number, signed: boolean = false) => {
   const unsignedness = signed ? "" : "U";
   return b[`write${unsignedness}Int32${endianness}`](v, i);
 };
@@ -130,14 +132,17 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     // Handle client disconnect
     sock.on("end", function (this: Connection) {
       const deleteMe = [...this.objects.values()];
-      for (let i = deleteMe.length - 1; i >= 0; i -= 1) {
+      for (let i = deleteMe.length - 1; i >= 1; i -= 1) {
         deleteMe[i].wlDestroy();
       }
     }.bind(this));
+
+    this.compositor.metadata.wl_registry.outputs.addConnection(this);
+    this.compositor.metadata.wl_registry.seats.addConnection(this);
   }
 
   static prettyWlObj(object: BaseObject<DefaultEventMap, any>) {
-    return `[${object.iface}#${object.oid}]`;
+    return `[${object.iface}#${object.oid}${object._version ? 'v' : '^'}${object.version}]`;
   }
   static prettyArgs(args: Record<string, any>) {
     return Object.fromEntries(
@@ -166,7 +171,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     const newOfIface = new newIdMap[type](this, id, parent, args, this.compositor.metadata);
     this.objects.set(id, newOfIface);
 
-    this.emit(type, newOfIface);
+    (this.emit as (k: keyof typeof newIdMap, v: InstanceType<(typeof newIdMap)[keyof typeof newIdMap]>) => void)(type, newOfIface);
 
     return newOfIface;
   }
@@ -220,14 +225,14 @@ export class Connection extends EventEmitter<ConnectionEvents> {
 
           const knownVersion = interfaces[ifaceName]?.version;
           if (!this.muzzled && knownVersion < ifaceVersion) {
-            throw new Error(
-              `Of ${ifaceName}: version ${ifaceVersion} is incompatible with version ${knownVersion}`,
-            );
+            throw new Error(`Of ${ifaceName}: version ${ifaceVersion} is incompatible with version ${knownVersion}`);
           }
-          ctx.callbacks.push(
-            (args: Record<string, any>) =>
-              (args[arg.name] = this.createObject(ifaceName, oid, ctx.parent, args)),
-          );
+          ctx.callbacks.push((args: Record<string, any>) => {
+            args[arg.name] = this.createObject(ifaceName, oid, ctx.parent, {
+              ...args,
+              [ifaceVersionSymbol]: ifaceVersion,
+            });
+          });
           return null;
         }
       }
@@ -309,6 +314,9 @@ export class Connection extends EventEmitter<ConnectionEvents> {
       newCommandAt += size;
     }
     if (newCommandAt !== buf.length) throw new Error("Possibly missing data");
+
+    this.sendPending();
+
     // return commands;
   }
 
@@ -326,12 +334,10 @@ export class Connection extends EventEmitter<ConnectionEvents> {
         write(val * 2 ** 8, buf, idx, true);
         return idx + 4;
       }
+      case "new_id": // EDIT: Yes, yes it is. Cf. WlDataDevice#wlDataOffer
       case "object": {
-        write(val.oid, buf, idx, true);
+        write(val.oid, buf, idx);
         return idx + 4;
-      }
-      case "new_id": {
-        throw new Error("Is that even possible?");
       }
       case "string": {
         const size = (1 + val.length) as number;
@@ -381,6 +387,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
       const arg = msg.args[i];
       const key = snakeToCamel(arg.name);
       if (!Object.hasOwn(args, key)) throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
+      console.log(args, key);
       currIdx = this.buildBlock(args[key], arg, currIdx, result);
     }
 
@@ -389,32 +396,54 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     return result;
   }
 
-  // protected buffersSoFar: Buffer[] = [];
+  static isVersionAccurate(obj: BaseObject<DefaultEventMap, Parent>, eventName: string): boolean {
+    const version = obj.version;
+    if (!version) return true; // probably...
+
+    const eventObj = interfaces[obj.iface].eventsReverse[eventName];
+
+    if (eventObj.since && version < eventObj.since || eventObj.deprec && version > eventObj.deprec) {
+      console.log(eventObj.since, version, eventObj.deprec, eventName, obj.iface);
+      return false;
+    }
+
+    return true;
+  }
+
+  protected buffersSoFar: Buffer[] = [];
   // protected immediate?: NodeJS.Immediate;
-  addCommand(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>) {
-    if (this.muzzled) return;
+  addCommand(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): boolean {
+    if (this.muzzled) return true;
+    if (!Connection.isVersionAccurate(obj, eventName)) return false;
     const toBeSent = this.builder(obj, eventName, args);
-    // this.buffersSoFar.push(toBeSent);
+    this.buffersSoFar.push(toBeSent);
     // if (!this.immediate)
     //   this.immediate = setImmediate((() => this.sendPending()).bind(this));
     // Just checked and setImmediate can tAKE TWELVE MILLISECONDS?? im a dumbass
-    this.socket.write(toBeSent);
+    // this.socket.write(toBeSent);
+    return true;
   }
 
-  // protected sendPending() {
-  //   if (this.muzzled) return;
-  //   const resBuf = Buffer.concat(this.buffersSoFar);
-  //   this.socket.write(resBuf);
-  //   // console.log("S2C", resBuf.toString("hex"));
+  sendPending() {
+    if (this.muzzled) return;
+    const resBuf = Buffer.concat(this.buffersSoFar);
+    this.socket.write(resBuf);
+    // console.log("S2C", resBuf.toString("hex"));
 
-  //   // console.log('flushed', this.buffersSoFar.length, 'buffers');
+    // console.log('flushed', this.buffersSoFar.length, 'buffers');
 
-  //   this.buffersSoFar = [];
-  //   this.immediate = undefined;
-  // }
+    this.buffersSoFar = [];
+  }
 
   destroy(obj: BaseObject<DefaultEventMap, any>) {
     this.objects.delete(obj.oid);
-    this.addCommand(this.objects.get(1)!, 'deleteId', { id: obj.oid });
+    if (obj.oid < 0xFF000000) {
+      this.addCommand(this.objects.get(1)!, 'deleteId', { id: obj.oid });
+    }
+  }
+
+  latestServerOid = 0xFF000000;
+  createServerOid() {
+    return this.latestServerOid++;
   }
 }

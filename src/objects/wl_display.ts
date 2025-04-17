@@ -6,6 +6,8 @@ const name = 'wl_display' as const;
 export class WlDisplay extends BaseObject<DefaultEventMap, null> {
   get iface() { return name } // We <3 JS prototype chain
 
+  _version: number = 1;
+
   wlSync(args: { callback: WlCallback }) {
     args.callback.done(1);
   }

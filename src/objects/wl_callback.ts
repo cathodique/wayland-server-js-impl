@@ -6,6 +6,6 @@ export class WlCallback extends BaseObject {
 
   done(callbackData: number) {
     this.connection.addCommand(this, 'done', { callbackData: callbackData });
-    this.connection.objects.delete(this.oid);
+    this.wlDestroy();
   }
 }

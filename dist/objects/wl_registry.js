@@ -1,47 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WlRegistry = exports.SpecificRegistry = void 0;
-const node_stream_1 = require("node:stream");
+exports.WlRegistry = void 0;
 const wayland_interpreter_js_1 = require("../wayland_interpreter.js");
 const base_object_js_1 = require("./base_object.js");
-const event_clientserver_js_1 = require("../lib/event_clientserver.js");
-class SpecificRegistry extends node_stream_1.EventEmitter {
-    map = new Map();
-    get iface() { throw new Error("SpecificRegistry (base class for specific registries) does not have an iface name"); }
-    ;
-    vs;
-    transports = new Map();
-    constructor(vs) {
-        super();
-        this.vs = new Set(vs);
-        for (const v of vs)
-            this.transports.set(v, new event_clientserver_js_1.EventServer());
-    }
-    add(v) { this.vs.add(v); this.emit('new', v); }
-    delete(v) { this.vs.delete(v); this.emit('del', v); }
-    addTo(r, v) {
-        this.map.set(r.registry.length, v);
-        r.registry.push(this.iface);
-    }
-    unmount = new Map();
-    applyTo(reg) {
-        for (const v of this.vs)
-            this.addTo(reg, v);
-        const newEvList = (function (v) {
-            this.addTo(reg, v);
-        }).bind(this);
-        this.on('new', newEvList);
-        const delEvList = (function (v) {
-            this.addTo(reg, v);
-        }).bind(this);
-        this.on('del', delEvList);
-        this.unmount.set(reg, new Map([['new', newEvList], ['del', delEvList]]));
-    }
-    unapplyTo(reg) {
-        this.unmount.get(reg).forEach((v, k) => this.off(k, v));
-    }
-}
-exports.SpecificRegistry = SpecificRegistry;
 const name = 'wl_registry';
 class WlRegistry extends base_object_js_1.BaseObject {
     get iface() { return name; }

@@ -61,11 +61,15 @@ for (const parsed of parsedArr) {
         const requests = byTag.request.map((v, i) => ({
             name: (0, utils_js_1.snakeToCamel)(v.attributes.name),
             index: i,
+            since: v.attributes.since == undefined ? undefined : Number(v.attributes.since),
+            deprec: v.attributes['deprecated-since'] == undefined ? undefined : Number(v.attributes['deprecated-since']),
             args: childrenToArgs(v.children.filter((v) => v.name === "arg")),
         }));
         const events = byTag.event.map((v, i) => ({
             name: (0, utils_js_1.snakeToCamel)(v.attributes.name),
             index: i,
+            since: v.attributes.since == undefined ? undefined : Number(v.attributes.since),
+            deprec: v.attributes['deprecated-since'] == undefined ? undefined : Number(v.attributes['deprecated-since']),
             args: childrenToArgs(v.children.filter((v) => v.name === "arg")),
         }));
         const currIface = {

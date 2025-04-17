@@ -6,6 +6,7 @@ const wl_callback_1 = require("./objects/wl_callback");
 const wl_compositor_1 = require("./objects/wl_compositor");
 const wl_data_device_1 = require("./objects/wl_data_device");
 const wl_data_device_manager_1 = require("./objects/wl_data_device_manager");
+const wl_data_offer_1 = require("./objects/wl_data_offer");
 const wl_keyboard_1 = require("./objects/wl_keyboard");
 const wl_output_1 = require("./objects/wl_output");
 const wl_pointer_1 = require("./objects/wl_pointer");
@@ -35,6 +36,7 @@ exports.newIdMap = {
     xdg_wm_base: xdg_wm_base_1.XdgWmBase,
     wl_data_device_manager: wl_data_device_manager_1.WlDataDeviceManager,
     wl_data_device: wl_data_device_1.WlDataDevice,
+    wl_data_offer: wl_data_offer_1.WlDataOffer,
     wl_surface: wl_surface_1.WlSurface,
     wl_subsurface: wl_subsurface_1.WlSubsurface,
     xdg_surface: xdg_surface_1.XdgSurface,

@@ -31,6 +31,7 @@ export class WlSurface extends BaseObject {
   wlFrame({ callback }: { callback: WlCallback }) {
     this.connection.compositor.once('tick', (function (this: WlSurface) {
       callback.done(this.connection.time.getTime());
+      this.connection.sendPending();
     }).bind(this));
   }
 
@@ -51,6 +52,7 @@ export class WlSurface extends BaseObject {
     for (const doubleBuffed of this.doubleBufferedState) {
       doubleBuffed.cached = doubleBuffed.pending;
     }
+    if (!this.subsurface) this.applyCache();
     if (this.subsurface && !this.subsurface.isSynced) this.applyCache();
   }
   applyCache() {
@@ -65,6 +67,10 @@ export class WlSurface extends BaseObject {
   wlCommit() {
     this.update();
 
-    return this.buffer.current?.read();
+    if (this.buffer.current) {
+      const buf = this.buffer.current?.read();
+      this.buffer.current.addCommand('release', {});
+      return buf;
+    }
   }
 }

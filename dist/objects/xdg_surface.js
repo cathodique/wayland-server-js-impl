@@ -15,7 +15,6 @@ class XdgSurface extends base_object_js_1.BaseObject {
         super(conx, oid, parent, args);
         this.surface = args.surface;
         this.surface.doubleBufferedState.add(this.geometry);
-        this.addCommand('configure', { serial: this.newSerial() });
     }
     wlDestroy() {
         super.wlDestroy();

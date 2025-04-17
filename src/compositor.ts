@@ -5,10 +5,11 @@ import { console } from "./logger.js";
 import { Connection, parseOnReadable } from "./connection.js";
 import { UServer, USocket } from "@cathodique/usocket";
 import EventEmitter from "node:events";
-import { ExistentParent } from "./objects/base_object.js";
-import { newIdMap } from "./new_id_map.js";
+// import { ExistentParent } from "./objects/base_object.js";
+// import { newIdMap } from "./new_id_map.js";
 import { WlRegistry, WlRegistryMetadata } from "./objects/wl_registry.js";
-import { createId } from "@paralleldrive/cuid2";
+import { WlKeyboardMetadata } from "./objects/wl_keyboard.js";
+// import { createId } from "@paralleldrive/cuid2";
 
 type CompositorEvents = {
   tick: [],
@@ -17,6 +18,7 @@ type CompositorEvents = {
 
 export type ObjectMetadata = {
   wl_registry: WlRegistryMetadata;
+  wl_keyboard: WlKeyboardMetadata;
 };
 
 export interface CompositorArgs {
@@ -28,6 +30,8 @@ export interface CompositorArgs {
   // };
   metadata: ObjectMetadata;
 }
+
+const blacklist = ['wl_keyboard'];
 
 export class Compositor extends EventEmitter<CompositorEvents> {
   server: UServer;
@@ -53,41 +57,45 @@ export class Compositor extends EventEmitter<CompositorEvents> {
         console.log("New Connection!!!");
 
         // - As compositor
-        this.emit('connection', new Connection(this.currConnId++, this, socket, false));
+        // this.emit('connection', new Connection(this.currConnId++, this, socket, false));
 
         // - As MITM
-        // const socket2 = new USocket({});
-        // const conx = new Connection(this.currConnId++, this, socket, true);
-        // socket2.connect({ path: "/run/user/1000/wayland-1" }, () => {
-        //   socket.on("readable", () => {
-        //     parseOnReadable(socket, ({ data, fds }) => {
-        //       // console.log("C2S", data && data.toString("hex"), fds);
-        //       try {
-        //         const [[a, b, c]] = [...conx.parser(data)];
-        //         console.log("C2S", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
-        //         socket2.write({ data, fds });
-        //       } catch (e) {
-        //         console.log('C2S got error', e);
-        //         socket2.write({ data, fds });
-        //       }
-        //     });
-        //   });
-        //   socket2.on("readable", () => {
-        //     parseOnReadable(socket2, ({ data, fds }) => {
-        //       // console.log("S2C", data && data.toString("hex"), fds);
-        //       try {
-        //         const [[a, b, c]] = [...conx.parser(data, true)];
-        //         console.log("S2C", Connection.prettyWlObj(a), b, Connection.prettyArgs(c));
-        //         if (b === 'global' && !WlRegistry.supportedByRegistry.includes(c.interface)) return console.log('Ignoring');
-        //         // if (!WlRegistry.registry.includes(c.))
-        //         socket.write({ data, fds });
-        //       } catch (e) {
-        //         console.log('S2C got error', e);
-        //         socket.write({ data, fds });
-        //       }
-        //     });
-        //   });
-        // });
+        const socket2 = new USocket({});
+        const conx = new Connection(this.currConnId++, this, socket, true);
+        socket2.connect({ path: "/run/user/1000/wayland-0" }, () => {
+          socket.on("readable", () => {
+            parseOnReadable(socket, ({ data, fds }) => {
+              // console.log("C2S", data && data.toString("hex"), fds);
+              try {
+                const [[a, b, c]] = [...conx.parser(data)];
+                if (!blacklist.includes(a.iface)) {
+                  console.log("C2S", Connection.prettyWlObj(a), b, JSON.stringify(Connection.prettyArgs(c)));
+                }
+                socket2.write({ data, fds });
+              } catch (e) {
+                console.log('C2S got error', e);
+                socket2.write({ data, fds });
+              }
+            });
+          });
+          socket2.on("readable", () => {
+            parseOnReadable(socket2, ({ data, fds }) => {
+              // console.log("S2C", data && data.toString("hex"), fds);
+              try {
+                const [[a, b, c]] = [...conx.parser(data, true)];
+                if (!blacklist.includes(a.iface)) {
+                  console.log("S2C", Connection.prettyWlObj(a), b, JSON.stringify(Connection.prettyArgs(c)));
+                }
+                if (b === 'global' && !WlRegistry.supportedByRegistry.includes(c.interface)) return console.log('Ignoring');
+                // if (!WlRegistry.registry.includes(c.))
+                socket.write({ data, fds });
+              } catch (e) {
+                console.log('S2C got error', e);
+                socket.write({ data, fds });
+              }
+            });
+          });
+        });
       }.bind(this),
     );
 

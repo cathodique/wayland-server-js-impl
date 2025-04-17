@@ -3,6 +3,7 @@ import { BaseObject, DefaultEventMap } from "./base_object.js";
 import { WlRegistry } from "./wl_registry.js";
 export declare class WlDisplay extends BaseObject<DefaultEventMap, null> {
     get iface(): "wl_display";
+    _version: number;
     wlSync(args: {
         callback: WlCallback;
     }): void;

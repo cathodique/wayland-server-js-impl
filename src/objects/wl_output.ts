@@ -3,7 +3,7 @@ import { Connection } from "../connection.js";
 import { interfaces } from "../wayland_interpreter.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { EventClient, EventServer } from "../lib/event_clientserver.js";
-import { SpecificRegistry } from "./wl_registry.js";
+import { SpecificRegistry } from "../lib/specific_registry.js";
 import { WlSurface } from "./wl_surface.js";
 
 const name = 'wl_output' as const;
@@ -13,6 +13,13 @@ export type OutputEventServer = EventServer<OutputServerToClient, {}>;
 export type OutputEventClient = EventClient<{}, OutputServerToClient>;
 export class OutputRegistry extends SpecificRegistry<OutputConfiguration, OutputEventServer> {
   get iface() { return name }
+
+  current: OutputConfiguration;
+
+  constructor(v: OutputConfiguration[], current: OutputConfiguration = v[0]){
+    super(v);
+    this.current = current;
+  }
 }
 
 export interface OutputConfiguration {
@@ -20,6 +27,8 @@ export interface OutputConfiguration {
   y: number;
   w: number;
   h: number;
+  effectiveW: number;
+  effectiveH: number;
 }
 
 export class WlOutput extends BaseObject {
@@ -34,12 +43,13 @@ export class WlOutput extends BaseObject {
     const outputReg = this.connection.registry!.outputRegistry;
     this.info = outputReg.map.get(args.name)!;
 
-    this.recipient = outputReg.transports.get(this.info)!.createRecipient();
+    this.recipient = outputReg.transports.get(conx)!.get(this.info)!.createRecipient();
 
     this.advertise();
     this.recipient.on('update', this.advertise.bind(this));
     this.recipient.on('enter', function (this: WlOutput, surf: WlSurface) {
-      surf.addCommand('enter', { output: this })
+      surf.addCommand('enter', { output: this });
+      this.connection.sendPending();
     }.bind(this));
   }
 
@@ -62,6 +72,7 @@ export class WlOutput extends BaseObject {
       refresh: 60, // again idrc for now
     });
     this.addCommand('scale', { factor: 1 });
+    this.addCommand('done', {});
   }
 
   release() { this.recipient.destroy(); }

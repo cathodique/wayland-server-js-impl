@@ -1,5 +1,8 @@
 import { EventEmitter } from "node:stream";
 
+// TODO: Refactor with Valtio
+// https://valtio.dev/
+
 type Key<K, T> = T extends [never] ? string | symbol : K | keyof T;
 type Args<K, T> = T extends [never] ? [...args: any[]] : (
   K extends keyof T ? T[K] : never

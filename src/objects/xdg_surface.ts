@@ -11,7 +11,7 @@ interface WindowGeometry {
   height: number | null;
 }
 
-const name = 'xdg_surface';
+const name = 'xdg_surface' as const;
 export class XdgSurface extends BaseObject {
   surface: WlSurface;
   role: XdgToplevel | null = null;
@@ -29,8 +29,6 @@ export class XdgSurface extends BaseObject {
     this.surface = args.surface;
 
     this.surface.doubleBufferedState.add(this.geometry);
-
-    this.addCommand('configure', { serial: this.newSerial() });
   }
 
   wlDestroy(): void {

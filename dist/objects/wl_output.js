@@ -3,10 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlOutput = exports.OutputRegistry = void 0;
 const wayland_interpreter_js_1 = require("../wayland_interpreter.js");
 const base_object_js_1 = require("./base_object.js");
-const wl_registry_js_1 = require("./wl_registry.js");
+const specific_registry_js_1 = require("../lib/specific_registry.js");
 const name = 'wl_output';
-class OutputRegistry extends wl_registry_js_1.SpecificRegistry {
+class OutputRegistry extends specific_registry_js_1.SpecificRegistry {
     get iface() { return name; }
+    current;
+    constructor(v, current = v[0]) {
+        super(v);
+        this.current = current;
+    }
 }
 exports.OutputRegistry = OutputRegistry;
 class WlOutput extends base_object_js_1.BaseObject {
@@ -17,11 +22,12 @@ class WlOutput extends base_object_js_1.BaseObject {
         super(conx, oid, parent, args);
         const outputReg = this.connection.registry.outputRegistry;
         this.info = outputReg.map.get(args.name);
-        this.recipient = outputReg.transports.get(this.info).createRecipient();
+        this.recipient = outputReg.transports.get(conx).get(this.info).createRecipient();
         this.advertise();
         this.recipient.on('update', this.advertise.bind(this));
         this.recipient.on('enter', function (surf) {
             surf.addCommand('enter', { output: this });
+            this.connection.sendPending();
         }.bind(this));
     }
     advertise() {
@@ -43,6 +49,7 @@ class WlOutput extends base_object_js_1.BaseObject {
             refresh: 60, // again idrc for now
         });
         this.addCommand('scale', { factor: 1 });
+        this.addCommand('done', {});
     }
     release() { this.recipient.destroy(); }
 }

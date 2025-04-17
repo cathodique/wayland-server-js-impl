@@ -5,3 +5,6 @@ export function snakeToCamel(str: string) {
 export function snakePrepend(str1: string, str2: string) {
   return `${str1}${str2[0].toUpperCase()}${str2.slice(1)}`;
 }
+
+export const fromServer = Symbol('fromServer');
+export const ifaceVersion = Symbol('ifaceVersion');

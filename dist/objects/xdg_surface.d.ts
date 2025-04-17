@@ -14,7 +14,7 @@ export declare class XdgSurface extends BaseObject {
     role: XdgToplevel | null;
     lastConfigureSerial: number;
     wasLastConfigureAcked: boolean;
-    get iface(): string;
+    get iface(): "xdg_surface";
     geometry: DoubleBuffer<WindowGeometry>;
     constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>);
     wlDestroy(): void;

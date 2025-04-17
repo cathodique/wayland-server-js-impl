@@ -2,12 +2,14 @@ import { Connection } from "./connection.js";
 import { UServer } from "@cathodique/usocket";
 import EventEmitter from "node:events";
 import { WlRegistryMetadata } from "./objects/wl_registry.js";
+import { WlKeyboardMetadata } from "./objects/wl_keyboard.js";
 type CompositorEvents = {
     tick: [];
     connection: [Connection];
 };
 export type ObjectMetadata = {
     wl_registry: WlRegistryMetadata;
+    wl_keyboard: WlKeyboardMetadata;
 };
 export interface CompositorArgs {
     metadata: ObjectMetadata;

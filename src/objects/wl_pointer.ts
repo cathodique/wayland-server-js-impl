@@ -19,7 +19,7 @@ export class WlPointer extends BaseObject {
 
     const seatRegistry = parent.seatRegistry;
 
-    this.recipient = seatRegistry.transports.get(parent.info)!.createRecipient();
+    this.recipient = seatRegistry.transports.get(conx)!.get(parent.info)!.createRecipient();
 
     this.recipient.on('enter', (function (this: WlPointer, enteringSurface: WlSurface, surfX: number, surfY: number) {
       this.addCommand('enter', {
@@ -29,6 +29,13 @@ export class WlPointer extends BaseObject {
         surfaceY: surfY,
       });
       this.addCommand('frame', {});
+      this.addCommand('motion', {
+        time: this.connection.time.getTime(),
+        surfaceX: surfX,
+        surfaceY: surfY,
+      });
+      this.addCommand('frame', {});
+      this.connection.sendPending();
     }).bind(this));
     this.recipient.on('moveTo', (function (this: WlPointer, surfX: number, surfY: number) {
       this.addCommand('motion', {
@@ -37,6 +44,7 @@ export class WlPointer extends BaseObject {
         surfaceY: surfY,
       });
       this.addCommand('frame', {});
+      this.connection.sendPending();
     }).bind(this));
     this.recipient.on('leave', (function (this: WlPointer, leavingSurface: WlSurface) {
       this.addCommand('leave', {
@@ -44,6 +52,7 @@ export class WlPointer extends BaseObject {
         surface: leavingSurface,
       });
       this.addCommand('frame', {});
+      this.connection.sendPending();
     }).bind(this));
     this.recipient.on('buttonDown', (function (this: WlPointer, button: number) {
       this.addCommand('button', {
@@ -53,6 +62,7 @@ export class WlPointer extends BaseObject {
         state: interfaces.wl_pointer.enums.buttonState.atoi.pressed,
       });
       this.addCommand('frame', {});
+      this.connection.sendPending();
     }).bind(this));
     this.recipient.on('buttonUp', (function (this: WlPointer, button: number) {
       this.addCommand('button', {
@@ -62,6 +72,7 @@ export class WlPointer extends BaseObject {
         state: interfaces.wl_pointer.enums.buttonState.atoi.released,
       });
       this.addCommand('frame', {});
+      this.connection.sendPending();
     }).bind(this));
   }
 }

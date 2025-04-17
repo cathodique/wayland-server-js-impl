@@ -9,6 +9,8 @@ export interface WlInterface {
 }
 export interface WlMessage {
     name: string;
+    since: number | undefined;
+    deprec: number | undefined;
     index: number;
     args: WlArg[];
 }

@@ -3,6 +3,7 @@ import { WlCallback } from "./objects/wl_callback";
 import { WlCompositor } from "./objects/wl_compositor";
 import { WlDataDevice } from "./objects/wl_data_device";
 import { WlDataDeviceManager } from "./objects/wl_data_device_manager";
+import { WlDataOffer } from "./objects/wl_data_offer";
 import { WlKeyboard } from "./objects/wl_keyboard";
 import { WlOutput } from "./objects/wl_output";
 import { WlPointer } from "./objects/wl_pointer";
@@ -33,6 +34,7 @@ export const newIdMap = {
   xdg_wm_base: XdgWmBase,
   wl_data_device_manager: WlDataDeviceManager,
   wl_data_device: WlDataDevice,
+  wl_data_offer: WlDataOffer,
   wl_surface: WlSurface,
   wl_subsurface: WlSubsurface,
   xdg_surface: XdgSurface,

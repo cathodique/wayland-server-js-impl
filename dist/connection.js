@@ -16,13 +16,14 @@ const logger_js_1 = require("./logger.js");
 const new_id_map_js_1 = require("./new_id_map.js");
 const time_js_1 = require("./lib/time.js");
 const node_events_1 = __importDefault(require("node:events"));
+const utils_js_2 = require("./utils.js");
 exports.endianness = (0, node_os_1.endianness)();
-const read = (b, i, signed = true) => {
+const read = (b, i, signed = false) => {
     const unsignedness = signed ? "" : "U";
     return b[`read${unsignedness}Int32${exports.endianness}`](i);
 };
 exports.read = read;
-const write = (v, b, i, signed = true) => {
+const write = (v, b, i, signed = false) => {
     const unsignedness = signed ? "" : "U";
     return b[`write${unsignedness}Int32${exports.endianness}`](v, i);
 };
@@ -99,13 +100,15 @@ class Connection extends node_events_1.default {
         // Handle client disconnect
         sock.on("end", function () {
             const deleteMe = [...this.objects.values()];
-            for (let i = deleteMe.length - 1; i >= 0; i -= 1) {
+            for (let i = deleteMe.length - 1; i >= 1; i -= 1) {
                 deleteMe[i].wlDestroy();
             }
         }.bind(this));
+        this.compositor.metadata.wl_registry.outputs.addConnection(this);
+        this.compositor.metadata.wl_registry.seats.addConnection(this);
     }
     static prettyWlObj(object) {
-        return `[${object.iface}#${object.oid}]`;
+        return `[${object.iface}#${object.oid}${object._version ? 'v' : '^'}${object.version}]`;
     }
     static prettyArgs(args) {
         return Object.fromEntries(Object.entries(args)
@@ -177,7 +180,12 @@ class Connection extends node_events_1.default {
                     if (!this.muzzled && knownVersion < ifaceVersion) {
                         throw new Error(`Of ${ifaceName}: version ${ifaceVersion} is incompatible with version ${knownVersion}`);
                     }
-                    ctx.callbacks.push((args) => (args[arg.name] = this.createObject(ifaceName, oid, ctx.parent, args)));
+                    ctx.callbacks.push((args) => {
+                        args[arg.name] = this.createObject(ifaceName, oid, ctx.parent, {
+                            ...args,
+                            [utils_js_2.ifaceVersion]: ifaceVersion,
+                        });
+                    });
                     return null;
                 }
             }
@@ -238,6 +246,7 @@ class Connection extends node_events_1.default {
         }
         if (newCommandAt !== buf.length)
             throw new Error("Possibly missing data");
+        this.sendPending();
         // return commands;
     }
     buildBlock(val, arg, idx, buf) {
@@ -254,12 +263,10 @@ class Connection extends node_events_1.default {
                 write(val * 2 ** 8, buf, idx, true);
                 return idx + 4;
             }
+            case "new_id": // EDIT: Yes, yes it is. Cf. WlDataDevice#wlDataOffer
             case "object": {
-                write(val.oid, buf, idx, true);
+                write(val.oid, buf, idx);
                 return idx + 4;
-            }
-            case "new_id": {
-                throw new Error("Is that even possible?");
             }
             case "string": {
                 const size = (1 + val.length);
@@ -302,35 +309,56 @@ class Connection extends node_events_1.default {
             const key = (0, utils_js_1.snakeToCamel)(arg.name);
             if (!Object.hasOwn(args, key))
                 throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
+            logger_js_1.console.log(args, key);
             currIdx = this.buildBlock(args[key], arg, currIdx, result);
         }
         // console.log(size * 2 ** 16 + opcode, result);
         return result;
     }
-    // protected buffersSoFar: Buffer[] = [];
+    static isVersionAccurate(obj, eventName) {
+        const version = obj.version;
+        if (!version)
+            return true; // probably...
+        const eventObj = wayland_interpreter_js_1.interfaces[obj.iface].eventsReverse[eventName];
+        if (eventObj.since && version < eventObj.since || eventObj.deprec && version > eventObj.deprec) {
+            logger_js_1.console.log(eventObj.since, version, eventObj.deprec, eventName, obj.iface);
+            return false;
+        }
+        return true;
+    }
+    buffersSoFar = [];
     // protected immediate?: NodeJS.Immediate;
     addCommand(obj, eventName, args) {
         if (this.muzzled)
-            return;
+            return true;
+        if (!Connection.isVersionAccurate(obj, eventName))
+            return false;
         const toBeSent = this.builder(obj, eventName, args);
-        // this.buffersSoFar.push(toBeSent);
+        this.buffersSoFar.push(toBeSent);
         // if (!this.immediate)
         //   this.immediate = setImmediate((() => this.sendPending()).bind(this));
         // Just checked and setImmediate can tAKE TWELVE MILLISECONDS?? im a dumbass
-        this.socket.write(toBeSent);
+        // this.socket.write(toBeSent);
+        return true;
     }
-    // protected sendPending() {
-    //   if (this.muzzled) return;
-    //   const resBuf = Buffer.concat(this.buffersSoFar);
-    //   this.socket.write(resBuf);
-    //   // console.log("S2C", resBuf.toString("hex"));
-    //   // console.log('flushed', this.buffersSoFar.length, 'buffers');
-    //   this.buffersSoFar = [];
-    //   this.immediate = undefined;
-    // }
+    sendPending() {
+        if (this.muzzled)
+            return;
+        const resBuf = Buffer.concat(this.buffersSoFar);
+        this.socket.write(resBuf);
+        // console.log("S2C", resBuf.toString("hex"));
+        // console.log('flushed', this.buffersSoFar.length, 'buffers');
+        this.buffersSoFar = [];
+    }
     destroy(obj) {
         this.objects.delete(obj.oid);
-        this.addCommand(this.objects.get(1), 'deleteId', { id: obj.oid });
+        if (obj.oid < 0xFF000000) {
+            this.addCommand(this.objects.get(1), 'deleteId', { id: obj.oid });
+        }
+    }
+    latestServerOid = 0xFF000000;
+    createServerOid() {
+        return this.latestServerOid++;
     }
 }
 exports.Connection = Connection;

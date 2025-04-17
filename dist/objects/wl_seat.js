@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlSeat = exports.SeatRegistry = void 0;
 const base_object_js_1 = require("./base_object.js");
-const wl_registry_js_1 = require("./wl_registry.js");
+const specific_registry_1 = require("../lib/specific_registry");
 const name = 'wl_seat';
-class SeatRegistry extends wl_registry_js_1.SpecificRegistry {
+class SeatRegistry extends specific_registry_1.SpecificRegistry {
     get iface() { return name; }
 }
 exports.SeatRegistry = SeatRegistry;

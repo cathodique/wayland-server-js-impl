@@ -1,7 +1,7 @@
 import { Connection } from "../connection.js";
 import { EventClient, EventServer } from "../lib/event_clientserver.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
-import { SpecificRegistry } from "./wl_registry.js";
+import { SpecificRegistry } from "../lib/specific_registry";
 import { WlSurface } from "./wl_surface.js";
 export interface SeatConfiguration {
     name: string;
@@ -13,6 +13,8 @@ type SeatServerToClient = {
     'leave': [WlSurface];
     'buttonDown': [number];
     'buttonUp': [number];
+    'focus': [];
+    'blur': [];
 };
 export type SeatEventServer = EventServer<SeatServerToClient, {}>;
 export type SeatEventClient = EventClient<{}, SeatServerToClient>;

@@ -24,6 +24,7 @@ class WlSurface extends base_object_js_1.BaseObject {
     wlFrame({ callback }) {
         this.connection.compositor.once('tick', (function () {
             callback.done(this.connection.time.getTime());
+            this.connection.sendPending();
         }).bind(this));
     }
     wlSetBufferScale(args) {
@@ -41,6 +42,8 @@ class WlSurface extends base_object_js_1.BaseObject {
         for (const doubleBuffed of this.doubleBufferedState) {
             doubleBuffed.cached = doubleBuffed.pending;
         }
+        if (!this.subsurface)
+            this.applyCache();
         if (this.subsurface && !this.subsurface.isSynced)
             this.applyCache();
     }
@@ -54,7 +57,11 @@ class WlSurface extends base_object_js_1.BaseObject {
     }
     wlCommit() {
         this.update();
-        return this.buffer.current?.read();
+        if (this.buffer.current) {
+            const buf = this.buffer.current?.read();
+            this.buffer.current.addCommand('release', {});
+            return buf;
+        }
     }
 }
 exports.WlSurface = WlSurface;

@@ -2,7 +2,7 @@ import { Connection } from "../connection.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlSurface } from "./wl_surface.js";
 
-const name = 'xdg_wm_base';
+const name = 'xdg_wm_base' as const;
 export class XdgWmBase extends BaseObject {
   wlSurface: WlSurface;
 
