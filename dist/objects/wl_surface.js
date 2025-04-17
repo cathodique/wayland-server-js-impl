@@ -57,7 +57,7 @@ class WlSurface extends base_object_js_1.BaseObject {
         this.update();
         if (this.buffer.current) {
             const buf = this.buffer.current?.read();
-            this.buffer.current.addCommand('release', {});
+            // this.buffer.current.addCommand('release', {});
             return buf;
         }
     }

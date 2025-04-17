@@ -69,7 +69,7 @@ export class WlSurface extends BaseObject {
 
     if (this.buffer.current) {
       const buf = this.buffer.current?.read();
-      this.buffer.current.addCommand('release', {});
+      // this.buffer.current.addCommand('release', {});
       return buf;
     }
   }
