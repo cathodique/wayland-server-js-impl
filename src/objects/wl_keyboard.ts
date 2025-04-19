@@ -11,7 +11,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { promises as fsp } from "fs";
 import { FileHandle } from "fs/promises";
 import { interfaces } from "../wayland_interpreter.js";
-import mmap from "@cathodique/mmap-io";
+// import mmap from "@cathodique/mmap-io";
 
 type KeyboardServerToClient = { 'edit_keymap': [] };
 export type KeyboardEventServer = EventServer<KeyboardServerToClient, {}>;

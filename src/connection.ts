@@ -387,7 +387,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
       const arg = msg.args[i];
       const key = snakeToCamel(arg.name);
       if (!Object.hasOwn(args, key)) throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
-      console.log(args, key);
+      // console.log(args, key);
       currIdx = this.buildBlock(args[key], arg, currIdx, result);
     }
 
