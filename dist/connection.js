@@ -309,7 +309,7 @@ class Connection extends node_events_1.default {
             const key = (0, utils_js_1.snakeToCamel)(arg.name);
             if (!Object.hasOwn(args, key))
                 throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
-            logger_js_1.console.log(args, key);
+            // console.log(args, key);
             currIdx = this.buildBlock(args[key], arg, currIdx, result);
         }
         // console.log(size * 2 ** 16 + opcode, result);
