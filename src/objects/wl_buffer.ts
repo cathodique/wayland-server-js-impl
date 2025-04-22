@@ -29,7 +29,7 @@ export class WlBuffer extends BaseObject {
     this.stride = args.stride;
     this.format = args.format;
 
-    this.bufferId = mmap.map(this.size, 3, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, this.offset);
+    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, this.offset);
   }
 
   wlRelease() {

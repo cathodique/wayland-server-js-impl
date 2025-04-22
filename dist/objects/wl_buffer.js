@@ -28,7 +28,7 @@ class WlBuffer extends base_object_js_1.BaseObject {
         this.height = args.height;
         this.stride = args.stride;
         this.format = args.format;
-        this.bufferId = mmap_io_1.default.map(this.size, 3, mmap_io_1.default.MAP_SHARED, this.parent.fd, this.offset);
+        this.bufferId = mmap_io_1.default.map(this.size, mmap_io_1.default.PROT_READ, mmap_io_1.default.MAP_SHARED, this.parent.fd, this.offset);
     }
     wlRelease() {
         this.parent.daughterBuffers.delete(this);
