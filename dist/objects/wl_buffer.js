@@ -45,7 +45,7 @@ class WlBuffer extends base_object_js_1.BaseObject {
     async read() {
         const buffer = Buffer.alloc(this.size);
         // console.log((this.parent as WlShmPool).size);
-        return new Promise((r) => fs_1.default.read(this.parent.fd, buffer, this.size, this.offset, null, (_, __, b) => r(b)));
+        return new Promise((r) => fs_1.default.read(this.parent.fd, buffer, 0, this.size, this.offset, (_, __, b) => r(b)));
     }
 }
 exports.WlBuffer = WlBuffer;
