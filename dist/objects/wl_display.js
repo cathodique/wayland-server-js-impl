@@ -8,6 +8,7 @@ class WlDisplay extends base_object_js_1.BaseObject {
     _version = 1;
     wlSync(args) {
         args.callback.done(1);
+        this.connection.sendPending();
     }
     wlGetRegistry(args) {
         this.connection.registry = args.registry;

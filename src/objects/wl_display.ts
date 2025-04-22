@@ -10,6 +10,7 @@ export class WlDisplay extends BaseObject<DefaultEventMap, null> {
 
   wlSync(args: { callback: WlCallback }) {
     args.callback.done(1);
+    this.connection.sendPending();
   }
   wlGetRegistry(args: { registry: WlRegistry }) {
     this.connection.registry = args.registry;
