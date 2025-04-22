@@ -8,6 +8,7 @@ class WlCallback extends base_object_js_1.BaseObject {
     done(callbackData) {
         this.connection.addCommand(this, 'done', { callbackData: callbackData });
         this.wlDestroy();
+        this.connection.sendPending();
     }
 }
 exports.WlCallback = WlCallback;

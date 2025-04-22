@@ -7,5 +7,6 @@ export class WlCallback extends BaseObject {
   done(callbackData: number) {
     this.connection.addCommand(this, 'done', { callbackData: callbackData });
     this.wlDestroy();
+    this.connection.sendPending();
   }
 }
