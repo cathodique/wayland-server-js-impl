@@ -48,6 +48,7 @@ class WlKeyboard extends base_object_js_1.BaseObject {
     }
     async announceKeymap() {
         const keymapFd = await this.meta.keymapFd;
+        console.log(keymapFd);
         this.addCommand('keymap', {
             format: wayland_interpreter_js_1.interfaces.wl_keyboard.enums.keymapFormat.atoi.xkb_v1,
             size: this.meta.size,

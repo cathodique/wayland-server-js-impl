@@ -4,6 +4,7 @@ import { interfaces } from "../wayland_interpreter.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlShmPool } from "./wl_shm_pool.js";
 import mmap from "@cathodique/mmap-io";
+import fs from "fs";
 
 const name = 'wl_buffer' as const;
 export class WlBuffer extends BaseObject {
@@ -15,7 +16,7 @@ export class WlBuffer extends BaseObject {
   stride: number;
   format: number;
 
-  bufferId: number;
+  // buffer: Promise<FileHandle>;
 
   constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>) {
     super(conx, oid, parent, args);
@@ -29,7 +30,7 @@ export class WlBuffer extends BaseObject {
     this.stride = args.stride;
     this.format = args.format;
 
-    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, this.offset);
+    // this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, this.offset);
   }
 
   wlRelease() {
@@ -37,7 +38,7 @@ export class WlBuffer extends BaseObject {
   }
 
   wlDestroy(): void {
-    mmap.unmap(this.bufferId);
+    // mmap.unmap(this.bufferId);
   }
 
   get pixelSize() {
@@ -49,8 +50,9 @@ export class WlBuffer extends BaseObject {
     return Math.max(this.stride * (this.height - 1) + this.width * this.pixelSize, 0);
   }
 
-  read() {
+  async read() {
+    const buffer = Buffer.alloc(this.size);
     // console.log((this.parent as WlShmPool).size);
-    return mmap.tobuffer(this.bufferId, this.offset, this.size);
+    return new Promise((r) => fs.read((this.parent as WlShmPool).fd, buffer, this.size, this.offset, null, (_, __, b) => r(b)));
   }
 }
