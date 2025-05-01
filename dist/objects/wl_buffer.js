@@ -8,7 +8,7 @@ const colorspaces_js_1 = require("../misc/colorspaces.js");
 const wayland_interpreter_js_1 = require("../wayland_interpreter.js");
 const base_object_js_1 = require("./base_object.js");
 const wl_shm_pool_js_1 = require("./wl_shm_pool.js");
-const fs_1 = __importDefault(require("fs"));
+const mmap_io_1 = __importDefault(require("@cathodique/mmap-io"));
 const name = 'wl_buffer';
 class WlBuffer extends base_object_js_1.BaseObject {
     get iface() { return name; }
@@ -17,7 +17,6 @@ class WlBuffer extends base_object_js_1.BaseObject {
     height;
     stride;
     format;
-    // buffer: Promise<FileHandle>;
     constructor(conx, oid, parent, args) {
         super(conx, oid, parent, args);
         if (!(this.parent instanceof wl_shm_pool_js_1.WlShmPool))
@@ -28,13 +27,9 @@ class WlBuffer extends base_object_js_1.BaseObject {
         this.height = args.height;
         this.stride = args.stride;
         this.format = args.format;
-        // this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, this.offset);
     }
     wlRelease() {
         this.parent.daughterBuffers.delete(this);
-    }
-    wlDestroy() {
-        // mmap.unmap(this.bufferId);
     }
     get pixelSize() {
         return colorspaces_js_1.colorspaces[wayland_interpreter_js_1.interfaces.wl_shm.enums.format.itoa[this.format]].bytesPerPixel;
@@ -42,10 +37,9 @@ class WlBuffer extends base_object_js_1.BaseObject {
     get size() {
         return Math.max(this.stride * (this.height - 1) + this.width * this.pixelSize, 0);
     }
-    async read() {
-        const buffer = Buffer.alloc(this.size);
+    read() {
         // console.log((this.parent as WlShmPool).size);
-        return new Promise((r) => fs_1.default.read(this.parent.fd, buffer, 0, this.size, this.offset, (_, __, b) => r(b)));
+        return mmap_io_1.default.tobuffer(this.parent.bufferId, this.offset, this.size);
     }
 }
 exports.WlBuffer = WlBuffer;

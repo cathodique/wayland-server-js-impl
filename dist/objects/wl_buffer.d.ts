@@ -9,8 +9,7 @@ export declare class WlBuffer extends BaseObject {
     format: number;
     constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>);
     wlRelease(): void;
-    wlDestroy(): void;
     get pixelSize(): number;
     get size(): number;
-    read(): Promise<unknown>;
+    read(): Buffer<ArrayBufferLike>;
 }
