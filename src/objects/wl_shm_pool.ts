@@ -1,3 +1,4 @@
+import mmap from "@cathodique/mmap-io";
 import { Connection } from "../connection.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlBuffer } from "./wl_buffer.js";
@@ -11,6 +12,8 @@ export class WlShmPool extends BaseObject {
 
   daughterBuffers: Set<WlBuffer> = new Set();
 
+  bufferId: number;
+
   constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>) {
     super(conx, oid, parent, args);
 
@@ -18,9 +21,17 @@ export class WlShmPool extends BaseObject {
     // this.mmap = mmap.map(args.size, readwrite, mmap.MAP_SHARED, args.fd);
     this.size = args.size;
     this.fd = args.fd;
+
+    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, 0);
   }
 
   wlResize(args: Record<string, any>) {
+    mmap.unmap(this.bufferId);
     this.size = args.size;
+    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, 0);
+  }
+
+  wlDestroy(): void {
+    mmap.unmap(this.bufferId);
   }
 }
