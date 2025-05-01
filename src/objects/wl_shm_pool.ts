@@ -31,7 +31,8 @@ export class WlShmPool extends BaseObject {
     this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, this.fd, 0);
   }
 
-  wlDestroy(): void {
-    mmap.unmap(this.bufferId);
-  }
+  // wlDestroy(): void {
+  //   mmap.unmap(this.bufferId);
+  //   TODO: Unmap when appropriate
+  // }
 }
