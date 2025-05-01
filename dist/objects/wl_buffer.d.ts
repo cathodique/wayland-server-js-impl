@@ -11,4 +11,5 @@ export declare class WlBuffer extends BaseObject {
     wlRelease(): void;
     get pixelSize(): number;
     get size(): number;
+    getByte(i: number): Buffer<ArrayBufferLike>;
 }
