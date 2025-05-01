@@ -15,6 +15,7 @@ import { WlShmPool } from "./objects/wl_shm_pool";
 import { WlSubcompositor } from "./objects/wl_subcompositor";
 import { WlSubsurface } from "./objects/wl_subsurface";
 import { WlSurface } from "./objects/wl_surface";
+import { XdgPositioner } from "./objects/xdg_positioner";
 import { XdgSurface } from "./objects/xdg_surface";
 import { XdgToplevel } from "./objects/xdg_toplevel";
 import { XdgWmBase } from "./objects/xdg_wm_base";
@@ -37,6 +38,7 @@ export const newIdMap = {
   wl_data_offer: WlDataOffer,
   wl_surface: WlSurface,
   wl_subsurface: WlSubsurface,
+  xdg_positioner: XdgPositioner,
   xdg_surface: XdgSurface,
   xdg_toplevel: XdgToplevel,
   wl_region: WlRegion,
