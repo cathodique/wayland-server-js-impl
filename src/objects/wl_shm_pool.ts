@@ -22,13 +22,13 @@ export class WlShmPool extends BaseObject {
     this.size = args.size;
     this.fd = args.fd;
 
-    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, 0);
+    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, this.fd, 0);
   }
 
   wlResize(args: Record<string, any>) {
     mmap.unmap(this.bufferId);
     this.size = args.size;
-    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, (this.parent as WlShmPool).fd, 0);
+    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, this.fd, 0);
   }
 
   wlDestroy(): void {
