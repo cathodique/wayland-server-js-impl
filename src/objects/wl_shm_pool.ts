@@ -17,12 +17,10 @@ export class WlShmPool extends BaseObject {
   constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>) {
     super(conx, oid, parent, args);
 
-    // const readwrite = (mmap.PROT_READ | mmap.PROT_WRITE) as 3;
-    // this.mmap = mmap.map(args.size, readwrite, mmap.MAP_SHARED, args.fd);
+    const readwrite = (mmap.PROT_READ | mmap.PROT_WRITE) as 3;
+    this.bufferId = mmap.map(args.size, readwrite, mmap.MAP_SHARED, args.fd);
     this.size = args.size;
     this.fd = args.fd;
-
-    this.bufferId = mmap.map(this.size, mmap.PROT_READ, mmap.MAP_SHARED, this.fd, 0);
   }
 
   wlResize(args: Record<string, any>) {

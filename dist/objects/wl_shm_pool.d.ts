@@ -9,5 +9,4 @@ export declare class WlShmPool extends BaseObject {
     bufferId: number;
     constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>);
     wlResize(args: Record<string, any>): void;
-    wlDestroy(): void;
 }

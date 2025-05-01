@@ -15,19 +15,15 @@ class WlShmPool extends base_object_js_1.BaseObject {
     bufferId;
     constructor(conx, oid, parent, args) {
         super(conx, oid, parent, args);
-        // const readwrite = (mmap.PROT_READ | mmap.PROT_WRITE) as 3;
-        // this.mmap = mmap.map(args.size, readwrite, mmap.MAP_SHARED, args.fd);
+        const readwrite = (mmap_io_1.default.PROT_READ | mmap_io_1.default.PROT_WRITE);
+        this.bufferId = mmap_io_1.default.map(args.size, readwrite, mmap_io_1.default.MAP_SHARED, args.fd);
         this.size = args.size;
         this.fd = args.fd;
-        this.bufferId = mmap_io_1.default.map(this.size, mmap_io_1.default.PROT_READ, mmap_io_1.default.MAP_SHARED, this.fd, 0);
     }
     wlResize(args) {
         mmap_io_1.default.unmap(this.bufferId);
         this.size = args.size;
         this.bufferId = mmap_io_1.default.map(this.size, mmap_io_1.default.PROT_READ, mmap_io_1.default.MAP_SHARED, this.fd, 0);
-    }
-    wlDestroy() {
-        mmap_io_1.default.unmap(this.bufferId);
     }
 }
 exports.WlShmPool = WlShmPool;
