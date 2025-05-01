@@ -40,9 +40,4 @@ export class WlBuffer extends BaseObject {
   get size() {
     return Math.max(this.stride * (this.height - 1) + this.width * this.pixelSize, 0);
   }
-
-  read() {
-    // console.log((this.parent as WlShmPool).size);
-    return mmap.tobuffer((this.parent as WlShmPool).bufferId, this.offset, this.size);
-  }
 }

@@ -32,5 +32,5 @@ export declare class WlSurface extends BaseObject {
     get synced(): boolean;
     update(): void;
     applyCache(): void;
-    wlCommit(): Buffer<ArrayBufferLike> | undefined;
+    wlCommit(): WlBuffer | undefined;
 }
