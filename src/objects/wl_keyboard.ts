@@ -11,6 +11,8 @@ import { createId } from "@paralleldrive/cuid2";
 import { promises as fsp } from "fs";
 import { FileHandle } from "fs/promises";
 import { interfaces } from "../wayland_interpreter.js";
+import { SeatEventClient, WlSeat } from "./wl_seat.js";
+import { WlSurface } from "./wl_surface.js";
 // import mmap from "@cathodique/mmap-io";
 
 type KeyboardServerToClient = { 'edit_keymap': [] };
@@ -55,6 +57,8 @@ const name = 'wl_keyboard' as const;
 export class WlKeyboard extends BaseObject {
   get iface() { return name }
 
+  recipient: SeatEventClient;
+
   meta: KeyboardRegistry;
 
   constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>, argsFromAbove: ObjectMetadata) {
@@ -63,7 +67,28 @@ export class WlKeyboard extends BaseObject {
 
     this.meta = argsFromAbove.wl_keyboard;
 
-    this.announceKeymap();
+    if (!(parent instanceof WlSeat)) throw new Error('WlPointer needs to be initialized in the scope of a wl_seat');
+
+    // this.announceKeymap();
+    const seatRegistry = parent.seatRegistry;
+
+    this.recipient = seatRegistry.transports.get(conx)!.get(parent.info)!.createRecipient();
+
+    this.recipient.on('focus', (function (this: WlKeyboard, surf: WlSurface) {
+      this.addCommand('enter', {
+        serial: this.connection.time.getTime(),
+        surface: surf,
+        keys: Buffer.alloc(0),
+      });
+      this.connection.sendPending();
+    }).bind(this));
+    this.recipient.on('blur', (function (this: WlKeyboard, surf: WlSurface) {
+      this.addCommand('leave', {
+        serial: this.connection.time.getTime(),
+        surface: surf,
+      });
+      this.connection.sendPending();
+    }).bind(this));
   }
 
   async announceKeymap() {
