@@ -51,6 +51,11 @@ class WlKeyboard extends base_object_js_1.BaseObject {
         // this.announceKeymap();
         const seatRegistry = parent.seatRegistry;
         this.recipient = seatRegistry.transports.get(conx).get(parent.info).createRecipient();
+        // TODO: Make more customizable (?) => Dont hardcode
+        this.addCommand('repeatInfo', {
+            rate: 25,
+            delay: 600,
+        });
         this.recipient.on('focus', (function (surf) {
             this.addCommand('enter', {
                 serial: this.connection.time.getTime(),

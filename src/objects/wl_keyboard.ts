@@ -74,6 +74,12 @@ export class WlKeyboard extends BaseObject {
 
     this.recipient = seatRegistry.transports.get(conx)!.get(parent.info)!.createRecipient();
 
+    // TODO: Make more customizable (?) => Dont hardcode
+    this.addCommand('repeatInfo', {
+      rate: 25,
+      delay: 600,
+    });
+
     this.recipient.on('focus', (function (this: WlKeyboard, surf: WlSurface) {
       this.addCommand('enter', {
         serial: this.connection.time.getTime(),
