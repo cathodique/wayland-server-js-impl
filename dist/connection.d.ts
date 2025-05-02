@@ -45,11 +45,11 @@ export declare class Connection extends EventEmitter<ConnectionEvents> {
     createObject(type: string, id: number, parent: BaseObject<DefaultEventMap, Parent>, args: Record<string, any>): import("./objects/wl_callback.js").WlCallback | import("./objects/wl_buffer.js").WlBuffer | import("./objects/wl_pointer.js").WlPointer | import("./objects/wl_keyboard.js").WlKeyboard | WlRegistry | import("./objects/wl_compositor.js").WlCompositor | import("./objects/wl_shm.js").WlShm | import("./objects/wl_shm_pool.js").WlShmPool | import("./objects/wl_seat.js").WlSeat | import("./objects/wl_subcompositor.js").WlSubcompositor | import("./objects/wl_output.js").WlOutput | import("./objects/xdg_wm_base.js").XdgWmBase | import("./objects/wl_data_device_manager.js").WlDataDeviceManager | import("./objects/wl_data_device.js").WlDataDevice | import("./objects/wl_data_offer.js").WlDataOffer | import("./objects/wl_surface.js").WlSurface | import("./objects/wl_subsurface.js").WlSubsurface | import("./objects/xdg_positioner.js").XdgPositioner | import("./objects/xdg_popup.js").XdgPopup | import("./objects/xdg_surface.js").XdgSurface | import("./objects/xdg_toplevel.js").XdgToplevel | import("./objects/wl_region.js").WlRegion | WlDummy;
     parseBlock(ctx: ParsingContext, type: string, arg?: WlArg): any;
     parser(buf: Buffer, isEvent?: boolean): Generator<[BaseObject<DefaultEventMap, Parent>, string, Record<string, any>]>;
-    buildBlock(val: any, arg: WlArg, idx: number, buf: Buffer): number;
+    buildBlock(val: any, arg: WlArg, idx: number, buf: Buffer, fds: number[]): number;
     getFinalSize(msg: WlMessage, args: Record<string, any>): number;
-    builder(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): Buffer<ArrayBuffer>;
+    builder(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): [Buffer, number[]];
     static isVersionAccurate(obj: BaseObject<DefaultEventMap, Parent>, eventName: string): boolean;
-    protected buffersSoFar: Buffer[];
+    protected buffersSoFar: [Buffer, number[]][];
     addCommand(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): boolean;
     sendPending(): void;
     destroy(obj: BaseObject<DefaultEventMap, any>): void;

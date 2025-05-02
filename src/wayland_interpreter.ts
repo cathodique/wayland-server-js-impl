@@ -32,7 +32,7 @@ export interface WlMessage {
 
 interface WlArgBasic {
   name: string;
-  type: "int" | "uint" | "fixed" | "array" | "string";
+  type: "int" | "uint" | "fixed" | "array" | "string" | "fd";
 }
 interface WlArgInterface {
   name: string;

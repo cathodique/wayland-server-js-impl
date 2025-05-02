@@ -320,7 +320,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     // return commands;
   }
 
-  buildBlock(val: any, arg: WlArg, idx: number, buf: Buffer): number {
+  buildBlock(val: any, arg: WlArg, idx: number, buf: Buffer, fds: number[]): number {
     switch (arg.type) {
       case "int": {
         write(val, buf, idx, true);
@@ -355,6 +355,10 @@ export class Connection extends EventEmitter<ConnectionEvents> {
 
         return idx + 4 + Math.ceil(size / 4) * 4;
       }
+      case "fd": {
+        fds.push(val);
+        return idx;
+      }
     }
   }
 
@@ -366,19 +370,21 @@ export class Connection extends EventEmitter<ConnectionEvents> {
         result += 4;
         continue;
       }
+      if (arg.type === "fd") continue;
       result += Math.ceil((args[arg.name].length + 1) / 4) * 4 + 4;
     }
 
     return result;
   }
 
-  builder(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>) {
+  builder(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): [Buffer, number[]] {
     // console.log(obj.iface);
     const msg = interfaces[obj.iface].eventsReverse[eventName];
     const opcode = msg.index;
 
     const size = this.getFinalSize(msg, args) + 8;
     const result = Buffer.alloc(size);
+    const resultFds: number[] = [];
     write(obj.oid, result, 0);
     write(size * 2 ** 16 + opcode, result, 4);
 
@@ -388,12 +394,12 @@ export class Connection extends EventEmitter<ConnectionEvents> {
       const key = snakeToCamel(arg.name);
       if (!Object.hasOwn(args, key)) throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
       // console.log(args, key);
-      currIdx = this.buildBlock(args[key], arg, currIdx, result);
+      currIdx = this.buildBlock(args[key], arg, currIdx, result, resultFds);
     }
 
     // console.log(size * 2 ** 16 + opcode, result);
 
-    return result;
+    return [result, resultFds];
   }
 
   static isVersionAccurate(obj: BaseObject<DefaultEventMap, Parent>, eventName: string): boolean {
@@ -410,7 +416,7 @@ export class Connection extends EventEmitter<ConnectionEvents> {
     return true;
   }
 
-  protected buffersSoFar: Buffer[] = [];
+  protected buffersSoFar: [Buffer, number[]][] = [];
   // protected immediate?: NodeJS.Immediate;
   addCommand(obj: BaseObject<DefaultEventMap, Parent>, eventName: string, args: Record<string, any>): boolean {
     if (this.muzzled) return true;
@@ -426,8 +432,8 @@ export class Connection extends EventEmitter<ConnectionEvents> {
 
   sendPending() {
     if (this.muzzled) return;
-    const resBuf = Buffer.concat(this.buffersSoFar);
-    this.socket.write(resBuf);
+    const resBuf = Buffer.concat(this.buffersSoFar.map(([v]) => v));
+    this.socket.write({ data: resBuf, fds: this.buffersSoFar.map(([_, v]) => v).flat(1) });
     // console.log("S2C", resBuf.toString("hex"));
 
     // console.log('flushed', this.buffersSoFar.length, 'buffers');

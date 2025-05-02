@@ -249,7 +249,7 @@ class Connection extends node_events_1.default {
         this.sendPending();
         // return commands;
     }
-    buildBlock(val, arg, idx, buf) {
+    buildBlock(val, arg, idx, buf, fds) {
         switch (arg.type) {
             case "int": {
                 write(val, buf, idx, true);
@@ -282,6 +282,10 @@ class Connection extends node_events_1.default {
                 buffer.copy(buf, idx + 1);
                 return idx + 4 + Math.ceil(size / 4) * 4;
             }
+            case "fd": {
+                fds.push(val);
+                return idx;
+            }
         }
     }
     getFinalSize(msg, args) {
@@ -291,6 +295,8 @@ class Connection extends node_events_1.default {
                 result += 4;
                 continue;
             }
+            if (arg.type === "fd")
+                continue;
             result += Math.ceil((args[arg.name].length + 1) / 4) * 4 + 4;
         }
         return result;
@@ -301,6 +307,7 @@ class Connection extends node_events_1.default {
         const opcode = msg.index;
         const size = this.getFinalSize(msg, args) + 8;
         const result = Buffer.alloc(size);
+        const resultFds = [];
         write(obj.oid, result, 0);
         write(size * 2 ** 16 + opcode, result, 4);
         let currIdx = 8;
@@ -310,10 +317,10 @@ class Connection extends node_events_1.default {
             if (!Object.hasOwn(args, key))
                 throw new Error(`Whilst sending ${obj.iface}.${eventName}, ${key} was not found in args`);
             // console.log(args, key);
-            currIdx = this.buildBlock(args[key], arg, currIdx, result);
+            currIdx = this.buildBlock(args[key], arg, currIdx, result, resultFds);
         }
         // console.log(size * 2 ** 16 + opcode, result);
-        return result;
+        return [result, resultFds];
     }
     static isVersionAccurate(obj, eventName) {
         const version = obj.version;
@@ -344,8 +351,8 @@ class Connection extends node_events_1.default {
     sendPending() {
         if (this.muzzled)
             return;
-        const resBuf = Buffer.concat(this.buffersSoFar);
-        this.socket.write(resBuf);
+        const resBuf = Buffer.concat(this.buffersSoFar.map(([v]) => v));
+        this.socket.write({ data: resBuf, fds: this.buffersSoFar.map(([_, v]) => v).flat(1) });
         // console.log("S2C", resBuf.toString("hex"));
         // console.log('flushed', this.buffersSoFar.length, 'buffers');
         this.buffersSoFar = [];
