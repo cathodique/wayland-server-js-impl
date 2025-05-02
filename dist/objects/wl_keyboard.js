@@ -11,6 +11,7 @@ const cuid2_1 = require("@paralleldrive/cuid2");
 // TODO: Remove dependency on NodeJS fs
 const fs_1 = require("fs");
 const wayland_interpreter_js_1 = require("../wayland_interpreter.js");
+const wl_seat_js_1 = require("./wl_seat.js");
 class KeyboardRegistry extends signalbound_js_1.Signalbound {
     get iface() { return name; }
     keymapFd;
@@ -39,12 +40,32 @@ exports.KeyboardRegistry = KeyboardRegistry;
 const name = 'wl_keyboard';
 class WlKeyboard extends base_object_js_1.BaseObject {
     get iface() { return name; }
+    recipient;
     meta;
     constructor(conx, oid, parent, args, argsFromAbove) {
         // if (conx.registry) return conx.registry;
         super(conx, oid, parent, args);
         this.meta = argsFromAbove.wl_keyboard;
-        this.announceKeymap();
+        if (!(parent instanceof wl_seat_js_1.WlSeat))
+            throw new Error('WlPointer needs to be initialized in the scope of a wl_seat');
+        // this.announceKeymap();
+        const seatRegistry = parent.seatRegistry;
+        this.recipient = seatRegistry.transports.get(conx).get(parent.info).createRecipient();
+        this.recipient.on('focus', (function (surf) {
+            this.addCommand('enter', {
+                serial: this.connection.time.getTime(),
+                surface: surf,
+                keys: Buffer.alloc(0),
+            });
+            this.connection.sendPending();
+        }).bind(this));
+        this.recipient.on('blur', (function (surf) {
+            this.addCommand('leave', {
+                serial: this.connection.time.getTime(),
+                surface: surf,
+            });
+            this.connection.sendPending();
+        }).bind(this));
     }
     async announceKeymap() {
         const keymapFd = await this.meta.keymapFd;

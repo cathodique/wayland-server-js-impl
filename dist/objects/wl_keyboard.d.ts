@@ -4,6 +4,7 @@ import { EventClient, EventServer } from "../lib/event_clientserver.js";
 import { Signalbound } from "../lib/signalbound.js";
 import { BaseObject, ExistentParent } from "./base_object.js";
 import { FileHandle } from "fs/promises";
+import { SeatEventClient } from "./wl_seat.js";
 type KeyboardServerToClient = {
     'edit_keymap': [];
 };
@@ -24,6 +25,7 @@ export declare class KeyboardRegistry extends Signalbound<KeyboardConfiguration,
 export type WlKeyboardMetadata = KeyboardRegistry;
 export declare class WlKeyboard extends BaseObject {
     get iface(): "wl_keyboard";
+    recipient: SeatEventClient;
     meta: KeyboardRegistry;
     constructor(conx: Connection, oid: number, parent: ExistentParent, args: Record<string, any>, argsFromAbove: ObjectMetadata);
     announceKeymap(): Promise<void>;

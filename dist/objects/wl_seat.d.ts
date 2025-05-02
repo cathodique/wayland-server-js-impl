@@ -13,8 +13,8 @@ type SeatServerToClient = {
     'leave': [WlSurface];
     'buttonDown': [number];
     'buttonUp': [number];
-    'focus': [];
-    'blur': [];
+    'focus': [WlSurface];
+    'blur': [WlSurface];
 };
 export type SeatEventServer = EventServer<SeatServerToClient, {}>;
 export type SeatEventClient = EventClient<{}, SeatServerToClient>;
