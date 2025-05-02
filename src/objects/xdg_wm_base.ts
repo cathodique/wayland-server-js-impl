@@ -1,6 +1,7 @@
 import { Connection } from "../connection.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlSurface } from "./wl_surface.js";
+import { XdgSurface } from "./xdg_surface.js";
 
 const name = 'xdg_wm_base' as const;
 export class XdgWmBase extends BaseObject {
@@ -13,5 +14,7 @@ export class XdgWmBase extends BaseObject {
 
     this.wlSurface = args.surface;
   }
-  wlGetXdgSurface() { /* Self-fulfilling in xdg_surface */ }
+  wlGetXdgSurface(args: { id: XdgSurface, surface: WlSurface }) {
+    args.surface.xdgSurface = args.id;
+  }
 }

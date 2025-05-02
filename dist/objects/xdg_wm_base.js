@@ -10,6 +10,8 @@ class XdgWmBase extends base_object_js_1.BaseObject {
         super(conx, oid, parent, args);
         this.wlSurface = args.surface;
     }
-    wlGetXdgSurface() { }
+    wlGetXdgSurface(args) {
+        args.surface.xdgSurface = args.id;
+    }
 }
 exports.XdgWmBase = XdgWmBase;

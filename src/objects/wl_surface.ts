@@ -4,9 +4,11 @@ import { RegRectangle, WlRegion } from "./wl_region.js";
 import { WlCallback } from "./wl_callback.js";
 import { WlSubsurface } from "./wl_subsurface.js";
 import { DoubleBuffer } from "../lib/doublebuffer.js";
+import { XdgSurface } from "./xdg_surface.js";
 
 const name = 'wl_surface' as const;
 export class WlSurface extends BaseObject {
+  xdgSurface: XdgSurface | null = null;
   daughterSurfaces: WlSurface[] = [];
   subsurface: WlSubsurface | null = null;
 

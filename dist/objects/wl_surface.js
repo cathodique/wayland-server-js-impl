@@ -5,6 +5,7 @@ const base_object_js_1 = require("./base_object.js");
 const doublebuffer_js_1 = require("../lib/doublebuffer.js");
 const name = 'wl_surface';
 class WlSurface extends base_object_js_1.BaseObject {
+    xdgSurface = null;
     daughterSurfaces = [];
     subsurface = null;
     get iface() { return name; }
