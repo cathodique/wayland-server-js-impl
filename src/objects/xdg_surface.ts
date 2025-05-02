@@ -2,6 +2,7 @@ import { Connection } from "../connection.js";
 import { DoubleBuffer } from "../lib/doublebuffer.js";
 import { ExistentParent, BaseObject } from "./base_object.js";
 import { WlSurface } from "./wl_surface.js";
+import { XdgPopup } from "./xdg_popup.js";
 import { XdgToplevel } from "./xdg_toplevel.js";
 
 interface WindowGeometry {
@@ -14,7 +15,7 @@ interface WindowGeometry {
 const name = 'xdg_surface' as const;
 export class XdgSurface extends BaseObject {
   surface: WlSurface;
-  role: XdgToplevel | null = null;
+  role: XdgToplevel | XdgPopup | null = null;
 
   lastConfigureSerial = 0;
   wasLastConfigureAcked = true;

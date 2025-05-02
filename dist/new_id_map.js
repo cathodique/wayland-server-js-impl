@@ -18,6 +18,7 @@ const wl_shm_pool_1 = require("./objects/wl_shm_pool");
 const wl_subcompositor_1 = require("./objects/wl_subcompositor");
 const wl_subsurface_1 = require("./objects/wl_subsurface");
 const wl_surface_1 = require("./objects/wl_surface");
+const xdg_popup_1 = require("./objects/xdg_popup");
 const xdg_positioner_1 = require("./objects/xdg_positioner");
 const xdg_surface_1 = require("./objects/xdg_surface");
 const xdg_toplevel_1 = require("./objects/xdg_toplevel");
@@ -41,6 +42,7 @@ exports.newIdMap = {
     wl_surface: wl_surface_1.WlSurface,
     wl_subsurface: wl_subsurface_1.WlSubsurface,
     xdg_positioner: xdg_positioner_1.XdgPositioner,
+    xdg_popup: xdg_popup_1.XdgPopup,
     xdg_surface: xdg_surface_1.XdgSurface,
     xdg_toplevel: xdg_toplevel_1.XdgToplevel,
     wl_region: wl_region_1.WlRegion,
