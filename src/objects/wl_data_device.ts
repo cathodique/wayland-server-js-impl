@@ -17,8 +17,8 @@ export class WlDataDevice extends BaseObject {
       const newOid = this.connection.createServerOid();
       this.addCommand('dataOffer', { id: { oid: newOid } });
 
-      const offer = this.connection.createObject('wl_data_offer', newOid, this, { mimeType: 'text/plain;charset=utf-8', [fromServer]: true });
-      this.addCommand('selection', { id: offer });
+      // const offer = this.connection.createObject('wl_data_offer', newOid, this, { mimeType: 'text/plain;charset=utf-8', [fromServer]: true });
+      this.addCommand('selection', { id: null });
     }.bind(this));
   }
 

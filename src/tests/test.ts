@@ -19,13 +19,15 @@ const compo = new Compositor({
   },
 });
 
-setInterval(() => {
-  compo.emit('tick');
-}, 1000 / 60);
+console.log('a, aaaaaa');
+
+// setInterval(() => {
+//   compo.emit('tick');
+// }, 1000 / 60);
 compo.start();
 
-compo.on('connection', (conx) => {
-  conx.on('wl_surface', (surface) => {
-    console.log(surface);
-  });
-});
+// compo.on('connection', (conx) => {
+//   conx.on('wl_surface', (surface) => {
+//     console.log(surface);
+//   });
+// });

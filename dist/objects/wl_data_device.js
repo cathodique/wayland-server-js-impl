@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WlDataDevice = void 0;
-const utils_js_1 = require("../utils.js");
 const base_object_js_1 = require("./base_object.js");
 const name = 'wl_data_device';
 class WlDataDevice extends base_object_js_1.BaseObject {
@@ -14,8 +13,8 @@ class WlDataDevice extends base_object_js_1.BaseObject {
         this.recipient.on('focus', function () {
             const newOid = this.connection.createServerOid();
             this.addCommand('dataOffer', { id: { oid: newOid } });
-            const offer = this.connection.createObject('wl_data_offer', newOid, this, { mimeType: 'text/plain;charset=utf-8', [utils_js_1.fromServer]: true });
-            this.addCommand('selection', { id: offer });
+            // const offer = this.connection.createObject('wl_data_offer', newOid, this, { mimeType: 'text/plain;charset=utf-8', [fromServer]: true });
+            this.addCommand('selection', { id: null });
         }.bind(this));
     }
     get iface() { return name; }
